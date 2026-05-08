@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Orange Viagens — Time de Produto</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{--or:#E8550A;--orl:#FDE8DC;--dk:#1A1208;--dk2:#2C1F0E;--ink:#3D2B14;--mu:#8C7B6A;--bd:#E8DDD2;--sf:#FAF7F4;--wh:#FFFCF9;--gr:#1B6B3A;--grl:#E0F0E8;--am:#A05C0A;--aml:#FDF0DC;--bl:#1A4F7A;--bll:#DCE8F5;--pu:#4A2E8A;--pul:#EDE8FA;--re:#B01E1E;--rel:#FCE8E8;--r:12px;--rs:7px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--sf);color:var(--ink);font-size:14px;line-height:1.6}
+.hdr{background:var(--dk);padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100}
+.logo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff}.logo span{color:#F4A07A;font-style:italic}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.user-chip{display:flex;align-items:center;gap:7px;font-size:12px;color:#ccc}
+.av{width:26px;height:26px;border-radius:50%;font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.av-rf{background:#D4F0E4;color:#0F5C38}.av-mi{background:#D0E5F5;color:#1A4F7A}.av-la{background:#FAD4C0;color:#7A2A0A}.av-be{background:#FAE8C0;color:#7A4A0A}
+.btn-logout{font-size:11px;color:var(--mu);background:none;border:1px solid #444;border-radius:var(--rs);padding:3px 10px;cursor:pointer}
+.btn-logout:hover{border-color:#888;color:#ccc}
+.nav{background:var(--wh);border-bottom:1px solid var(--bd);padding:0 1.5rem;display:flex;overflow-x:auto}
+.nb{padding:13px 18px;font-size:13px;font-weight:500;color:var(--mu);background:none;border:none;border-bottom:2.5px solid transparent;cursor:pointer;white-space:nowrap;transition:all .2s}
+.nb:hover{color:var(--ink)}.nb.on{color:var(--or);border-bottom-color:var(--or)}
+.main{max-width:960px;margin:0 auto;padding:1.5rem}
+.sec{display:none}.sec.on{display:block}
+/* LOGIN */
+.login-wrap{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 54px);padding:2rem}
+.login-card{background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:2rem;width:100%;max-width:360px}
+.login-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--dk);margin-bottom:5px}
+.login-sub{font-size:13px;color:var(--mu);margin-bottom:1.5rem}
+.field{margin-bottom:12px}
+.field label{font-size:12px;font-weight:500;color:var(--mu);display:block;margin-bottom:4px}
+input[type=email],input[type=password],input[type=text],textarea,select{width:100%;padding:9px 12px;border:1px solid var(--bd);border-radius:var(--rs);background:var(--sf);color:var(--ink);font-size:13px;font-family:'DM Sans',sans-serif;transition:border .15s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--or)}
+textarea{resize:vertical;min-height:80px}
+.btn{padding:9px 20px;border-radius:var(--rs);border:none;cursor:pointer;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;transition:all .15s}
+.btn-p{background:var(--or);color:#fff;width:100%}.btn-p:hover{background:#c94208}
+.btn-s{background:transparent;border:1px solid var(--bd);color:var(--mu)}.btn-s:hover{background:var(--bd)}
+.err{font-size:12px;color:var(--re);margin-bottom:10px;display:none}
+/* CARDS */
+.card{background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:1.25rem;margin-bottom:12px}
+.ptitle{font-family:'DM Serif Display',serif;font-size:22px;color:var(--dk);margin-bottom:3px}
+.psub{font-size:12px;color:var(--mu);margin-bottom:1.25rem}
+.slabel{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:8px;display:block;margin-top:1.25rem}
+.slabel:first-child{margin-top:0}
+/* CHECKLIST */
+.cl-item{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);cursor:pointer;transition:opacity .15s}
+.cl-item:last-child{border-bottom:none}
+.cl-item:hover{opacity:.85}
+.cl-item.done{opacity:.55}
+.cl-item.done .cl-text{text-decoration:line-through;color:var(--mu)}
+.chk{width:18px;height:18px;border:1.5px solid var(--bd);border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--wh);font-size:11px}
+.cl-item.done .chk{background:var(--gr);border-color:var(--gr);color:#fff}
+.cl-text{flex:1;font-size:13px;line-height:1.4}
+.cl-ts{font-size:10px;color:var(--mu);margin-top:2px;display:none}
+.cl-item.done .cl-ts{display:block}
+/* PROGRESSO */
+.prog-wrap{margin:12px 0}
+.prog-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--mu);margin-bottom:4px}
+.prog-bar{height:5px;background:var(--bd);border-radius:10px;overflow:hidden}
+.prog-fill{height:100%;border-radius:10px;background:var(--or);transition:width .4s ease}
+/* TABS ciclo */
+.cycle-tabs{display:flex;gap:6px;margin-bottom:1.25rem;flex-wrap:wrap}
+.ctab{padding:6px 16px;border-radius:20px;border:1.5px solid var(--bd);background:var(--wh);cursor:pointer;font-size:12px;font-weight:500;color:var(--mu);transition:all .15s}
+.ctab:hover{border-color:var(--or);color:var(--or)}
+.ctab.on{border-color:var(--or);background:var(--orl);color:var(--or)}
+.cpanel{display:none}.cpanel.on{display:block}
+/* FORM mensal */
+.form-section{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid var(--bd)}
+.form-section:last-child{border-bottom:none}
+.form-title{font-size:13px;font-weight:600;color:var(--dk);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.submit-bar{position:sticky;bottom:0;background:var(--wh);border-top:1px solid var(--bd);padding:1rem 0;display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:1.5rem}
+.submit-status{font-size:12px;color:var(--mu)}
+.badge{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.badge-ok{background:var(--grl);color:var(--gr)}
+.badge-warn{background:var(--aml);color:var(--am)}
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--dk);color:#fff;padding:10px 20px;border-radius:var(--rs);font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .25s;pointer-events:none;z-index:999}
+.toast.show{opacity:1;transform:translateY(0)}
+/* VISÃO ALL */
+.coord-block{background:var(--wh);border:1px solid var(--bd);border-radius:var(--r);padding:1.25rem;margin-bottom:12px}
+.coord-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.coord-info{display:flex;align-items:center;gap:8px}
+.coord-name{font-size:14px;font-weight:600;color:var(--dk)}
+.coord-role{font-size:11px;color:var(--mu)}
+@media(max-width:600px){.form-grid{grid-template-columns:1fr}.main{padding:1rem}}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <div class="logo">Orange <span>Viagens</span></div>
+  <div class="hdr-r" id="hdr-user" style="display:none">
+    <div class="user-chip"><div class="av" id="av-user"></div><span id="user-nome"></span></div>
+    <button class="btn-logout" onclick="logout()">Sair</button>
+  </div>
+</header>
+
+<!-- LOGIN -->
+<div id="login-wrap" class="login-wrap">
+  <div class="login-card">
+    <div class="login-title">Bem-vinda 👋</div>
+    <div class="login-sub">Acesse com seu e-mail e senha</div>
+    <div class="field"><label>E-mail</label><input type="email" id="l-email" placeholder="seu@email.com"></div>
+    <div class="field"><label>Senha</label><input type="password" id="l-pass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="err" id="l-err">E-mail ou senha incorretos.</div>
+    <button class="btn btn-p" onclick="doLogin()">Entrar</button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none">
+  <nav class="nav">
+    <button class="nb on" onclick="nav('checklist',this)">Checklist</button>
+    <button class="nb" onclick="nav('mensal',this)">Entrega Mensal</button>
+    <button class="nb" onclick="nav('visao',this)">Visão do Time</button>
+  </nav>
+  <main class="main">
+
+    <!-- CHECKLIST -->
+    <section id="checklist" class="sec on">
+      <p class="ptitle" id="cl-title">Checklist</p>
+      <p class="psub">Marque os itens concluídos — cada marcação fica registrada com data e hora</p>
+      <div class="cycle-tabs">
+        <button class="ctab on" onclick="showCycle('semanal',this)">Semanal</button>
+        <button class="ctab" onclick="showCycle('mensal',this)">Mensal</button>
+        <button class="ctab" onclick="showCycle('trimestral',this)">Trimestral</button>
+      </div>
+      <div id="cpanel-semanal" class="cpanel on"></div>
+      <div id="cpanel-mensal" class="cpanel"></div>
+      <div id="cpanel-trimestral" class="cpanel"></div>
+    </section>
+
+    <!-- ENTREGA MENSAL -->
+    <section id="mensal" class="sec">
+      <p class="ptitle">Entrega mensal</p>
+      <p class="psub">Preencha e submeta até o 5º dia útil do mês — fica salvo automaticamente</p>
+      <div id="periodo-sel" style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">
+        <label style="font-size:13px;color:var(--mu)">Período:</label>
+        <input type="month" id="mes-sel" style="width:auto;padding:5px 10px" onchange="loadEntrega()">
+        <span id="entrega-status"></span>
+      </div>
+      <div class="card" id="form-mensal">
+        <div class="form-section">
+          <div class="form-title">📊 Análise de fornecedores / parceiros</div>
+          <div class="form-grid">
+            <div class="field"><label>Fornecedores avaliados</label><textarea id="f-analise" placeholder="Performance, tarifa, condições de pgto..." oninput="autoSave()"></textarea></div>
+            <div class="field"><label>Pontos de atenção</label><textarea id="f-atencao" placeholder="Problema de tarifa, disponibilidade ou condições?" oninput="autoSave()"></textarea></div>
+          </div>
+          <div class="field"><label>Condições de pagamento</label><textarea id="f-pgto" placeholder="Nas melhores condições? negociação pendente?" oninput="autoSave()" style="min-height:60px"></textarea></div>
+        </div>
+        <div class="form-section">
+          <div class="form-title">🔍 Prospecção do mês</div>
+          <div class="form-grid">
+            <div class="field"><label>Novos parceiros prospectados</label><textarea id="f-parceiros" placeholder="Quem foi prospectado? qual o potencial?" oninput="autoSave()"></textarea></div>
+            <div class="field"><label>Destinos / produtos em alta</label><textarea id="f-destinos" placeholder="Quais estão hypados? onde o cliente quer ir?" oninput="autoSave()"></textarea></div>
+          </div>
+          <div class="field"><label>Mix / produto novo a considerar</label><textarea id="f-mix" placeholder="Nova atração, itinerário ou categoria?" oninput="autoSave()" style="min-height:60px"></textarea></div>
+        </div>
+        <div class="form-section">
+          <div class="form-title">🗂 Status da prateleira</div>
+          <div class="form-grid">
+            <div class="field"><label>T1 — Core</label><textarea id="f-t1" placeholder="Todos os produtos T1 na vitrine? lacunas?" oninput="autoSave()"></textarea></div>
+            <div class="field"><label>T2 — Lançamento</label><textarea id="f-t2" placeholder="Avanço nos destinos T2 (NYC/Paris/Miami)" oninput="autoSave()"></textarea></div>
+          </div>
+          <div class="field"><label>T3 — Pipeline</label><textarea id="f-t3" placeholder="Movimento em Dubai/Japão? próximo passo?" oninput="autoSave()" style="min-height:60px"></textarea></div>
+        </div>
+        <div class="form-section">
+          <div class="form-title">🔄 Processos entre times</div>
+          <div class="form-grid">
+            <div class="field"><label>MKT</label><textarea id="f-mkt" placeholder="Ponto de melhoria no processo de briefing?" oninput="autoSave()"></textarea></div>
+            <div class="field"><label>Operação / T&Q</label><textarea id="f-ops" placeholder="Gargalo ou melhoria identificada?" oninput="autoSave()"></textarea></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <div class="form-title">💡 Sugestão estratégica do mês</div>
+          <div class="field"><label>1 oportunidade</label><textarea id="f-oport" placeholder="O que você enxerga como oportunidade para o portfólio?" oninput="autoSave()"></textarea></div>
+          <div class="field"><label>1 risco / gap</label><textarea id="f-risco" placeholder="O que precisa atenção antes de virar problema?" oninput="autoSave()"></textarea></div>
+          <div class="field"><label>1 sugestão de ação</label><textarea id="f-acao" placeholder="O que você propõe fazer no próximo mês?" oninput="autoSave()"></textarea></div>
+        </div>
+        <div class="submit-bar">
+          <span class="submit-status" id="save-status">Rascunho salvo automaticamente</span>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-s" onclick="saveEntrega(false)">Salvar rascunho</button>
+            <button class="btn btn-p" style="width:auto" onclick="submitEntrega()">Submeter entrega ✓</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISÃO DO TIME -->
+    <section id="visao" class="sec">
+      <p class="ptitle">Visão do time</p>
+      <p class="psub">Progresso de todas as coordenadoras — atualizado em tempo real</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">
+        <label style="font-size:13px;color:var(--mu)">Período:</label>
+        <input type="month" id="vis-mes" style="width:auto;padding:5px 10px" onchange="loadVisao()">
+      </div>
+      <div id="visao-cards"></div>
+    </section>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const SB_URL='https://xyxjcbxmedkonyxafurf.supabase.co';
+const SB_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh5eGpjYnhtZWRrb255eGFmdXJmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MTc0NzksImV4cCI6MjA5MTM5MzQ3OX0.7EDny-taTst3q4_iJP7frMyacmlpuZmqwoBrE0gRsRM';
+const sb=supabase.createClient(SB_URL,SB_KEY);
+
+let ME=null; // perfil do usuário logado
+let ITENS={}; // {cadencia: [{id,texto}]}
+let ESTADO={}; // {item_id: {marcado, ts}}
+let autosaveTimer=null;
+
+const COORDS={rf:{nome:'Rafaella',role:'Hoteleiros + VH',cls:'av-rf'},mi:{nome:'Michelle',role:'Ingressos & Atrações',cls:'av-mi'},la:{nome:'Laura',role:'Cruzeiros',cls:'av-la'},be:{nome:'Beatriz',role:'Clubmed',cls:'av-be'}};
+const periodoAtual=()=>new Date().toISOString().slice(0,7);
+
+function toast(msg,ok=true){const t=document.getElementById('toast');t.textContent=msg;t.style.background=ok?'#1A1208':'#B01E1E';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200)}
+function nav(id,btn){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));document.getElementById(id).classList.add('on');document.querySelectorAll('.nb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');if(id==='mensal')loadEntrega();if(id==='visao')loadVisao();}
+function showCycle(c,btn){document.querySelectorAll('.cpanel').forEach(p=>p.classList.remove('on'));document.getElementById('cpanel-'+c).classList.add('on');document.querySelectorAll('.ctab').forEach(b=>b.classList.remove('on'));btn.classList.add('on')}
+
+async function doLogin(){
+  const email=document.getElementById('l-email').value;
+  const pass=document.getElementById('l-pass').value;
+  const {error}=await sb.auth.signInWithPassword({email,password:pass});
+  if(error){document.getElementById('l-err').style.display='block';}
+  else{document.getElementById('l-err').style.display='none';}
+}
+
+async function logout(){await sb.auth.signOut();location.reload();}
+
+sb.auth.onAuthStateChange(async(event,session)=>{
+  if(session){
+    const {data:perfil}=await sb.from('perfis').select('*').eq('id',session.user.id).single();
+    if(!perfil){toast('Perfil não encontrado. Contate a Dhayane.',false);await sb.auth.signOut();return;}
+    if(perfil.coordenadora==='admin'){window.location.href='admin.html';return;}
+    ME=perfil;
+    document.getElementById('login-wrap').style.display='none';
+    document.getElementById('app').style.display='block';
+    document.getElementById('hdr-user').style.display='flex';
+    const c=COORDS[ME.coordenadora];
+    document.getElementById('av-user').className='av '+c.cls;
+    document.getElementById('av-user').textContent=ME.coordenadora.toUpperCase();
+    document.getElementById('user-nome').textContent=ME.nome;
+    document.getElementById('cl-title').textContent='Checklist — '+ME.nome;
+    await loadItens();
+    await loadEstado();
+    renderChecklist();
+    document.getElementById('mes-sel').value=periodoAtual();
+    document.getElementById('vis-mes').value=periodoAtual();
+    subscribeRealtime();
+  } else {
+    document.getElementById('login-wrap').style.display='flex';
+    document.getElementById('app').style.display='none';
+    document.getElementById('hdr-user').style.display='none';
+  }
+});
+
+async function loadItens(){
+  const {data}=await sb.from('checklist_itens').select('*').eq('coordenadora',ME.coordenadora).eq('ativo',true).order('cadencia').order('ordem');
+  ITENS={semanal:[],mensal:[],trimestral:[]};
+  (data||[]).forEach(i=>ITENS[i.cadencia].push(i));
+}
+
+async function loadEstado(){
+  const periodo=periodoAtual();
+  const {data}=await sb.from('checklist_registros').select('*').eq('user_id',ME.id).gte('created_at',periodo+'-01').order('created_at',{ascending:false});
+  ESTADO={};
+  (data||[]).forEach(r=>{
+    if(!ESTADO[r.item_id]) ESTADO[r.item_id]={marcado:r.marcado,ts:r.created_at,id:r.id};
+  });
+}
+
+function renderChecklist(){
+  ['semanal','mensal','trimestral'].forEach(c=>{
+    const items=ITENS[c]||[];
+    const done=items.filter(i=>ESTADO[i.id]?.marcado).length;
+    const pct=items.length?Math.round(done/items.length*100):0;
+    const html=`
+      <div class="prog-wrap">
+        <div class="prog-labels"><span>${done} de ${items.length} itens</span><span>${pct}%</span></div>
+        <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+      </div>
+      ${items.map(i=>{
+        const est=ESTADO[i.id];
+        const done=est?.marcado;
+        const ts=est?.ts?new Date(est.ts).toLocaleString('pt-BR',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}):'';
+        return `<div class="cl-item${done?' done':''}" onclick="toggleItem(${i.id})">
+          <div class="chk">${done?'✓':''}</div>
+          <div><div class="cl-text">${i.texto}</div>${done?`<div class="cl-ts">Marcado em ${ts}</div>`:''}</div>
+        </div>`;
+      }).join('')}`;
+    document.getElementById('cpanel-'+c).innerHTML=html;
+  });
+}
+
+async function toggleItem(itemId){
+  if(!ME) return;
+  const atual=ESTADO[itemId]?.marcado||false;
+  const novo=!atual;
+  const cadencia=Object.keys(ITENS).find(c=>ITENS[c].some(i=>i.id===itemId));
+  const periodo=periodoAtual();
+  await sb.from('checklist_registros').insert({item_id:itemId,user_id:ME.id,coordenadora:ME.coordenadora,cadencia,marcado:novo,periodo,created_at:new Date().toISOString()});
+  ESTADO[itemId]={marcado:novo,ts:new Date().toISOString()};
+  renderChecklist();
+  toast(novo?'Item marcado ✓':'Item desmarcado');
+}
+
+// ENTREGA MENSAL
+async function loadEntrega(){
+  const periodo=document.getElementById('mes-sel').value;
+  if(!periodo||!ME) return;
+  const {data}=await sb.from('entregas_mensais').select('*').eq('coordenadora',ME.coordenadora).eq('periodo',periodo).maybeSingle();
+  const fields=['analise','atencao','pgto','parceiros','destinos','mix','t1','t2','t3','mkt','ops','oport','risco','acao'];
+  const map={analise:'analise_fornecedores',atencao:'pontos_atencao',pgto:'condicoes_pgto',parceiros:'novos_parceiros',destinos:'destinos_alta',mix:'mix_novo',t1:'status_t1',t2:'status_t2',t3:'status_t3',mkt:'processos_mkt',ops:'processos_ops',oport:'oportunidade',risco:'risco',acao:'sugestao_acao'};
+  fields.forEach(f=>{document.getElementById('f-'+f).value=data?.[map[f]]||'';});
+  const st=document.getElementById('entrega-status');
+  if(data?.submetido){st.innerHTML='<span class="badge badge-ok">Submetida ✓</span>';document.querySelectorAll('#form-mensal textarea').forEach(t=>t.disabled=true);document.querySelector('.submit-bar').style.display='none';}
+  else{st.innerHTML=data?'<span class="badge badge-warn">Rascunho salvo</span>':'';document.querySelectorAll('#form-mensal textarea').forEach(t=>t.disabled=false);document.querySelector('.submit-bar').style.display='flex';}
+}
+
+function getFormData(){
+  return{analise_fornecedores:document.getElementById('f-analise').value,pontos_atencao:document.getElementById('f-atencao').value,condicoes_pgto:document.getElementById('f-pgto').value,novos_parceiros:document.getElementById('f-parceiros').value,destinos_alta:document.getElementById('f-destinos').value,mix_novo:document.getElementById('f-mix').value,status_t1:document.getElementById('f-t1').value,status_t2:document.getElementById('f-t2').value,status_t3:document.getElementById('f-t3').value,processos_mkt:document.getElementById('f-mkt').value,processos_ops:document.getElementById('f-ops').value,oportunidade:document.getElementById('f-oport').value,risco:document.getElementById('f-risco').value,sugestao_acao:document.getElementById('f-acao').value};
+}
+
+function autoSave(){clearTimeout(autosaveTimer);autosaveTimer=setTimeout(()=>saveEntrega(false,true),2000);}
+
+async function saveEntrega(submeter=false,silent=false){
+  if(!ME) return;
+  const periodo=document.getElementById('mes-sel').value;
+  if(!periodo) return;
+  const payload={...getFormData(),user_id:ME.id,coordenadora:ME.coordenadora,periodo,updated_at:new Date().toISOString()};
+  if(submeter){payload.submetido=true;payload.submetido_at=new Date().toISOString();}
+  const {error}=await sb.from('entregas_mensais').upsert(payload,{onConflict:'coordenadora,periodo'});
+  if(!error){
+    if(!silent) toast(submeter?'Entrega submetida ✓':'Rascunho salvo ✓');
+    document.getElementById('save-status').textContent='Salvo às '+new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    if(submeter) loadEntrega();
+  }
+}
+
+async function submitEntrega(){
+  if(!confirm('Confirmar submissão? Após submeter não é possível editar.')) return;
+  await saveEntrega(true);
+}
+
+// VISÃO DO TIME
+async function loadVisao(){
+  const periodo=document.getElementById('vis-mes').value;
+  if(!periodo) return;
+  const coords=['rf','mi','la','be'];
+  const {data:entregas}=await sb.from('entregas_mensais').select('coordenadora,submetido,updated_at').eq('periodo',periodo);
+  const {data:registros}=await sb.from('checklist_registros').select('coordenadora,item_id,marcado').eq('periodo',periodo);
+  const {data:itens}=await sb.from('checklist_itens').select('id,coordenadora,cadencia').eq('ativo',true);
+  const el=document.getElementById('visao-cards');
+  el.innerHTML=coords.map(c=>{
+    const info=COORDS[c];
+    const entrega=entregas?.find(e=>e.coordenadora===c);
+    const itensC=itens?.filter(i=>i.coordenadora===c)||[];
+    const regsC=registros?.filter(r=>r.coordenadora===c&&r.marcado)||[];
+    const uniq=new Set(regsC.map(r=>r.item_id));
+    const pct=itensC.length?Math.round(uniq.size/itensC.length*100):0;
+    return `<div class="coord-block">
+      <div class="coord-header">
+        <div class="coord-info"><div class="av ${info.cls}">${c.toUpperCase()}</div><div><div class="coord-name">${info.nome}</div><div class="coord-role">${info.role}</div></div></div>
+        ${entrega?.submetido?'<span class="badge badge-ok">Entrega mensal submetida ✓</span>':'<span class="badge badge-warn">Aguardando entrega mensal</span>'}
+      </div>
+      <div class="prog-labels"><span style="font-size:12px">Checklist geral</span><span style="font-size:12px">${pct}%</span></div>
+      <div class="prog-bar"><div class="prog-fill" style="width:${pct}%"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function subscribeRealtime(){
+  sb.channel('time-changes').on('postgres_changes',{event:'*',schema:'public',table:'checklist_registros'},()=>{loadEstado().then(renderChecklist)}).on('postgres_changes',{event:'*',schema:'public',table:'entregas_mensais'},()=>{const v=document.getElementById('vis-mes').value;if(v)loadVisao();}).subscribe();
+}
+</script>
+</body>
+</html>
