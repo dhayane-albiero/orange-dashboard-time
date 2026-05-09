@@ -479,35 +479,59 @@ function canEdit(uid){return ME&&(ME.id===uid||ME.coordenadora==='admin')}
 async function doLogin(){
   const email=document.getElementById('l-email').value.trim();
   const pass=document.getElementById('l-pass').value;
-  const {error}=await sb.auth.signInWithPassword({email,password:pass});
-  if(error){document.getElementById('l-err').style.display='block';}
+  const btn=document.querySelector('.btn-login');
+  btn.textContent='Entrando...';btn.disabled=true;
+  const {data,error}=await sb.auth.signInWithPassword({email,password:pass});
+  if(error){
+    document.getElementById('l-err').style.display='block';
+    btn.textContent='Entrar';btn.disabled=false;
+    return;
+  }
+  if(data?.session){ await initApp(data.session); }
 }
 async function logout(){await sb.auth.signOut();location.reload();}
 
-sb.auth.onAuthStateChange(async(event,session)=>{
-  if(session){
+async function initApp(session){
+  try{
     const r=await sb.rpc('get_meu_perfil');
     const perfil=r.data?(typeof r.data==='string'?JSON.parse(r.data):r.data):null;
-    if(!perfil){toast('Perfil não encontrado. Contate a Dhayane.',false);await sb.auth.signOut();return;}
+    if(!perfil){
+      const e=document.getElementById('l-err');
+      e.textContent='Perfil não encontrado. Contate a Dhayane.';
+      e.style.display='block';
+      const btn=document.querySelector('.btn-login');
+      if(btn){btn.textContent='Entrar';btn.disabled=false;}
+      await sb.auth.signOut(); return;
+    }
     ME=perfil; ME.id=session.user.id;
     document.getElementById('login-screen').style.display='none';
     document.getElementById('app').style.display='block';
+    document.getElementById('hdr-user').style.display='flex';
     const avEl=document.getElementById('av-hdr');
     avEl.className='av '+avClass(ME.coordenadora);
     avEl.textContent=ME.coordenadora.toUpperCase().slice(0,2);
     document.getElementById('nome-hdr').textContent=ME.nome;
-    initProdFiltro();
-    initMuralTabs();
-    loadDashboard();
-    subscribeRealtime();
-    if(ME.coordenadora==='admin'){
-      // redireciona para admin se quiser — por ora fica aqui com visão total
-    }
-  } else {
-    document.getElementById('login-screen').style.display='flex';
-    document.getElementById('app').style.display='none';
+    initProdFiltro(); initMuralTabs(); loadDashboard(); subscribeRealtime();
+  }catch(err){
+    console.error('initApp',err);
+    const e=document.getElementById('l-err');
+    e.textContent='Erro ao conectar. Verifique sua conexão e tente novamente.';
+    e.style.display='block';
+    const btn=document.querySelector('.btn-login');
+    if(btn){btn.textContent='Entrar';btn.disabled=false;}
   }
+}
+
+sb.auth.onAuthStateChange(async(event,session)=>{
+  if(event==='SIGNED_IN'&&session&&!ME){ await initApp(session); }
+  if(event==='SIGNED_OUT'){ ME=null; location.reload(); }
 });
+
+// Retomar sessão existente ao carregar a página
+(async()=>{
+  const {data:{session}}=await sb.auth.getSession();
+  if(session&&!ME) await initApp(session);
+})();
 
 function initProdFiltro(){
   const sel=document.getElementById('f-prod');
