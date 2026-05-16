@@ -337,22 +337,22 @@ textarea{resize:vertical;min-height:70px;width:100%}
   </div>
   <div class="sb-nav" id="sb-nav">
     <div class="sb-group-lbl">Operacional</div>
-    <button class="sb-item on" data-tip="Dashboard" onclick="v6Go('dashboard',this)"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-red" id="bdg-dash">3</span></button>
-    <button class="sb-item" data-tip="Prateleira" onclick="v6Go('prateleira',this)"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
-    <button class="sb-item" data-tip="Demandas" onclick="v6Go('demandas',this)"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-amber">4</span></button>
-    <button class="sb-item" data-tip="Ações" onclick="v6Go('acoes',this)"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-amber" id="bdg-acoes">9</span></button>
-    <button class="sb-item" data-tip="Campanhas" onclick="v6Go('campanhas',this)"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
-    <button class="sb-item" data-tip="Indicadores" onclick="v6Go('indicadores',this)"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
+    <button class="sb-item on" data-tip="Dashboard" data-section="dashboard"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-red" id="bdg-dash">3</span></button>
+    <button class="sb-item" data-tip="Prateleira" data-section="prateleira"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
+    <button class="sb-item" data-tip="Demandas" data-section="demandas"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-amber">4</span></button>
+    <button class="sb-item" data-tip="Ações" data-section="acoes"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-amber" id="bdg-acoes">9</span></button>
+    <button class="sb-item" data-tip="Campanhas" data-section="campanhas"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
+    <button class="sb-item" data-tip="Indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
     <div class="sb-group-lbl">Estratégico</div>
-    <button class="sb-item" data-tip="Fornecedores" onclick="v6Go('fornecedores',this)"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-red">1</span></button>
-    <button class="sb-item" data-tip="Margens" onclick="v6Go('margens',this)"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
-    <button class="sb-item" data-tip="Instagram" onclick="v6Go('instagram',this)"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
-    <button class="sb-item" data-tip="Radar" onclick="v6Go('radar',this)"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-green">6</span></button>
-    <button class="sb-item" data-tip="Linha do tempo" onclick="v6Go('calendario',this)"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
-    <button class="sb-item" data-tip="Gestão" onclick="v6Go('gestao',this)"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
+    <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-red">1</span></button>
+    <button class="sb-item" data-tip="Margens" data-section="margens"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
+    <button class="sb-item" data-tip="Instagram" data-section="instagram"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
+    <button class="sb-item" data-tip="Radar" data-section="radar"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-green">6</span></button>
+    <button class="sb-item" data-tip="Linha do tempo" data-section="calendario"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
+    <button class="sb-item" data-tip="Gestão" data-section="gestao"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
     <div class="sb-group-lbl">Referência</div>
-    <button class="sb-item" data-tip="Playbooks" onclick="v6Go('playbooks',this)"><div class="sb-icon">📖</div><span class="sb-lbl">Playbooks</span></button>
-    <button class="sb-item" data-tip="Templates" onclick="v6Go('templates',this)"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
+    <button class="sb-item" data-tip="Playbooks" data-section="playbooks"><div class="sb-icon">📖</div><span class="sb-lbl">Playbooks</span></button>
+    <button class="sb-item" data-tip="Templates" data-section="templates"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
   </div>
 </nav>
 
@@ -2021,7 +2021,7 @@ function v6Search(q){
       if(gi>0) html+=`<div class="sd-divider"></div>`;
       html+=`<div class="sd-group-lbl">${sec}</div>`;
       const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
-      html+=items.slice(0,3).map(r=>`<div class="sd-item" onclick="v6Go('${r.p}',null);v6CloseDD()">
+      html+=items.slice(0,3).map(r=>`<div class="sd-item">
         <span class="sd-ico">${r.i}</span>
         <div style="flex:1"><div class="sd-name">${r.n.replace(re,m=>`<strong style="color:#E8440A">${m}</strong>`)}</div><div class="sd-where">${r.d}</div></div>
         <span class="sd-tag">${sec}</span>
@@ -2311,72 +2311,119 @@ renderFornecedores();
 
 
 <script>
-// DEBUG + FIX: garantir que navegação funciona
+// NAVEGAÇÃO DEFINITIVA
 document.addEventListener('DOMContentLoaded', function() {
-  // Verificar se v6Go existe
-  if (typeof v6Go !== 'function') {
-    console.error('v6Go não encontrado!');
-    return;
+
+  var META = {
+    dashboard: {t:'Dashboard', s:'Operacional · visão geral do portfólio'},
+    prateleira: {t:'Prateleira', s:'Operacional · portfólio por tier'},
+    demandas: {t:'Demandas', s:'Operacional · demandas semanais'},
+    acoes: {t:'Ações', s:'Operacional · entregas para os times'},
+    campanhas: {t:'Campanhas', s:'Operacional · resultado retroalimenta radar'},
+    indicadores: {t:'Indicadores', s:'Operacional · saúde do portfólio'},
+    fornecedores: {t:'Fornecedores', s:'Estratégico · Monday Live'},
+    margens: {t:'Margens', s:'Estratégico · % atual vs meta mínima'},
+    instagram: {t:'Instagram', s:'Estratégico · 6 canais'},
+    radar: {t:'Radar', s:'Estratégico · insights automáticos'},
+    calendario: {t:'Linha do tempo', s:'Estratégico · 90 dias'},
+    gestao: {t:'Gestão', s:'Estratégico · visão consolidada'},
+    playbooks: {t:'Playbooks', s:'Referência · T1 · T2 · T3'},
+    templates: {t:'Templates', s:'Referência · checklists'},
+  };
+
+  function navegar(id) {
+    // Esconder todas as seções
+    var secs = document.querySelectorAll('.sec');
+    for (var i = 0; i < secs.length; i++) {
+      secs[i].style.display = 'none';
+      secs[i].classList.remove('on');
+    }
+    // Mostrar seção alvo
+    var alvo = document.getElementById('s-' + id);
+    if (alvo) {
+      alvo.style.display = 'block';
+      alvo.classList.add('on');
+    }
+    // Atualizar sidebar
+    var btns = document.querySelectorAll('.sb-item');
+    for (var j = 0; j < btns.length; j++) {
+      btns[j].classList.remove('on');
+      if (btns[j].getAttribute('data-section') === id) {
+        btns[j].classList.add('on');
+      }
+    }
+    // Atualizar título
+    var m = META[id] || {t: id, s: ''};
+    var t = document.getElementById('v6-title');
+    var s = document.getElementById('v6-sub');
+    if (t) t.textContent = m.t;
+    if (s) s.textContent = m.s;
+    // Renderizar conteúdo dinâmico
+    try { if (id === 'acoes' && typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
+    try { if (id === 'demandas' && typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
+    try { if (id === 'fornecedores' && typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
+    try { if (id === 'margens' && typeof rMarg === 'function') rMarg(); } catch(e) {}
   }
-  
-  // Re-bindear todos os sb-items por segurança
-  document.querySelectorAll('.sb-item[data-tip]').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      const tip = this.getAttribute('data-tip');
-      const idMap = {
-        'Dashboard': 'dashboard',
-        'Prateleira': 'prateleira', 
-        'Demandas': 'demandas',
-        'Ações': 'acoes',
-        'Campanhas': 'campanhas',
-        'Indicadores': 'indicadores',
-        'Fornecedores': 'fornecedores',
-        'Margens': 'margens',
-        'Instagram': 'instagram',
-        'Radar': 'radar',
-        'Linha do tempo': 'calendario',
-        'Gestão': 'gestao',
-        'Playbooks': 'playbooks',
-        'Templates': 'templates'
-      };
-      const id = idMap[tip];
-      if (id) {
-        // Forçar navegação diretamente
-        document.querySelectorAll('.sec').forEach(s => {
-          s.style.display = 'none';
-          s.classList.remove('on');
-        });
-        document.querySelectorAll('.sb-item').forEach(b => b.classList.remove('on'));
-        
-        const sec = document.getElementById('s-' + id);
-        if (sec) {
-          sec.style.display = 'block';
-          sec.classList.add('on');
-        }
-        this.classList.add('on');
-        
-        // Atualizar título
-        const titleEl = document.getElementById('v6-title');
-        if (titleEl) titleEl.textContent = tip === 'Linha do tempo' ? 'Linha do tempo' : tip;
-        
-        // Renderizar se necessário
-        if (id === 'acoes' && typeof renderAcoes === 'function') renderAcoes();
-        if (id === 'demandas' && typeof renderDemandas === 'function') renderDemandas();
-        if (id === 'fornecedores' && typeof renderFornecedores === 'function') renderFornecedores();
-        if (id === 'margens' && typeof rMarg === 'function') rMarg();
+
+  // Bindar cliques em todos os itens da sidebar
+  var items = document.querySelectorAll('.sb-item[data-section]');
+  for (var k = 0; k < items.length; k++) {
+    (function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        navegar(btn.getAttribute('data-section'));
+      });
+    })(items[k]);
+  }
+
+  // Toggle sidebar
+  var toggleBtn = document.getElementById('sb-toggle-btn');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', function() {
+      var sb = document.getElementById('v6-sidebar');
+      var main = document.getElementById('v6-main');
+      if (sb.classList.contains('expanded')) {
+        sb.classList.remove('expanded');
+        sb.classList.add('collapsed');
+        main.classList.remove('main-expanded');
+        main.classList.add('main-collapsed');
+        toggleBtn.textContent = '→';
+      } else {
+        sb.classList.remove('collapsed');
+        sb.classList.add('expanded');
+        main.classList.remove('main-collapsed');
+        main.classList.add('main-expanded');
+        toggleBtn.textContent = '←';
       }
     });
-  });
-  
-  // Ativar dashboard no início
+  }
+
+  // Busca na sidebar
+  var sbInput = document.querySelector('.sb-search-input');
+  if (sbInput) {
+    sbInput.addEventListener('input', function() {
+      var q = this.value.toLowerCase();
+      var btns = document.querySelectorAll('.sb-item');
+      var lbls = document.querySelectorAll('.sb-group-lbl');
+      for (var i = 0; i < btns.length; i++) {
+        var lbl = (btns[i].querySelector('.sb-lbl') || {}).textContent || '';
+        btns[i].style.display = (!q || lbl.toLowerCase().includes(q)) ? '' : 'none';
+      }
+      for (var j = 0; j < lbls.length; j++) {
+        lbls[j].style.display = q ? 'none' : '';
+      }
+    });
+  }
+
+  // Inicializar — mostrar dashboard
   setTimeout(function() {
-    document.querySelectorAll('.sec').forEach(s => { s.style.display = 'none'; s.classList.remove('on'); });
-    const dash = document.getElementById('s-dashboard');
-    if (dash) { dash.style.display = 'block'; dash.classList.add('on'); }
-    if (typeof renderAcoes === 'function') renderAcoes();
-    if (typeof renderDemandas === 'function') renderDemandas();
-    if (typeof renderFornecedores === 'function') renderFornecedores();
-  }, 200);
+    navegar('dashboard');
+    try { if (typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
+    try { if (typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
+    try { if (typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
+    try { if (typeof syncMobile === 'function') syncMobile(); } catch(e) {}
+  }, 150);
+
 });
 </script>
 
