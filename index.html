@@ -27,8 +27,8 @@ body{font-family:'Figtree',sans-serif;background:var(--sf);color:var(--ink);font
 nav{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;display:flex;overflow-x:auto;position:sticky;top:54px;z-index:99}
 .tab{font-size:12px;font-weight:500;color:var(--mu);padding:11px 13px;border:none;background:none;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap}
 .tab:hover{color:var(--ink)}.tab.on{color:var(--or);border-bottom-color:var(--or);font-weight:600}
-.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem}
 .sec{display:none}.sec.on{display:block}
+.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem;background:var(--sf);box-sizing:border-box}
 .sh{display:flex;align-items:center;gap:7px;margin-bottom:1rem}
 .sh-line{width:3px;height:15px;background:var(--or);border-radius:2px;flex-shrink:0}
 .sh-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
@@ -204,7 +204,7 @@ textarea{resize:vertical;min-height:70px;width:100%}
 .heat{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
 .h-hot{background:var(--rel);color:var(--re)}.h-warm{background:var(--aml);color:var(--am)}.h-cool{background:var(--bll);color:var(--bl)}
 .legend-row{display:flex;gap:12px;font-size:11px;color:var(--mu);margin-top:8px}
-@media(max-width:900px){.g2,.g3,.g4,.cal-wrap,.radar-grid,.ig-channels{grid-template-columns:1fr}.nova-row{grid-template-columns:1fr 1fr}.dem-grid,.form-grid{grid-template-columns:1fr}.main{padding:1rem}}
+@media(max-width:900px){.g2,.g3,.g4,.cal-wrap,.radar-grid,.ig-channels{grid-template-columns:1fr}.nova-row{grid-template-columns:1fr 1fr}.dem-grid,.form-grid{grid-template-columns:1fr}}
 
 /* ── V6 LAYOUT ─────────────────────────────────────────────────────────── */
 .app-layout{display:flex;min-height:100vh}
@@ -342,7 +342,7 @@ textarea{resize:vertical;min-height:70px;width:100%}
     <button class="sb-item" data-tip="Demandas" data-section="demandas"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-amber">4</span></button>
     <button class="sb-item" data-tip="Ações" data-section="acoes"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-amber" id="bdg-acoes">9</span></button>
     <button class="sb-item" data-tip="Campanhas" data-section="campanhas"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
-    <button class="sb-item" data-tip="Indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
+    <button class="sb-item" data-tip="Indicadores" data-section="indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
     <div class="sb-group-lbl">Estratégico</div>
     <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-red">1</span></button>
     <button class="sb-item" data-tip="Margens" data-section="margens"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
@@ -377,7 +377,7 @@ textarea{resize:vertical;min-height:70px;width:100%}
     </div>
 
   <!-- CONTEÚDO DAS SEÇÕES -->
-  <main class="main" style="padding:1.5rem 2rem;background:var(--sf)">
+  <main class="main" style="background:var(--sf)">
 
 <!-- PRATELEIRA -->
 <div id="s-dashboard" class="sec on">
@@ -745,6 +745,93 @@ textarea{resize:vertical;min-height:70px;width:100%}
 </div>
 
 <!-- FORNECEDORES -->
+<div id="s-indicadores" class="sec">
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Indicadores — saúde do portfólio</span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">T1 saudável</div><div class="kv">4/4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div></div>
+    <div class="kpi am"><div class="kl">T2 em progresso</div><div class="kv">3</div><div class="ks">NYC lançado · Paris · Miami em estruturação</div></div>
+    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" style="color:var(--re)" id="ind-acoes">9</div><div class="ks">pendentes + andamento</div></div>
+    <div class="kpi gr"><div class="kl">Fornecedores — alerta</div><div class="kv" style="color:var(--re)">2</div><div class="ks">renovação urgente</div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Ações por destino</div>
+      <div class="card" style="padding:12px 14px">
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">NYC</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:100%;background:var(--or);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">4</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Paris</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:50%;background:var(--am);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">2</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Cruzeiros</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:50%;background:var(--am);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">2</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Miami</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Orlando</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Clubmed</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0">
+          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Japão</span>
+          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
+          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">SLAs de entrega</div>
+      <div class="card" style="padding:12px 14px">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
+          <span style="color:var(--ink);font-weight:500">Brief MKT Paris</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
+          <span style="color:var(--ink);font-weight:500">T&Q Paris</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">41d</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
+          <span style="color:var(--ink);font-weight:500">Go live Paris</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--grl);color:var(--gr);font-weight:500">48d</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
+          <span style="color:var(--ink);font-weight:500">Brief MKT Miami</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">46d</span>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;font-size:12px">
+          <span style="color:var(--ink);font-weight:500">Clubmed Trancoso — renovação</span>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">30d ⚠️</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas automáticos</div>
+    <div class="alerta al-r">⚠️ <strong>Rafaella</strong> com carga máxima (13pts) — monitorar antes de mover novo destino para T2</div>
+    <div class="alerta al-r">⚡ <strong>Clubmed Trancoso</strong> e <strong>NYC CityPASS</strong> — renovação de contrato em até 30 dias</div>
+    <div class="alerta al-w">📋 <strong>3 destinos em T2 simultâneos</strong> — NYC, Paris e Miami. Garantir que T1 não perde atenção.</div>
+    <div class="alerta al-g">✅ <strong>NYC Go live</strong> concluído com sucesso — D+7 revisão esta semana</div>
+  </div>
+</div>
+
 <div id="s-fornecedores" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — avaliação e ciclo de negociação</span></div>
 
@@ -2325,6 +2412,7 @@ document.addEventListener('DOMContentLoaded', function() {
     margens: {t:'Margens', s:'Estratégico · % atual vs meta mínima'},
     instagram: {t:'Instagram', s:'Estratégico · 6 canais'},
     radar: {t:'Radar', s:'Estratégico · insights automáticos'},
+    indicadores: {t:'Indicadores', s:'Operacional · saúde do portfólio'},
     calendario: {t:'Linha do tempo', s:'Estratégico · 90 dias'},
     gestao: {t:'Gestão', s:'Estratégico · visão consolidada'},
     playbooks: {t:'Playbooks', s:'Referência · T1 · T2 · T3'},
@@ -2358,11 +2446,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var s = document.getElementById('v6-sub');
     if (t) t.textContent = m.t;
     if (s) s.textContent = m.s;
-    // Renderizar conteúdo dinâmico
-    try { if (id === 'acoes' && typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
-    try { if (id === 'demandas' && typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
-    try { if (id === 'fornecedores' && typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
-    try { if (id === 'margens' && typeof rMarg === 'function') rMarg(); } catch(e) {}
+    // Renderizar conteúdo dinâmico após mostrar seção
+    setTimeout(function() {
+      try { if (id === 'acoes' && typeof renderAcoes === 'function') renderAcoes(); } catch(e) { console.error('renderAcoes:',e); }
+      try { if (id === 'demandas' && typeof renderDemandas === 'function') renderDemandas(); } catch(e) { console.error('renderDemandas:',e); }
+      try { if (id === 'fornecedores' && typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) { console.error('renderForn:',e); }
+      try { if (id === 'margens' && typeof rMarg === 'function') { rMarg(); } } catch(e) { console.error('rMarg:',e); }
+      try { if (id === 'radar' && typeof render === 'function') render(); } catch(e) {}
+    }, 50);
   }
 
   // Bindar cliques em todos os itens da sidebar
@@ -2418,11 +2509,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Inicializar — mostrar dashboard
   setTimeout(function() {
     navegar('dashboard');
-    try { if (typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
-    try { if (typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
-    try { if (typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
-    try { if (typeof syncMobile === 'function') syncMobile(); } catch(e) {}
-  }, 150);
+    setTimeout(function() {
+      try { if (typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
+      try { if (typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
+      try { if (typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
+      try { if (typeof rMarg === 'function') rMarg(); } catch(e) {}
+      try { if (typeof syncMobile === 'function') syncMobile(); } catch(e) {}
+    }, 100);
+  }, 200);
 
 });
 </script>
