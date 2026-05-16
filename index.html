@@ -622,13 +622,35 @@ window.v6Nav = function(id) {
 
 <!-- FORNECEDORES -->
 <div id="s-fornecedores" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — dados do Monday.com <span class="monday-chip">Monday Live</span></span></div>
-  <p style="font-size:12px;color:var(--mu);margin-bottom:1rem">Visão única de todos os parceiros comerciais da Orange Viagens por categoria.</p>
-  <div class="forn-tabs" id="forn-tabs-wrap"></div>
-  <div id="forn-content"></div>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — <span class="monday-chip">Monday Live</span></span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem" id="forn-kpis">
+    <div class="kpi or"><div class="kl">Carregando...</div><div class="kv">—</div></div>
+    <div class="kpi bl"><div class="kl">Nota média</div><div class="kv">—</div></div>
+    <div class="kpi am"><div class="kl">Renovação urgente</div><div class="kv">—</div></div>
+    <div class="kpi gr"><div class="kl">Categorias ativas</div><div class="kv">9</div></div>
+  </div>
+
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem" id="forn-cat-tabs">
+    <button class="fb on" onclick="loadFornecedores('hotelaria')">🏨 Hotelaria</button>
+    <button class="fb" onclick="loadFornecedores('locacao')">🚗 Locação</button>
+    <button class="fb" onclick="loadFornecedores('aereo')">✈️ Aéreo</button>
+    <button class="fb" onclick="loadFornecedores('cruzeiros')">🚢 Cruzeiros</button>
+    <button class="fb" onclick="loadFornecedores('seguro')">🛡️ Seguro</button>
+    <button class="fb" onclick="loadFornecedores('ingressos')">🎟️ Ingressos</button>
+    <button class="fb" onclick="loadFornecedores('vh')">🏠 Vacation Home</button>
+    <button class="fb" onclick="loadFornecedores('pacotes')">📦 Pacotes</button>
+    <button class="fb" onclick="loadFornecedores('transfer')">🚌 Transfer</button>
+  </div>
+
+  <div id="forn-lista">
+    <div style="text-align:center;padding:2rem;color:var(--mu);font-size:13px">
+      <div style="font-size:32px;margin-bottom:8px">🤝</div>
+      Clique em uma categoria para carregar os fornecedores do Monday.com
+    </div>
+  </div>
 </div>
 
-<!-- INSTAGRAM -->
 <div id="s-instagram" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Instagram — estratégia por canal</span></div>
   <p style="font-size:12px;color:var(--mu);margin-bottom:1.25rem">Frequência de ações de MKT sugerida por canal para manter os produtos bem na prateleira digital.</p>
@@ -1020,68 +1042,115 @@ window.v6Nav = function(id) {
     </div>
     <div id="freq-sem">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px">
-        ${[['📺','Globo — Novelas e Séries','Mídia / Cultura de massa','Novelas filmadas em destinos reais disparam busca em 2 a 4 semanas. É o indicador mais potente para o público brasileiro FIT.','https://gshow.globo.com'],
-           ['🎬','Netflix / Prime / Disney+','Streaming / Cultura global','Séries criam desejo por destinos. Emily in Paris → Paris. Uma série pode colocar um destino T3 no radar T2 antes do mercado perceber.','https://netflix.com'],
-           ['🎵','TikTok','Comportamento digital / Gen Z','Destino que viraliza chega no comercial 3-6 meses depois. É o indicador mais antecipado do mercado.','https://tiktok.com/tag/travel'],
-           ['📌','Pinterest','Desejo visual / Aspiração','Buscas por aesthetic de destino indicam desejo latente. Cappadocia, Amalfi — a compra vem 6-12 meses depois.','https://pinterest.com/search/pins/?q=travel+aesthetic'],
-           ['📈','Google Trends','Volume de busca / Intenção','Mostra volume de busca por destino em tempo real. Grátis e atualizado diariamente.','https://trends.google.com.br'],
-           ['📸','Instagram — influenciadores','Tendência visual / Influência','Influenciadores 10k-500k estão 2-3 meses à frente do público. Quando vários vão ao mesmo destino, o mercado vai logo depois.','https://instagram.com/explore/tags/viagensbrasileiras/']
-          ].map(([ic,nome,cat,why,url])=>`
+        <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">📺</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Globo — Novelas e Séries</div><div style="font-size:10px;color:var(--mu)">Mídia / Cultura de massa</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Novelas filmadas em destinos reais disparam busca em 2 a 4 semanas. É o indicador mais potente para o público brasileiro FIT.</div>
+            <a href="https://gshow.globo.com" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
           <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
             <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
-              <div style="font-size:22px">${ic}</div>
-              <div><div style="font-size:12px;font-weight:500;color:var(--ink)">${nome}</div><div style="font-size:10px;color:var(--mu)">${cat}</div></div>
+              <div style="font-size:22px">🎬</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Netflix / Prime / Disney+</div><div style="font-size:10px;color:var(--mu)">Streaming / Cultura global</div></div>
             </div>
-            <div style="font-size:12px;color:var(--mu);line-height:1.55;margin-bottom:10px">${why}</div>
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--orl);color:#993C1D;font-weight:500">Semanal</span>
-              <a href="${url}" target="_blank" style="font-size:11px;color:var(--bl);text-decoration:none">Acessar ↗</a>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Séries criam desejo por destinos. Emily in Paris → Paris. Uma série pode colocar um destino T3 no radar T2 antes do mercado perceber.</div>
+            <a href="https://netflix.com" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">🎵</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">TikTok</div><div style="font-size:10px;color:var(--mu)">Comportamento digital / Gen Z</div></div>
             </div>
-          </div>`).join('')}
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Destino que viraliza chega no comercial 3-6 meses depois. É o indicador mais antecipado do mercado.</div>
+            <a href="https://tiktok.com/tag/travel" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">📌</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Pinterest</div><div style="font-size:10px;color:var(--mu)">Desejo visual / Aspiração</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Buscas por aesthetic de destino indicam desejo latente. Cappadocia, Amalfi — a compra vem 6-12 meses depois.</div>
+            <a href="https://pinterest.com/search/pins/?q=travel+aesthetic" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">📈</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Google Trends</div><div style="font-size:10px;color:var(--mu)">Volume de busca / Intenção</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Mostra volume de busca por destino em tempo real. Grátis e atualizado diariamente.</div>
+            <a href="https://trends.google.com.br" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">📸</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Instagram — influenciadores</div><div style="font-size:10px;color:var(--mu)">Tendência visual / Influência</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Influenciadores 10k-500k estão 2-3 meses à frente do público. Quando vários vão ao mesmo destino, o mercado vai logo depois.</div>
+            <a href="https://instagram.com/explore/tags/viagensbrasileiras/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
       </div>
     </div>
     <div id="freq-men" style="display:none">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px">
-        ${[['🏨','Booking.com Trend Report','Dados reais de intenção de viagem','Publica mensalmente destinos com maior crescimento de buscas e reservas. Dado real de intenção de compra — não aspiração.','https://news.booking.com/trends/'],
-           ['🏠','Airbnb Newsroom','Tendências Vacation Home','Relatórios de destinos em alta antes da temporada. Essencial para VH — Rafaella deve monitorar.','https://news.airbnb.com'],
-           ['💱','Banco Central / Câmbio','Viabilidade financeira','Dólar e euro impactam quais destinos ficam acessíveis. Quando câmbio aperta, Buenos Aires e destinos BRL ganham.','https://economia.uol.com.br/cotacoes/'],
-           ['✈️','IATA — Novas Rotas','Indústria aérea / Infraestrutura','Rotas aéreas novas são o sinal mais concreto de crescimento. Antecipar isso é vantagem competitiva.','https://www.iata.org/en/pressroom/newsfeed/'],
-           ['👗','Vogue Brasil / Elle','Público premium / Aspiração','Antecipam destinos premium antes do mercado de massa. Relevante para Clubmed, cruzeiros premium e VH luxo.','https://vogue.globo.com/lifestyle/viagem/'],
-           ['🎙️','Podcasts de viagem BR','Formadores de opinião / Nicho','Turistas Profissionais, Mala de Mão — indicadores qualitativos do que o viajante experiente está priorizando.','https://open.spotify.com/search/viagem%20podcast']
-          ].map(([ic,nome,cat,why,url])=>`
+        <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">🏨</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Booking.com Trend Report</div><div style="font-size:10px;color:var(--mu)">Dados reais de intenção de viagem</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Publica mensalmente destinos com maior crescimento de buscas e reservas. Dado real de intenção de compra — não aspiração.</div>
+            <a href="https://news.booking.com/trends/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
           <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
             <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
-              <div style="font-size:22px">${ic}</div>
-              <div><div style="font-size:12px;font-weight:500;color:var(--ink)">${nome}</div><div style="font-size:10px;color:var(--mu)">${cat}</div></div>
+              <div style="font-size:22px">🏠</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Airbnb Newsroom</div><div style="font-size:10px;color:var(--mu)">Tendências Vacation Home</div></div>
             </div>
-            <div style="font-size:12px;color:var(--mu);line-height:1.55;margin-bottom:10px">${why}</div>
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--bll);color:#0C447C;font-weight:500">Mensal</span>
-              <a href="${url}" target="_blank" style="font-size:11px;color:var(--bl);text-decoration:none">Acessar ↗</a>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Relatórios de destinos em alta antes da temporada. Essencial para VH — Rafaella deve monitorar.</div>
+            <a href="https://news.airbnb.com" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">💱</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Banco Central / Câmbio</div><div style="font-size:10px;color:var(--mu)">Viabilidade financeira</div></div>
             </div>
-          </div>`).join('')}
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Dólar e euro impactam quais destinos ficam acessíveis. Quando câmbio aperta, Buenos Aires e destinos BRL ganham.</div>
+            <a href="https://economia.uol.com.br/cotacoes/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">✈️</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">IATA — Novas Rotas</div><div style="font-size:10px;color:var(--mu)">Indústria aérea / Infraestrutura</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Rotas aéreas novas são o sinal mais concreto de crescimento. Antecipar isso é vantagem competitiva.</div>
+            <a href="https://www.iata.org/en/pressroom/newsfeed/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">👗</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Vogue Brasil / Elle</div><div style="font-size:10px;color:var(--mu)">Público premium / Aspiração</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Antecipam destinos premium antes do mercado de massa. Relevante para Clubmed, cruzeiros premium e VH luxo.</div>
+            <a href="https://vogue.globo.com/lifestyle/viagem/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
+          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <div style="font-size:22px">🎙️</div>
+              <div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Podcasts de viagem BR</div><div style="font-size:10px;color:var(--mu)">Formadores de opinião / Nicho</div></div>
+            </div>
+            <div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Turistas Profissionais, Mala de Mão — indicadores qualitativos do que o viajante experiente está priorizando.</div>
+            <a href="https://open.spotify.com/search/viagem%20podcast" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a>
+          </div>
       </div>
     </div>
     <div id="freq-tri" style="display:none">
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px">
-        ${[['🏢','WTM Londres e ITB Berlin','Feiras internacionais de turismo','O que está sendo lançado pelas operadoras internacionais. Relatórios disponíveis pós-feira.','https://www.wtm.com/london/en-gb/whats-on/news.html'],
-           ['🇧🇷','ABAV — Associação Brasileira','Mercado nacional / Tendências','Movimento do mercado de agências brasileiro. Lançamentos de produto nacionais aparecem primeiro aqui.','https://www.abav.com.br'],
-           ['🏰','Marriott / Four Seasons','Infraestrutura hoteleira premium','Abertura em um destino = crescimento projetado para 5-7 anos. Sinal mais concreto de desenvolvimento.','https://news.marriott.com'],
-           ['🌍','Lonely Planet Best in Travel','Editorial de destinos / Referência','Lista anual destinos do ano — publicada em outubro. Sinal claro de upgrade de T3 para T2.','https://www.lonelyplanet.com/best-in-travel'],
-           ['📊','Cias Aéreas — Relatórios','LATAM / Azul / GOL — demanda','Rotas que cresceram, novas aberturas e slots. Cruzar com destinos T2/T3 da Orange para validar viabilidade.','https://ri.latamairlines.com'],
-           ['🚢','CLIA — Cruzeiros Int.','Indústria de cruzeiros / Projeções','Novos navios, destinos em crescimento. Laura deve acompanhar — lançamentos aparecem aqui primeiro.','https://cruising.org/en/research-and-insight']
-          ].map(([ic,nome,cat,why,url])=>`
-          <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)">
-            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
-              <div style="font-size:22px">${ic}</div>
-              <div><div style="font-size:12px;font-weight:500;color:var(--ink)">${nome}</div><div style="font-size:10px;color:var(--mu)">${cat}</div></div>
-            </div>
-            <div style="font-size:12px;color:var(--mu);line-height:1.55;margin-bottom:10px">${why}</div>
-            <div style="display:flex;align-items:center;justify-content:space-between">
-              <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--grl);color:#3B6D11;font-weight:500">Trimestral</span>
-              <a href="${url}" target="_blank" style="font-size:11px;color:var(--bl);text-decoration:none">Acessar ↗</a>
-            </div>
-          </div>`).join('')}
+        <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="font-size:22px">🏢</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">WTM Londres e ITB Berlin</div><div style="font-size:10px;color:var(--mu)">Feiras internacionais de turismo</div></div></div><div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">O que está sendo lançado pelas operadoras internacionais. Relatórios disponíveis pós-feira.</div><a href="https://www.wtm.com" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a></div>
+<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="font-size:22px">📊</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">UNWTO — World Tourism Barometer</div><div style="font-size:10px;color:var(--mu)">Dados globais de turismo</div></div></div><div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Tendências macro do turismo mundial. Crescimento por região, perfil do viajante, sazonalidade.</div><a href="https://www.unwto.org/tourism-data" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a></div>
+<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="font-size:22px">🇧🇷</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">MTur — Ministério do Turismo</div><div style="font-size:10px;color:var(--mu)">Dados nacionais / Regulação</div></div></div><div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Tendências do viajante brasileiro. Destinos nacionais em alta podem competir com internacionais em câmbio desfavorável.</div><a href="https://www.gov.br/turismo" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a></div>
+<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="font-size:22px">📖</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Skift Research</div><div style="font-size:10px;color:var(--mu)">Comportamento do viajante premium</div></div></div><div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Relatórios pagos mas com previews gratuitos. Melhor fonte para entender o viajante FIT premium global.</div><a href="https://skift.com/research/" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a></div>
+<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:9px;margin-bottom:8px"><div style="font-size:22px">🌍</div><div style="flex:1"><div style="font-size:13px;font-weight:600;color:var(--ink)">Condé Nast Traveller — Hot List</div><div style="font-size:10px;color:var(--mu)">Destinos aspiracionais premium</div></div></div><div style="font-size:12px;color:var(--mu);line-height:1.5;margin-bottom:8px">Revelado anualmente — destinos que aparecem aqui ganham tração no público premium nos 12 meses seguintes.</div><a href="https://www.cntraveller.com/hot-list" target="_blank" style="font-size:11px;color:var(--or);text-decoration:none;font-weight:500">Acessar ↗</a></div>
       </div>
     </div>
   </div>
@@ -1694,6 +1763,110 @@ function riRender(insights,ts){
 </script>
 
 <script>
+
+// ── MONDAY FORNECEDORES ──────────────────────────────────────────────────────
+var MONDAY_BOARDS = {
+  hotelaria: 18398058755,
+  locacao: 18400814230,
+  aereo: 18401187155,
+  cruzeiros: 18401187398,
+  seguro: 18401187525,
+  ingressos: 18401187957,
+  vh: 18401188057,
+  pacotes: 18404226379,
+  transfer: 18404226548
+};
+
+var MONDAY_PROXY = 'https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/monday-proxy';
+var _fornCache = {};
+
+function loadFornecedores(cat) {
+  // Atualizar tabs
+  document.querySelectorAll('#forn-cat-tabs .fb').forEach(function(b) {
+    b.classList.remove('on');
+    if (b.textContent.toLowerCase().includes(cat) || 
+        (cat==='hotelaria'&&b.textContent.includes('Hotelaria')) ||
+        (cat==='locacao'&&b.textContent.includes('Loca')) ||
+        (cat==='aereo'&&b.textContent.includes('reo')) ||
+        (cat==='cruzeiros'&&b.textContent.includes('Cruzeiros')) ||
+        (cat==='seguro'&&b.textContent.includes('Seguro')) ||
+        (cat==='ingressos'&&b.textContent.includes('Ingressos')) ||
+        (cat==='vh'&&b.textContent.includes('Vacation')) ||
+        (cat==='pacotes'&&b.textContent.includes('Pacotes')) ||
+        (cat==='transfer'&&b.textContent.includes('Transfer'))
+    ) b.classList.add('on');
+  });
+
+  var lista = document.getElementById('forn-lista');
+  if (!lista) return;
+
+  // Cache
+  if (_fornCache[cat]) { renderFornMonday(_fornCache[cat], cat); return; }
+
+  lista.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--mu);font-size:13px"><div style="font-size:28px;margin-bottom:8px">⏳</div>Carregando do Monday.com...</div>';
+
+  var boardId = MONDAY_BOARDS[cat];
+  if (!boardId) return;
+
+  var query = 'query { boards(ids:[' + boardId + ']) { name items_page(limit:50) { items { id name column_values { id text value } } } } }';
+
+  fetch(MONDAY_PROXY, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ query: query })
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    var items = (data.data && data.data.boards && data.data.boards[0] && data.data.boards[0].items_page && data.data.boards[0].items_page.items) || [];
+    _fornCache[cat] = items;
+    renderFornMonday(items, cat);
+  })
+  .catch(function(e) {
+    lista.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--re);font-size:13px">Erro ao carregar Monday.com. Verifique a conexão.</div>';
+  });
+}
+
+function renderFornMonday(items, cat) {
+  var lista = document.getElementById('forn-lista');
+  if (!lista) return;
+  if (!items.length) {
+    lista.innerHTML = '<div style="text-align:center;padding:2rem;color:var(--mu);font-size:13px">Nenhum fornecedor encontrado nesta categoria.</div>';
+    return;
+  }
+  var h = '';
+  items.forEach(function(item) {
+    var cols = {};
+    (item.column_values || []).forEach(function(c) { cols[c.id] = c.text || ''; });
+    
+    var status = cols['status'] || cols['Status'] || cols['status4'] || '';
+    var notas = cols['numbers'] || cols['nota'] || cols['Nota'] || '';
+    var renovacao = cols['date4'] || cols['renovacao'] || cols['Renovação'] || '';
+    var contato = cols['text'] || cols['contato'] || cols['Contato'] || '';
+    var obs = cols['long_text'] || cols['observacoes'] || cols['Observações'] || cols['text0'] || '';
+
+    var statusColor = status.toLowerCase().includes('ativo') ? 'var(--gr)' : 
+                      status.toLowerCase().includes('alerta') || status.toLowerCase().includes('renovar') ? 'var(--re)' :
+                      status.toLowerCase().includes('negoc') ? 'var(--am)' : 'var(--mu)';
+
+    h += '<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)">';
+    h += '<div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px">';
+    h += '<div style="font-size:14px;font-weight:600;color:var(--ink)">' + item.name + '</div>';
+    if (status) h += '<span style="font-size:10px;padding:2px 9px;border-radius:20px;background:var(--sf);color:' + statusColor + ';font-weight:500;white-space:nowrap">' + status + '</span>';
+    h += '</div>';
+    
+    if (renovacao || notas || contato) {
+      h += '<div style="display:flex;gap:12px;flex-wrap:wrap">';
+      if (renovacao) h += '<div style="font-size:11px;color:var(--mu)">📅 Renovação: <strong style="color:var(--ink)">' + renovacao + '</strong></div>';
+      if (notas) h += '<div style="font-size:11px;color:var(--mu)">⭐ Nota: <strong style="color:var(--ink)">' + notas + '</strong></div>';
+      if (contato) h += '<div style="font-size:11px;color:var(--mu)">👤 ' + contato + '</div>';
+      h += '</div>';
+    }
+    if (obs) h += '<div style="font-size:11px;color:var(--mu);margin-top:6px;line-height:1.4">' + obs + '</div>';
+    h += '</div>';
+  });
+  lista.innerHTML = h;
+}
+
 // ── NAVEGAÇÃO V6 ──────────────────────────────────────────────────────────────
 var V6_META = {
   dashboard:{t:'Dashboard',s:'Operacional · visão geral'},
