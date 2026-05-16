@@ -1725,7 +1725,9 @@ function v6Nav(id) {
   window.scrollTo(0,0);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+// Executar imediatamente (script no final do body)
+(function() {
+  function initNav() {
   // Bindar sidebar
   var items = document.querySelectorAll('.sb-item[data-section]');
   for (var k=0; k<items.length; k++) {
@@ -1797,7 +1799,14 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(function(){
     v6Nav('dashboard');
   }, 100);
-});
+  }
+  // Executar agora se DOM já pronto, senão aguardar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNav);
+  } else {
+    initNav();
+  }
+})();
 </script>
 
 </body>
