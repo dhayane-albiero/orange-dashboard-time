@@ -1783,7 +1783,7 @@ var V6_IDX=[
           if(gi>0) h+='<div class="sd-divider"></div>';
           h+='<div class="sd-group-lbl">'+sec+'</div>';
           groups[sec].slice(0,3).forEach(function(r){
-            h+='<div class="sd-item" onclick="v6Nav(''+r.p+'');document.getElementById('v6-dd').classList.remove('open');document.getElementById('v6-search').value=''"><span style="font-size:14px;flex-shrink:0;opacity:.8">'+r.i+'</span><div style="flex:1"><div style="color:var(--ink)">'+r.n+'</div><div style="font-size:10px;color:var(--mu)">'+r.d+'</div></div><span style="font-size:10px;color:var(--mu);opacity:.6">'+sec+'</span></div>';
+            h+='<div class="sd-item" onclick="v6Nav(&quot;'+r.p+'&quot;)" style="cursor:pointer"><span style="font-size:14px;flex-shrink:0;opacity:.8">'+r.i+'</span><div style="flex:1"><div style="color:var(--ink)">'+r.n+'</div><div style="font-size:10px;color:var(--mu)">'+r.d+'</div></div><span style="font-size:10px;color:var(--mu);opacity:.6">'+sec+'</span></div>';
           });
         });
         h+='<div class="sd-footer"><span>'+res.length+' resultado'+(res.length!==1?'s':'')+'</span></div>';
