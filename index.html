@@ -29,7 +29,7 @@ nav{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;di
 .tab{font-size:12px;font-weight:500;color:var(--mu);padding:11px 13px;border:none;background:none;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap}
 .tab:hover{color:var(--ink)}.tab.on{color:var(--or);border-bottom-color:var(--or);font-weight:600}
 .main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem;box-sizing:border-box;font-size:15px}
-.sec{display:none;scroll-margin-top:60px}.sec.on{display:block}
+.sec{display:none!important;scroll-margin-top:60px}.sec.on{display:block!important}
 .sh{display:flex;align-items:center;gap:7px;margin-bottom:1rem;padding-top:4px}
 .sh-line{width:3px;height:15px;background:var(--or);border-radius:2px;flex-shrink:0}
 .sh-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
@@ -1703,9 +1703,9 @@ var V6_IDX=[
 
 function v6Nav(id) {
   var secs = document.querySelectorAll('.sec');
-  for (var i=0; i<secs.length; i++) { secs[i].style.display='none'; secs[i].classList.remove('on'); }
+  for (var i=0; i<secs.length; i++) { secs[i].classList.remove('on'); }
   var sec = document.getElementById('s-'+id);
-  if (sec) { sec.style.display='block'; sec.classList.add('on'); }
+  if (sec) { sec.classList.add('on'); }
   var btns = document.querySelectorAll('.sb-item[data-section]');
   for (var j=0; j<btns.length; j++) {
     btns[j].classList.remove('on');
