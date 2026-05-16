@@ -27,8 +27,8 @@ body{font-family:'Figtree',sans-serif;background:var(--sf);color:var(--ink);font
 nav{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;display:flex;overflow-x:auto;position:sticky;top:54px;z-index:99}
 .tab{font-size:12px;font-weight:500;color:var(--mu);padding:11px 13px;border:none;background:none;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap}
 .tab:hover{color:var(--ink)}.tab.on{color:var(--or);border-bottom-color:var(--or);font-weight:600}
+.main{max-width:1280px;margin:0 auto;padding:1.5rem}
 .sec{display:none}.sec.on{display:block}
-.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem;background:var(--sf);box-sizing:border-box}
 .sh{display:flex;align-items:center;gap:7px;margin-bottom:1rem}
 .sh-line{width:3px;height:15px;background:var(--or);border-radius:2px;flex-shrink:0}
 .sh-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ink)}
@@ -204,17 +204,14 @@ textarea{resize:vertical;min-height:70px;width:100%}
 .heat{font-size:10px;font-weight:600;padding:2px 8px;border-radius:20px}
 .h-hot{background:var(--rel);color:var(--re)}.h-warm{background:var(--aml);color:var(--am)}.h-cool{background:var(--bll);color:var(--bl)}
 .legend-row{display:flex;gap:12px;font-size:11px;color:var(--mu);margin-top:8px}
-@media(max-width:900px){.g2,.g3,.g4,.cal-wrap,.radar-grid,.ig-channels{grid-template-columns:1fr}.nova-row{grid-template-columns:1fr 1fr}.dem-grid,.form-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.g2,.g3,.g4,.cal-wrap,.radar-grid,.ig-channels{grid-template-columns:1fr}.nova-row{grid-template-columns:1fr 1fr}.dem-grid,.form-grid{grid-template-columns:1fr}.main{padding:1rem}}
 
-/* ── V6 LAYOUT ─────────────────────────────────────────────────────────── */
+/* ── SIDEBAR V6 ─────────────────────────────────────────────────────── */
 .app-layout{display:flex;min-height:100vh}
-
-/* SIDEBAR */
-.sidebar{background:#0F1E3C;display:flex;flex-direction:column;transition:width .25s cubic-bezier(.4,0,.2,1);flex-shrink:0;position:fixed;top:0;left:0;height:100vh;z-index:200}
-.sidebar.expanded{width:220px}
-.sidebar.collapsed{width:52px}
+.sidebar{background:#0F1E3C;display:flex;flex-direction:column;transition:width .25s cubic-bezier(.4,0,.2,1);flex-shrink:0;position:fixed;top:0;left:0;height:100vh;z-index:200;overflow:hidden}
+.sidebar.expanded{width:220px}.sidebar.collapsed{width:52px}
 .sb-hdr{padding:12px 10px;display:flex;align-items:center;gap:8px;border-bottom:0.5px solid rgba(255,255,255,.08);flex-shrink:0;min-height:54px}
-.brand-dot{width:28px;height:28px;border-radius:7px;background:#E8440A;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
+.sb-brand-dot{width:28px;height:28px;border-radius:7px;background:#E8440A;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff;flex-shrink:0}
 .sb-brand-txt{font-size:12px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;transition:opacity .2s,width .2s}
 .sidebar.collapsed .sb-brand-txt{opacity:0;width:0}
 .sb-toggle{width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.7);font-size:13px;flex-shrink:0;transition:background .15s;margin-left:auto}
@@ -223,15 +220,14 @@ textarea{resize:vertical;min-height:70px;width:100%}
 .sb-search-wrap{padding:8px 8px 6px;flex-shrink:0}
 .sb-search-input{width:100%;background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.15);border-radius:7px;padding:6px 8px 6px 28px;font-size:11px;color:#fff;font-family:'Figtree',sans-serif;outline:none;transition:all .2s}
 .sb-search-input::placeholder{color:rgba(255,255,255,.4)}
-.sb-search-input:focus{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.3)}
 .sb-search-rel{position:relative}
 .sb-search-ico{position:absolute;left:8px;top:50%;transform:translateY(-50%);color:rgba(255,255,255,.4);font-size:12px;pointer-events:none}
 .sidebar.collapsed .sb-search-wrap{display:none}
 .sb-nav{flex:1;overflow-y:auto;padding:4px 0;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
 .sb-nav::-webkit-scrollbar{width:3px}
 .sb-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:10px}
-.sb-group-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);padding:8px 14px 4px;white-space:nowrap;overflow:hidden;transition:opacity .2s,height .2s}
-.sidebar.collapsed .sb-group-lbl{opacity:0;height:0;padding:0;margin:0;overflow:hidden}
+.sb-group-lbl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);padding:8px 14px 4px;white-space:nowrap;overflow:hidden}
+.sidebar.collapsed .sb-group-lbl{opacity:0;height:0;padding:0;overflow:hidden}
 .sb-item{display:flex;align-items:center;gap:9px;padding:7px 12px;cursor:pointer;border-radius:7px;margin:1px 6px;transition:all .15s;position:relative;border:none;background:transparent;width:calc(100% - 12px);text-align:left}
 .sb-item:hover{background:rgba(255,255,255,.08)}
 .sb-item.on{background:rgba(255,255,255,.12)}
@@ -242,112 +238,64 @@ textarea{resize:vertical;min-height:70px;width:100%}
 .sb-item.on .sb-lbl{color:#fff}
 .sb-bdg{font-size:9px;font-weight:700;padding:1px 5px;border-radius:20px;flex-shrink:0;transition:opacity .2s}
 .sidebar.collapsed .sb-bdg{opacity:0}
-.bdg-red{background:#C0281E;color:#fff}
-.bdg-amber{background:#BA7517;color:#fff}
-.bdg-green{background:#1D9E75;color:#fff}
-.sidebar.collapsed .sb-item{justify-content:center;padding:7px 0;margin:1px 6px}
+.bdg-r{background:#C0281E;color:#fff}.bdg-a{background:#BA7517;color:#fff}.bdg-g{background:#1D9E75;color:#fff}
+.sidebar.collapsed .sb-item{justify-content:center;padding:7px 0}
 .sidebar.collapsed .sb-item[data-tip]:hover::after{content:attr(data-tip);position:absolute;left:calc(100% + 10px);top:50%;transform:translateY(-50%);background:#1C1810;color:#fff;font-size:11px;padding:4px 9px;border-radius:6px;white-space:nowrap;z-index:300;pointer-events:none}
-
-/* MAIN AREA */
-.app-main{flex:1;display:flex;flex-direction:column;transition:margin-left .25s cubic-bezier(.4,0,.2,1);min-height:100vh}
-.main-expanded{margin-left:220px}
-.main-collapsed{margin-left:52px}
-
-/* TOPBAR V6 */
-.topbar-v6{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;height:54px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 6px rgba(28,24,16,.05)}
-.tb-title{font-size:14px;font-weight:600;color:var(--ink);flex:1}
-.tb-sub{font-size:11px;color:var(--mu);margin-top:1px}
-
-/* BUSCA CLEAN V6 */
+.app-main{flex:1;transition:margin-left .25s cubic-bezier(.4,0,.2,1);min-height:100vh;display:flex;flex-direction:column}
+.main-expanded{margin-left:220px}.main-collapsed{margin-left:52px}
+.topbar-v6{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;height:52px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(28,24,16,.05);flex-shrink:0}
 .search-wrap-v6{position:relative;width:240px;transition:width .2s}
 .search-wrap-v6:focus-within{width:300px}
 .search-input-v6{width:100%;background:var(--sf);border:0.5px solid var(--bd);border-radius:20px;padding:6px 12px 6px 30px;font-size:12px;color:var(--ink);font-family:'Figtree',sans-serif;outline:none;transition:all .2s}
 .search-input-v6:focus{background:var(--wh);border-color:rgba(232,68,10,.3);box-shadow:0 0 0 3px rgba(232,68,10,.06)}
 .search-input-v6::placeholder{color:var(--mu)}
-.search-ico-v6{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--mu);font-size:12px;pointer-events:none;transition:color .2s}
+.search-ico-v6{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--mu);font-size:12px;pointer-events:none}
 .search-wrap-v6:focus-within .search-ico-v6{color:var(--or)}
 .search-dd{position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);box-shadow:0 8px 32px rgba(0,0,0,.10);z-index:300;display:none;overflow:hidden;min-width:320px}
 .search-dd.open{display:block}
 .sd-group-lbl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);padding:10px 14px 4px;opacity:.7}
 .sd-item{display:flex;align-items:center;gap:10px;padding:8px 14px;cursor:pointer;transition:background .12s;font-size:12px}
 .sd-item:hover{background:var(--sf)}
-.sd-ico{font-size:14px;flex-shrink:0;opacity:.8}
-.sd-name{flex:1;color:var(--ink);line-height:1.3}
-.sd-where{font-size:10px;color:var(--mu);margin-top:1px}
-.sd-tag{font-size:10px;color:var(--mu);opacity:.6;flex-shrink:0}
 .sd-divider{height:0.5px;background:var(--bd);margin:2px 14px}
-.sd-footer{padding:8px 14px;border-top:0.5px solid var(--bd);font-size:10px;color:var(--mu);display:flex;align-items:center;justify-content:space-between}
+.sd-footer{padding:8px 14px;border-top:0.5px solid var(--bd);font-size:10px;color:var(--mu);display:flex;justify-content:space-between}
 .sd-empty{padding:14px;font-size:12px;color:var(--mu);text-align:center;font-style:italic}
-
-/* MOBILE */
+.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem;box-sizing:border-box}
 @media(max-width:768px){
-  .sidebar{display:none}
+  .sidebar{display:none!important}
   .app-main{margin-left:0!important}
   .topbar-v6{display:none}
-  .mobile-layout{display:flex!important}
-  }
-.mobile-layout{display:none;flex-direction:column;height:100vh;background:var(--sf)}
-.m-hdr-v6{background:#0F1E3C;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.m-search-v6{padding:8px 12px;background:var(--wh);border-bottom:0.5px solid var(--bd)}
-.m-search-inner{display:flex;align-items:center;gap:7px;background:var(--sf);border-radius:20px;padding:7px 12px}
-.m-search-inner input{border:none;background:transparent;font-size:12px;color:var(--ink);font-family:'Figtree',sans-serif;width:100%;outline:none}
-.m-quick-bar{padding:8px 12px 6px;background:var(--wh);border-bottom:0.5px solid var(--bd);flex-shrink:0}
-.m-quick-row{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
-.m-quick-row::-webkit-scrollbar{display:none}
-.m-chip{flex-shrink:0;display:flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;background:var(--sf);border:0.5px solid var(--bd);font-size:11px;font-weight:500;color:var(--ink);cursor:pointer;white-space:nowrap}
-.m-chip.on{background:var(--or);color:#fff;border-color:var(--or)}
-.m-content-v6{flex:1;overflow-y:auto;padding:12px}
-.m-bottom-nav{height:56px;background:var(--wh);border-top:0.5px solid var(--bd);display:flex;align-items:center;justify-content:space-around;flex-shrink:0;padding:0 4px}
-.m-nav-btn{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 8px;border-radius:8px;cursor:pointer;border:none;background:transparent;flex:1;position:relative}
-.m-nav-btn.on{background:var(--sf)}
-.m-nav-ico{font-size:18px;line-height:1}
-.m-nav-lbl{font-size:9px;font-weight:500;color:var(--mu)}
-.m-nav-btn.on .m-nav-lbl{color:var(--or);font-weight:600}
-.m-nav-bdg{position:absolute;top:4px;right:calc(50% - 14px);width:16px;height:16px;border-radius:50%;background:#C0281E;color:#fff;font-size:8px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.m-fab{position:fixed;bottom:70px;right:16px;width:44px;height:44px;border-radius:50%;background:var(--or);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;box-shadow:0 4px 16px rgba(232,68,10,.4);z-index:150}
-.m-card{background:var(--wh);border:0.5px solid var(--bd);border-radius:10px;padding:11px 12px;margin-bottom:6px;box-shadow:var(--shadow)}
-.m-card-row{display:flex;align-items:center;gap:8px}
-.m-al{display:flex;align-items:flex-start;gap:8px;padding:9px 11px;border-radius:10px;margin-bottom:7px;font-size:12px;line-height:1.45}
-.m-al-r{background:var(--rel);color:#7A1F1E}
-.m-al-w{background:var(--aml);color:#633806}
-.m-al-g{background:var(--grl);color:#0F6E56}
-.m-kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:12px}
-.m-kpi{background:var(--wh);border-radius:10px;padding:10px 11px;border-left:3px solid var(--bd);box-shadow:var(--shadow)}
-.m-kpi.t1{border-left-color:var(--or)}.m-kpi.t2{border-left-color:var(--am)}
-.m-kpi.al{border-left-color:var(--re)}.m-kpi.ok{border-left-color:var(--gr)}
+}
 
-.lbl2{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);display:block;margin-bottom:4px}
 </style>
 </head>
 <body>
-<!-- ── LAYOUT V6 ──────────────────────────────────────────── -->
+<!-- LAYOUT V6 -->
 <div class="app-layout">
-
-<nav class="sidebar expanded" id="v6-sidebar" aria-label="Navegação principal">
+<nav class="sidebar expanded" id="v6-sidebar">
   <div class="sb-hdr">
-    <div class="brand-dot">🍊</div>
+    <div class="sb-brand-dot">🍊</div>
     <span class="sb-brand-txt">Orange Produto</span>
-    <button class="sb-toggle" onclick="sbToggle()" id="sb-toggle-btn" aria-label="Colapsar menu">←</button>
+    <button class="sb-toggle" id="sb-toggle-btn">←</button>
   </div>
   <div class="sb-search-wrap">
     <div class="sb-search-rel">
       <span class="sb-search-ico">🔍</span>
-      <input class="sb-search-input" placeholder="Ir para..." oninput="sbFilter(this.value)" aria-label="Filtrar navegação">
+      <input class="sb-search-input" id="sb-search-input" placeholder="Ir para...">
     </div>
   </div>
   <div class="sb-nav" id="sb-nav">
     <div class="sb-group-lbl">Operacional</div>
-    <button class="sb-item on" data-tip="Dashboard" data-section="dashboard"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-red" id="bdg-dash">3</span></button>
+    <button class="sb-item on" data-tip="Dashboard" data-section="dashboard"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-r" id="bdg-dash">3</span></button>
     <button class="sb-item" data-tip="Prateleira" data-section="prateleira"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
-    <button class="sb-item" data-tip="Demandas" data-section="demandas"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-amber">4</span></button>
-    <button class="sb-item" data-tip="Ações" data-section="acoes"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-amber" id="bdg-acoes">9</span></button>
+    <button class="sb-item" data-tip="Demandas" data-section="demandas"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-a">4</span></button>
+    <button class="sb-item" data-tip="Ações" data-section="acoes"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-a" id="bdg-acoes">9</span></button>
     <button class="sb-item" data-tip="Campanhas" data-section="campanhas"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
-    <button class="sb-item" data-tip="Indicadores" data-section="indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
+    <button class="sb-item" data-tip="Indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-r">2</span></button>
     <div class="sb-group-lbl">Estratégico</div>
-    <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-red">1</span></button>
+    <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-r">1</span></button>
     <button class="sb-item" data-tip="Margens" data-section="margens"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
     <button class="sb-item" data-tip="Instagram" data-section="instagram"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
-    <button class="sb-item" data-tip="Radar" data-section="radar"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-green">6</span></button>
+    <button class="sb-item" data-tip="Radar" data-section="radar"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-g">6</span></button>
     <button class="sb-item" data-tip="Linha do tempo" data-section="calendario"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
     <button class="sb-item" data-tip="Gestão" data-section="gestao"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
     <div class="sb-group-lbl">Referência</div>
@@ -355,41 +303,34 @@ textarea{resize:vertical;min-height:70px;width:100%}
     <button class="sb-item" data-tip="Templates" data-section="templates"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
   </div>
 </nav>
-
-
-<!-- MAIN -->
 <div class="app-main main-expanded" id="v6-main">
-
-  <!-- TOPBAR SIMPLIFICADA -->
-  <div style="background:#fff;border-bottom:1px solid #E8E4DC;padding:0 1.5rem;height:52px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.05)">
+  <div class="topbar-v6">
     <div style="flex:1">
-      <div style="font-size:14px;font-weight:600;color:#1C1810" id="v6-title">Dashboard</div>
-      <div style="font-size:11px;color:#7A7060" id="v6-sub">Operacional · visão geral do portfólio</div>
+      <div style="font-size:14px;font-weight:600;color:var(--ink)" id="v6-title">Dashboard</div>
+      <div style="font-size:11px;color:var(--mu)" id="v6-sub">Operacional · visão geral do portfólio</div>
     </div>
-    <div style="position:relative;width:240px">
-      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#7A7060;font-size:12px;pointer-events:none">🔍</span>
-      <input id="v6-search-input" style="width:100%;background:#F5F3EF;border:0.5px solid #E8E4DC;border-radius:20px;padding:6px 12px 6px 30px;font-size:12px;color:#1C1810;font-family:'Figtree',sans-serif;outline:none" placeholder="Buscar em tudo..." oninput="v6Search(this.value)" onfocus="v6Search(this.value)" onblur="setTimeout(v6CloseDD,200)">
+    <div class="search-wrap-v6">
+      <span class="search-ico-v6">🔍</span>
+      <input class="search-input-v6" id="v6-search" placeholder="Buscar em tudo..." onblur="setTimeout(function(){document.getElementById('v6-dd').classList.remove('open')},200)">
       <div class="search-dd" id="v6-dd"></div>
     </div>
     <div style="display:flex;align-items:center;gap:4px;background:rgba(29,158,117,.1);border-radius:20px;padding:3px 9px;border:0.5px solid rgba(29,158,117,.3)">
       <div style="width:5px;height:5px;border-radius:50%;background:#1D9E75;animation:blink 1.5s ease-in-out infinite"></div>
       <span style="font-size:9px;color:#1D9E75;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Live</span>
     </div>
+  </div>
 
-  <!-- CONTEÚDO DAS SEÇÕES -->
-  <main class="main" style="background:var(--sf)">
+<main class="main">
 
 <!-- PRATELEIRA -->
 <div id="s-dashboard" class="sec on">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Dashboard — visão geral do portfólio</span></div>
-
   <div class="g4" style="margin-bottom:1.25rem">
     <div class="kpi or"><div class="kl">T1 Core</div><div class="kv">4/4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div><div class="kd up">↑ playbook completo</div></div>
     <div class="kpi am"><div class="kl">T2 Lançamento</div><div class="kv">3</div><div class="ks">NYC · Paris · Miami</div><div class="kd warn">⚡ NYC lançando</div></div>
-    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" style="color:var(--re)" id="dash-n-acoes">9</div><div class="ks">pendentes + andamento</div></div>
+    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" id="dash-n-acoes" style="color:var(--re)">9</div><div class="ks">pendentes + andamento</div></div>
     <div class="kpi gr"><div class="kl">Urgentes hoje</div><div class="kv" style="color:var(--re)">3</div><div class="ks">ação imediata</div></div>
   </div>
-
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
     <div>
       <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas de hoje</div>
@@ -399,69 +340,44 @@ textarea{resize:vertical;min-height:70px;width:100%}
     </div>
     <div>
       <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Próximos marcos</div>
-      <div class="card" style="padding:10px 12px;margin-bottom:6px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:16px">📅</span>
-          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Brief MKT Paris</div><div style="font-size:11px;color:var(--mu)">16 jun · RF + MI · D-15</div></div>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span>
-        </div>
-      </div>
-      <div class="card" style="padding:10px 12px;margin-bottom:6px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:16px">📅</span>
-          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">T&Q Paris</div><div style="font-size:11px;color:var(--mu)">24 jun · Roberta · D-7</div></div>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">41d</span>
-        </div>
-      </div>
-      <div class="card" style="padding:10px 12px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="font-size:16px">🚀</span>
-          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Go live Paris</div><div style="font-size:11px;color:var(--mu)">1 jul · time completo</div></div>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--orl);color:var(--or);font-weight:500">T2</span>
-        </div>
-      </div>
+      <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:10px 12px;margin-bottom:6px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">📅</span><div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Brief MKT Paris</div><div style="font-size:11px;color:var(--mu)">16 jun · RF + MI · D-15</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span></div></div>
+      <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:10px 12px;margin-bottom:6px;box-shadow:var(--shadow)"><div style="display:flex;align-items:center;gap:8px"><span style="font-size:16px">🚀</span><div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Go live Paris</div><div style="font-size:11px;color:var(--mu)">1 jul · time completo</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--orl);color:var(--or);font-weight:500">T2</span></div></div>
     </div>
   </div>
-
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
     <div>
       <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Equilíbrio do portfólio — carga do time</div>
-      <div class="card" style="padding:12px 14px">
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Rafaella</span>
-          <div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:87%;background:var(--re);border-radius:10px"></div></div>
-          <span style="font-size:10px;color:var(--re);font-weight:600;min-width:30px">13pt</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--rel);color:var(--re)">Atenção</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Michelle</span>
-          <div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:80%;background:var(--re);border-radius:10px"></div></div>
-          <span style="font-size:10px;color:var(--re);font-weight:600;min-width:30px">12pt</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--rel);color:var(--re)">Atenção</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Laura</span>
-          <div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:53%;background:var(--am);border-radius:10px"></div></div>
-          <span style="font-size:10px;color:var(--am);font-weight:600;min-width:30px">8pt</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--aml);color:var(--am)">OK</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0">
-          <span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Beatriz</span>
-          <div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:47%;background:var(--gr);border-radius:10px"></div></div>
-          <span style="font-size:10px;color:var(--gr);font-weight:600;min-width:30px">7pt</span>
-          <span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--grl);color:var(--gr)">OK</span>
-        </div>
+      <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)">
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Rafaella</span><div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:87%;background:var(--re);border-radius:10px"></div></div><span style="font-size:10px;color:var(--re);font-weight:600;min-width:30px">13pt</span><span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--rel);color:var(--re)">Atenção</span></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Michelle</span><div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:80%;background:var(--re);border-radius:10px"></div></div><span style="font-size:10px;color:var(--re);font-weight:600;min-width:30px">12pt</span><span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--rel);color:var(--re)">Atenção</span></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Laura</span><div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:53%;background:var(--am);border-radius:10px"></div></div><span style="font-size:10px;color:var(--am);font-weight:600;min-width:30px">8pt</span><span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--aml);color:var(--am)">OK</span></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">Beatriz</span><div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:47%;background:var(--gr);border-radius:10px"></div></div><span style="font-size:10px;color:var(--gr);font-weight:600;min-width:30px">7pt</span><span style="font-size:10px;padding:1px 6px;border-radius:20px;background:var(--grl);color:var(--gr)">OK</span></div>
       </div>
     </div>
     <div>
       <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Radar — destinos em destaque</div>
-      <div class="card" style="padding:12px 14px">
+      <div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)">
         <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:18px">🇯🇵</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Japão</div><div style="font-size:10px;color:var(--mu)">T3 · hype máximo</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">🔥</span></div>
         <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:18px">🇵🇹</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Lisboa</div><div style="font-size:10px;color:var(--mu)">T3 · em alta</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">📈</span></div>
         <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px">🇲🇻</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Maldivas</div><div style="font-size:10px;color:var(--mu)">T3 · luxo</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--bll);color:var(--bl);font-weight:500">💎</span></div>
       </div>
     </div>
   </div>
+</div>
+
+<div id="s-indicadores" class="sec">
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Indicadores — saúde do portfólio</span></div>
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">T1 saudável</div><div class="kv">4/4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div></div>
+    <div class="kpi am"><div class="kl">T2 em progresso</div><div class="kv">3</div><div class="ks">NYC · Paris · Miami</div></div>
+    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" style="color:var(--re)">9</div><div class="ks">pendentes + andamento</div></div>
+    <div class="kpi gr"><div class="kl">Alertas ativos</div><div class="kv" style="color:var(--re)">3</div><div class="ks">ação necessária</div></div>
+  </div>
+  <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas automáticos</div>
+  <div class="alerta al-r">⚠️ <strong>Rafaella</strong> com carga máxima (13pts) — monitorar antes de mover novo destino para T2</div>
+  <div class="alerta al-r">⚡ <strong>Clubmed Trancoso</strong> e <strong>NYC CityPASS</strong> — renovação de contrato em até 30 dias</div>
+  <div class="alerta al-w">📋 <strong>3 destinos em T2 simultâneos</strong> — NYC, Paris e Miami. Garantir que T1 não perde atenção.</div>
+  <div class="alerta al-g">✅ <strong>NYC Go live</strong> concluído com sucesso — D+7 revisão esta semana</div>
 </div>
 
 <div id="s-prateleira" class="sec">
@@ -506,110 +422,42 @@ textarea{resize:vertical;min-height:70px;width:100%}
 
 <!-- AÇÕES -->
 <div id="s-acoes" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Ações — entregas de produto para os times</span></div>
-
-  <div class="g4" style="margin-bottom:1.25rem">
-    <div class="kpi or"><div class="kl">Total abertas</div><div class="kv" id="ac-tot">0</div><div class="ks">ações em andamento</div></div>
-    <div class="kpi bl"><div class="kl">Alta prioridade</div><div class="kv" id="ac-alta" style="color:var(--re)">0</div><div class="ks">ação imediata</div></div>
-    <div class="kpi am"><div class="kl">Esta semana</div><div class="kv" id="ac-sem">0</div><div class="ks">prazo curto</div></div>
-    <div class="kpi gr"><div class="kl">Concluídas</div><div class="kv" id="ac-done">0</div><div class="ks">esta semana</div></div>
-  </div>
-
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
-    <div style="display:flex;gap:5px;flex-wrap:wrap" id="ac-filtros">
-      <button class="fb on" onclick="acFiltro('todos',this)">Todas</button>
-      <button class="fb" onclick="acFiltro('alta',this)">🔴 Alta</button>
-      <button class="fb" onclick="acFiltro('media',this)">🟡 Média</button>
-      <button class="fb" onclick="acFiltro('mkt',this)">→ MKT</button>
-      <button class="fb" onclick="acFiltro('ops',this)">→ Operação</button>
-      <button class="fb" onclick="acFiltro('tq',this)">→ T&Q</button>
-      <button class="fb" onclick="acFiltro('comercial',this)">→ Comercial</button>
-    </div>
-    <button class="btn-p" style="font-size:11px;padding:5px 12px" onclick="tgAcForm()">+ Nova ação</button>
-  </div>
-
-  <div id="ac-form" style="display:none;background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:1rem;box-shadow:var(--shadow)">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end">
-      <div><label class="lbl2">Ação</label><input type="text" id="ac-txt" placeholder="Ex: Entregar briefing MKT Paris..." style="width:100%"></div>
-      <div><label class="lbl2">Destino</label>
-        <select id="ac-dest" style="width:100%">
-          <option>Orlando</option><option>NYC</option><option>Paris</option><option>Miami</option>
-          <option>Cruzeiros</option><option>Clubmed</option><option>VH</option><option>Geral</option>
-        </select>
-      </div>
-      <div><label class="lbl2">Para quem</label>
-        <select id="ac-para" style="width:100%">
-          <option value="mkt">MKT</option><option value="ops">Operação</option>
-          <option value="tq">T&Q</option><option value="comercial">Comercial</option>
-          <option value="emergencial">Emergencial</option>
-        </select>
-      </div>
-      <div><label class="lbl2">Prioridade</label>
-        <select id="ac-pr" style="width:100%">
-          <option value="alta">Alta</option><option value="media" selected>Média</option><option value="baixa">Baixa</option>
-        </select>
-      </div>
-      <div style="display:flex;gap:5px;align-items:flex-end">
-        <button class="btn-p" style="font-size:11px;padding:5px 10px" onclick="addAcao()">Salvar</button>
-        <button class="btn-s" style="font-size:11px;padding:5px 8px" onclick="tgAcForm()">×</button>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Ações — Produto entrega para os times</span></div>
+  <div class="filtro-row" id="flt-wrap"></div>
+  <div id="ac-list"></div>
+  <div style="margin-top:12px">
+    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:6px">+ Nova ação</div>
+    <div class="nova-form">
+      <div class="nova-row">
+        <input type="text" id="n-t" placeholder="Descreva a ação..." style="width:100%">
+        <select id="n-p"><option>Orlando</option><option>Vacation Home</option><option>Cruzeiros</option><option>Clubmed</option><option>NYC</option><option>Paris</option><option>Miami</option><option>Dubai</option><option>Japão</option></select>
+        <select id="n-d"><option value="MKT">→ MKT</option><option value="Operação">→ Operação</option><option value="T&Q">→ T&Q</option><option value="Comercial">→ Comercial</option><option value="Emergencial">→ Emergencial</option><option value="Concierge">→ Concierge</option><option value="Interno">Interno</option></select>
+        <select id="n-pr"><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select>
+        <button class="btn-p" onclick="addAcao()">Adicionar</button>
       </div>
     </div>
   </div>
-
-  <div id="ac-lista"></div>
 </div>
 
+<!-- DEMANDAS -->
 <div id="s-demandas" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Demandas — o que o comercial está pedindo</span></div>
-
-  <div class="g4" style="margin-bottom:1.25rem">
-    <div class="kpi or"><div class="kl">Demandas abertas</div><div class="kv" id="dem-tot">0</div><div class="ks">aguardando produto</div></div>
-    <div class="kpi bl"><div class="kl">Urgentes</div><div class="kv" id="dem-urg" style="color:var(--re)">0</div><div class="ks">resposta imediata</div></div>
-    <div class="kpi am"><div class="kl">Em andamento</div><div class="kv" id="dem-and">0</div><div class="ks">produto respondendo</div></div>
-    <div class="kpi gr"><div class="kl">Resolvidas</div><div class="kv" id="dem-res">0</div><div class="ks">esta semana</div></div>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Demandas de vendas semanais — por coordenadora</span></div>
+  <p style="font-size:12px;color:var(--mu);margin-bottom:1rem">Cada coordenadora registra o que o comercial está pedindo, o que está parado e a ação necessária.</p>
+  <div class="dem-tabs">
+    <button class="dtab on" onclick="showDem('rf',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#D4F0E4;color:#0A5C38;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">RF</span>Rafaella</button>
+    <button class="dtab" onclick="showDem('mi',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#D0E5F5;color:#0A4F7A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">MI</span>Michelle</button>
+    <button class="dtab" onclick="showDem('la',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#FAD4C0;color:#7A2A0A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">LA</span>Laura</button>
+    <button class="dtab" onclick="showDem('be',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#FAE8C0;color:#7A4A0A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">BE</span>Beatriz</button>
+    <button class="dtab" onclick="showDem('all',this)">📊 Consolidado</button>
   </div>
-
-  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
-    <div style="display:flex;gap:5px;flex-wrap:wrap" id="dem-filtros">
-      <button class="fb on" onclick="demFiltro('todos',this)">Todas</button>
-      <button class="fb" onclick="demFiltro('rf',this)">RF</button>
-      <button class="fb" onclick="demFiltro('mi',this)">MI</button>
-      <button class="fb" onclick="demFiltro('la',this)">LA</button>
-      <button class="fb" onclick="demFiltro('be',this)">BE</button>
-    </div>
-    <button class="btn-p" style="font-size:11px;padding:5px 12px" onclick="tgDemForm()">+ Nova demanda</button>
-  </div>
-
-  <div id="dem-form" style="display:none;background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:1rem;box-shadow:var(--shadow)">
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end">
-      <div><label class="lbl2">Demanda</label><input type="text" id="dem-txt" placeholder="Ex: Preciso de opção de hotel boutique NYC para cliente VIP..." style="width:100%"></div>
-      <div><label class="lbl2">Coordenadora</label>
-        <select id="dem-coord" style="width:100%">
-          <option value="rf">Rafaella</option><option value="mi">Michelle</option>
-          <option value="la">Laura</option><option value="be">Beatriz</option>
-        </select>
-      </div>
-      <div><label class="lbl2">Produto</label>
-        <select id="dem-prod" style="width:100%">
-          <option>Hotel</option><option>Ingresso</option><option>Cruzeiro</option>
-          <option>Clubmed</option><option>Vacation Home</option><option>Transfer</option><option>Seguro</option>
-        </select>
-      </div>
-      <div><label class="lbl2">Urgência</label>
-        <select id="dem-urg-sel" style="width:100%">
-          <option value="urgente">Urgente</option><option value="semana" selected>Esta semana</option><option value="mensal">Sem pressa</option>
-        </select>
-      </div>
-      <div style="display:flex;gap:5px;align-items:flex-end">
-        <button class="btn-p" style="font-size:11px;padding:5px 10px" onclick="addDemanda()">Salvar</button>
-        <button class="btn-s" style="font-size:11px;padding:5px 8px" onclick="tgDemForm()">×</button>
-      </div>
-    </div>
-  </div>
-
-  <div id="dem-lista"></div>
+  <div id="dem-rf" class="dem-panel on"></div>
+  <div id="dem-mi" class="dem-panel"></div>
+  <div id="dem-la" class="dem-panel"></div>
+  <div id="dem-be" class="dem-panel"></div>
+  <div id="dem-all" class="dem-panel"><div id="all-hist"></div></div>
 </div>
 
+<!-- GESTÃO -->
 <div id="s-gestao" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Gestão — visão consolidada</span></div>
   <div class="alerta al-w">⚡ <strong>NYC — go live 11 mai.</strong> Confirmar com Operação e T&Q.</div>
@@ -745,118 +593,14 @@ textarea{resize:vertical;min-height:70px;width:100%}
 </div>
 
 <!-- FORNECEDORES -->
-<div id="s-indicadores" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Indicadores — saúde do portfólio</span></div>
-
-  <div class="g4" style="margin-bottom:1.25rem">
-    <div class="kpi or"><div class="kl">T1 saudável</div><div class="kv">4/4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div></div>
-    <div class="kpi am"><div class="kl">T2 em progresso</div><div class="kv">3</div><div class="ks">NYC lançado · Paris · Miami em estruturação</div></div>
-    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" style="color:var(--re)" id="ind-acoes">9</div><div class="ks">pendentes + andamento</div></div>
-    <div class="kpi gr"><div class="kl">Fornecedores — alerta</div><div class="kv" style="color:var(--re)">2</div><div class="ks">renovação urgente</div></div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
-    <div>
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Ações por destino</div>
-      <div class="card" style="padding:12px 14px">
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">NYC</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:100%;background:var(--or);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">4</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Paris</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:50%;background:var(--am);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">2</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Cruzeiros</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:50%;background:var(--am);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">2</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Miami</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Orlando</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Clubmed</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;padding:5px 0">
-          <span style="font-size:12px;font-weight:500;color:var(--ink);flex:1">Japão</span>
-          <div style="height:5px;background:var(--sf);border-radius:10px;width:100px;overflow:hidden"><div style="height:100%;width:25%;background:var(--gr);border-radius:10px"></div></div>
-          <span style="font-size:11px;color:var(--mu);min-width:20px;text-align:right">1</span>
-        </div>
-      </div>
-    </div>
-    <div>
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">SLAs de entrega</div>
-      <div class="card" style="padding:12px 14px">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
-          <span style="color:var(--ink);font-weight:500">Brief MKT Paris</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
-          <span style="color:var(--ink);font-weight:500">T&Q Paris</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">41d</span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
-          <span style="color:var(--ink);font-weight:500">Go live Paris</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--grl);color:var(--gr);font-weight:500">48d</span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:0.5px solid var(--bd);font-size:12px">
-          <span style="color:var(--ink);font-weight:500">Brief MKT Miami</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">46d</span>
-        </div>
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;font-size:12px">
-          <span style="color:var(--ink);font-weight:500">Clubmed Trancoso — renovação</span>
-          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">30d ⚠️</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div>
-    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas automáticos</div>
-    <div class="alerta al-r">⚠️ <strong>Rafaella</strong> com carga máxima (13pts) — monitorar antes de mover novo destino para T2</div>
-    <div class="alerta al-r">⚡ <strong>Clubmed Trancoso</strong> e <strong>NYC CityPASS</strong> — renovação de contrato em até 30 dias</div>
-    <div class="alerta al-w">📋 <strong>3 destinos em T2 simultâneos</strong> — NYC, Paris e Miami. Garantir que T1 não perde atenção.</div>
-    <div class="alerta al-g">✅ <strong>NYC Go live</strong> concluído com sucesso — D+7 revisão esta semana</div>
-  </div>
-</div>
-
 <div id="s-fornecedores" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — avaliação e ciclo de negociação</span></div>
-
-  <div class="g4" style="margin-bottom:1.25rem">
-    <div class="kpi or"><div class="kl">Fornecedores</div><div class="kv" id="forn-tot">17</div><div class="ks">9 categorias ativas</div></div>
-    <div class="kpi bl"><div class="kl">Nota média</div><div class="kv" id="forn-nota" style="color:var(--gr)">4.1</div><div class="ks">de 5.0</div></div>
-    <div class="kpi am"><div class="kl">Renovação urgente</div><div class="kv" id="forn-urg" style="color:var(--re)">2</div><div class="ks">em até 30 dias</div></div>
-    <div class="kpi gr"><div class="kl">Margem crítica</div><div class="kv" id="forn-marg" style="color:var(--re)">1</div><div class="ks">nota ≤ 2</div></div>
-  </div>
-
-  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem" id="forn-cat-tabs">
-    <button class="fb on" onclick="fornCat('todos',this)">Todos</button>
-    <button class="fb" onclick="fornCat('hotel',this)">Hotel</button>
-    <button class="fb" onclick="fornCat('ingresso',this)">Ingresso</button>
-    <button class="fb" onclick="fornCat('cruzeiro',this)">Cruzeiro</button>
-    <button class="fb" onclick="fornCat('clubmed',this)">Clubmed</button>
-    <button class="fb" onclick="fornCat('vh',this)">Vacation Home</button>
-    <button class="fb" onclick="fornCat('transfer',this)">Transfer</button>
-    <button class="fb" onclick="fornCat('seguro',this)">Seguro</button>
-    <button class="fb" onclick="fornCat('aereo',this)">Aéreo</button>
-  </div>
-
-  <div id="forn-lista"></div>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — dados do Monday.com <span class="monday-chip">Monday Live</span></span></div>
+  <p style="font-size:12px;color:var(--mu);margin-bottom:1rem">Visão única de todos os parceiros comerciais da Orange Viagens por categoria.</p>
+  <div class="forn-tabs" id="forn-tabs-wrap"></div>
+  <div id="forn-content"></div>
 </div>
 
+<!-- INSTAGRAM -->
 <div id="s-instagram" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Instagram — estratégia por canal</span></div>
   <p style="font-size:12px;color:var(--mu);margin-bottom:1.25rem">Frequência de ações de MKT sugerida por canal para manter os produtos bem na prateleira digital.</p>
@@ -1327,13 +1071,10 @@ textarea{resize:vertical;min-height:70px;width:100%}
   </div>
 </div>
 </main>
+</div><!-- app-main -->
+</div><!-- app-layout -->
 
 <script>
-
-// ── PROXIES SUPABASE ────────────────────────────────────────────────────────
-const CLAUDE_PROXY = 'https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/claude-proxy';
-const MONDAY_PROXY = 'https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/monday-proxy';
-
 // ── DADOS ──────────────────────────────────────────────────────────────────
 const TM={Orlando:1,'Vacation Home':1,Cruzeiros:1,Clubmed:1,NYC:2,Paris:2,Miami:2,Dubai:3,'Japão':3};
 const DC={MKT:'p-mkt',Operação:'p-ops','T&Q':'p-tq',Comercial:'p-com',Emergencial:'p-em',Concierge:'p-co',Interno:'p-int'};
@@ -1923,601 +1664,138 @@ function riRender(insights,ts){
   </div>`).join('');
 }
 </script>
-  </main>
-</div><!-- app-main -->
-</div><!-- app-layout -->
-
-<!-- MOBILE LAYOUT -->
-<div class="mobile-layout" id="mobile-layout">
-  <div class="m-hdr-v6">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="width:26px;height:26px;border-radius:7px;background:#E8440A;font-size:12px;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center">🍊</div>
-      <div><div style="font-size:13px;font-weight:600;color:#fff">Central de Produto</div><div style="font-size:9px;color:rgba(255,255,255,.5)">Orange Viagens</div></div>
-    </div>
-    <div style="display:flex;gap:5px">
-      <button style="width:30px;height:30px;border-radius:8px;background:rgba(255,255,255,.1);border:none;cursor:pointer;font-size:14px;color:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;position:relative">🔔<div style="position:absolute;top:5px;right:5px;width:7px;height:7px;border-radius:50%;background:#E8440A;border:1.5px solid #0F1E3C"></div></button>
-    </div>
-  </div>
-  <div class="m-search-v6">
-    <div class="m-search-inner">
-      <span style="font-size:13px;color:var(--mu)">🔍</span>
-      <input placeholder="Buscar ação, destino, fornecedor...">
-    </div>
-  </div>
-  <div class="m-quick-bar">
-    <div style="font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:6px">Acesso rápido</div>
-    <div class="m-quick-row">
-      <div class="m-chip on" onclick="mChip(this,'mdash')">⚡ Dashboard</div>
-      <div class="m-chip" onclick="mChip(this,'macoes')">✅ Ações <span style="background:#C0281E;color:#fff;border-radius:20px;padding:1px 5px;font-size:9px;font-weight:700" id="m-bdg-acoes">—</span></div>
-      <div class="m-chip" onclick="mChip(this,'mdemandas')">💬 Demandas</div>
-      <div class="m-chip" onclick="mChip(this,'mfornecedores')">🤝 Fornecedores</div>
-      <div class="m-chip" onclick="mChip(this,'mradar')">🔍 Radar</div>
-      <div class="m-chip" onclick="mChip(this,'mmargens')">💰 Margens</div>
-    </div>
-  </div>
-  <div class="m-content-v6" id="m-content">
-    <div id="mdash" class="m-panel on">
-      <div class="m-kpi-grid">
-        <div class="m-kpi t1"><div style="font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">T1 Core</div><div style="font-size:20px;font-weight:600;color:var(--or)">4/4</div><div style="font-size:9px;color:var(--mu)">produtos ativos</div></div>
-        <div class="m-kpi t2"><div style="font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">T2 Lançamento</div><div style="font-size:20px;font-weight:600;color:var(--am)">3</div><div style="font-size:9px;color:var(--mu)">NYC·Paris·Miami</div></div>
-        <div class="m-kpi al"><div style="font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Ações abertas</div><div style="font-size:20px;font-weight:600;color:var(--re)" id="m-kpi-acoes">—</div><div style="font-size:9px;color:var(--mu)">pendentes</div></div>
-        <div class="m-kpi ok"><div style="font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px">Urgentes</div><div style="font-size:20px;font-weight:600;color:var(--re)">3</div><div style="font-size:9px;color:var(--mu)">agir hoje</div></div>
-      </div>
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas de hoje</div>
-      <div class="m-al m-al-r"><span style="font-size:14px;flex-shrink:0">⚡</span><div><div style="font-weight:600;margin-bottom:1px">NYC D+7 urgente</div>Revisão pós-lançamento esta semana</div></div>
-      <div class="m-al m-al-w"><span style="font-size:14px;flex-shrink:0">📋</span><div><div style="font-weight:600;margin-bottom:1px">Clubmed Trancoso</div>Renovação de contrato em 30 dias</div></div>
-      <div class="m-al m-al-g"><span style="font-size:14px;flex-shrink:0">✅</span><div><div style="font-weight:600;margin-bottom:1px">NYC Go live</div>Concluído em 11 mai com sucesso</div></div>
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px;margin-top:12px">Próximos marcos</div>
-      <div class="m-card"><div class="m-card-row"><span style="font-size:16px;flex-shrink:0">📅</span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--ink)">Brief MKT Paris</div><div style="font-size:11px;color:var(--mu)">16 jun · RF + MI</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span></div></div>
-      <div class="m-card"><div class="m-card-row"><span style="font-size:16px;flex-shrink:0">📅</span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--ink)">Go live Miami</div><div style="font-size:11px;color:var(--mu)">15 jul · RF + MI + LA</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">T2</span></div></div>
-    </div>
-    <div id="macoes" class="m-panel">
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alta prioridade</div>
-      <div id="m-acoes-list"></div>
-    </div>
-    <div id="mdemandas" class="m-panel">
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Esta semana</div>
-      <div style="font-size:12px;color:var(--mu);font-style:italic">Registre demandas na versão desktop para visualizar aqui.</div>
-    </div>
-    <div id="mfornecedores" class="m-panel">
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--re);margin-bottom:8px">Renovação urgente</div>
-      <div class="m-card" style="border-left:3px solid var(--re)"><div class="m-card-row"><span style="font-size:16px;flex-shrink:0">🤝</span><div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Clubmed Trancoso</div><div style="font-size:11px;color:var(--mu)">Beatriz · em 30 dias</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">30d</span></div></div>
-      <div class="m-card" style="border-left:3px solid var(--re)"><div class="m-card-row"><span style="font-size:16px;flex-shrink:0">🤝</span><div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">NYC CityPASS</div><div style="font-size:11px;color:var(--mu)">Michelle · urgente</div></div><span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">Urgente</span></div></div>
-    </div>
-    <div id="mradar" class="m-panel">
-      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Destinos em alta</div>
-      <div class="m-card"><div class="m-card-row"><span style="font-size:20px">🇯🇵</span><div style="flex:1;margin-left:4px"><div style="font-size:13px;font-weight:500;color:var(--ink)">Japão</div><div style="font-size:11px;color:var(--mu)">🔥 Hype máximo · T3</div></div></div></div>
-      <div class="m-card"><div class="m-card-row"><span style="font-size:20px">🇵🇹</span><div style="flex:1;margin-left:4px"><div style="font-size:13px;font-weight:500;color:var(--ink)">Lisboa</div><div style="font-size:11px;color:var(--mu)">📈 Em alta · T3</div></div></div></div>
-      <div class="m-card"><div class="m-card-row"><span style="font-size:20px">🇲🇻</span><div style="flex:1;margin-left:4px"><div style="font-size:13px;font-weight:500;color:var(--ink)">Maldivas</div><div style="font-size:11px;color:var(--mu)">💎 Luxo · T3</div></div></div></div>
-    </div>
-    <div id="mmargens" class="m-panel">
-      <div style="font-size:12px;color:var(--mu);font-style:italic">Acesse a seção Margens no desktop para visualizar e editar as margens por produto e fornecedor.</div>
-    </div>
-  </div>
-  <button class="m-fab">+</button>
-  <div class="m-bottom-nav">
-    <button class="m-nav-btn on" onclick="mNav(this,'mdash')"><span class="m-nav-ico">⚡</span><span class="m-nav-lbl" style="color:var(--or)">Dashboard</span><div class="m-nav-bdg">3</div></button>
-    <button class="m-nav-btn" onclick="mNav(this,'macoes')"><span class="m-nav-ico">✅</span><span class="m-nav-lbl">Ações</span><div class="m-nav-bdg" id="m-nav-bdg-acoes">—</div></button>
-    <button class="m-nav-btn" onclick="mNav(this,'mdemandas')"><span class="m-nav-ico">💬</span><span class="m-nav-lbl">Demandas</span></button>
-    <button class="m-nav-btn" onclick="mNav(this,'mfornecedores')"><span class="m-nav-ico">🤝</span><span class="m-nav-lbl">Fornecedores</span></button>
-    <button class="m-nav-btn" onclick="mNav(this,'mradar')"><span class="m-nav-ico">🔍</span><span class="m-nav-lbl">Radar</span></button>
-  </div>
-</div>
 
 <script>
-// ── V6 SIDEBAR + NAVEGAÇÃO ─────────────────────────────────────────────────
-const V6_META={
-  dashboard:{t:'Dashboard',s:'Operacional · visão geral do portfólio'},
+// ── NAVEGAÇÃO V6 ──────────────────────────────────────────────────────────────
+var V6_META = {
+  dashboard:{t:'Dashboard',s:'Operacional · visão geral'},
   prateleira:{t:'Prateleira',s:'Operacional · portfólio por tier'},
-  demandas:{t:'Demandas',s:'Operacional · demandas semanais do comercial'},
-  acoes:{t:'Ações',s:'Operacional · entregas de produto para os times'},
-  campanhas:{t:'Campanhas',s:'Operacional · resultado retroalimenta o radar'},
+  demandas:{t:'Demandas',s:'Operacional · demandas semanais'},
+  acoes:{t:'Ações',s:'Operacional · entregas para os times'},
+  campanhas:{t:'Campanhas',s:'Operacional · resultado retroalimenta radar'},
   indicadores:{t:'Indicadores',s:'Operacional · saúde do portfólio'},
-  fornecedores:{t:'Fornecedores',s:'Estratégico · Monday Live · 9 categorias'},
-  margens:{t:'Margens',s:'Estratégico · % atual vs meta mínima de markup'},
-  instagram:{t:'Instagram',s:'Estratégico · 6 canais · solicitações ao MKT'},
-  radar:{t:'Radar',s:'Estratégico · insights automáticos + próximos passos'},
-  calendario:{t:'Linha do tempo',s:'Estratégico · lançamentos próximos 90 dias'},
-  gestao:{t:'Gestão',s:'Estratégico · visão consolidada do time'},
-  playbooks:{t:'Playbooks',s:'Referência · padrão de operação T1 · T2 · T3'},
-  templates:{t:'Templates',s:'Referência · checklists por frente de entrega'},
+  fornecedores:{t:'Fornecedores',s:'Estratégico · Monday Live'},
+  margens:{t:'Margens',s:'Estratégico · % atual vs meta mínima'},
+  instagram:{t:'Instagram',s:'Estratégico · 6 canais'},
+  radar:{t:'Radar',s:'Estratégico · insights automáticos'},
+  calendario:{t:'Linha do tempo',s:'Estratégico · próximos 90 dias'},
+  gestao:{t:'Gestão',s:'Estratégico · visão consolidada'},
+  playbooks:{t:'Playbooks',s:'Referência · T1 · T2 · T3'},
+  templates:{t:'Templates',s:'Referência · checklists'},
 };
 
-const V6_IDX=[
-  {n:'Briefing MKT — NYC',d:'Ação alta · → MKT',s:'Ações',p:'acoes',i:'✅'},
+var V6_IDX=[
+  {n:'Roteiro de reserva NYC',d:'Ação alta · → Operação',s:'Ações',p:'acoes',i:'✅'},
   {n:'Treinamento T&Q NYC',d:'Ação alta · → T&Q',s:'Ações',p:'acoes',i:'✅'},
   {n:'Curadoria hoteleira Paris',d:'Em andamento · Rafaella',s:'Ações',p:'acoes',i:'✅'},
   {n:'American Executive · Hotel · Markup 22%',d:'Na meta · RF',s:'Margens',p:'margens',i:'💰'},
   {n:'GalaxyVacation · Hotel · Comissão 10%',d:'Na meta · RF',s:'Margens',p:'margens',i:'💰'},
   {n:'Kaluah Disney · Cruzeiro · Comissão 16%',d:'Na meta · LA',s:'Margens',p:'margens',i:'💰'},
-  {n:'Flytour · Aéreo · Comissão 5%',d:'Margem crítica · DH',s:'Margens',p:'margens',i:'💰'},
   {n:'Clubmed Trancoso · renovação junho',d:'⚠️ Urgente · Beatriz',s:'Fornecedores',p:'fornecedores',i:'🤝'},
   {n:'NYC CityPASS · renovação maio',d:'⚠️ Urgente · Michelle',s:'Fornecedores',p:'fornecedores',i:'🤝'},
-  {n:'Orlando · T1 Core · Ativo',d:'RF + MI · playbook completo',s:'Prateleira',p:'prateleira',i:'🗂'},
-  {n:'NYC · T2 Lançamento · 11 mai',d:'Go live concluído · RF + MI',s:'Prateleira',p:'prateleira',i:'🗂'},
-  {n:'Paris · T2 Estruturação',d:'Go live jul · RF + MI',s:'Prateleira',p:'prateleira',i:'🗂'},
-  {n:'Miami · T2 Estruturação',d:'Go live jul · RF + MI + LA',s:'Prateleira',p:'prateleira',i:'🗂'},
-  {n:'Japão · T3 · hype máximo',d:'Multi-coord · definir data T2',s:'Radar',p:'radar',i:'🔍'},
-  {n:'Lisboa · T3 · em alta',d:'Buscas +34% · monitorar',s:'Radar',p:'radar',i:'🔍'},
-  {n:'NYC Launch · campanha publicada',d:'Resultado aguardando',s:'Campanhas',p:'campanhas',i:'📢'},
-  {n:'Reels Orlando · em produção',d:'@orangeviagens',s:'Campanhas',p:'campanhas',i:'📢'},
-  {n:'Brief MKT Paris · D-15 · 16 jun',d:'Marco pendente',s:'Linha do tempo',p:'calendario',i:'📅'},
-  {n:'Go live Miami · 15 jul',d:'Marco planejado',s:'Linha do tempo',p:'calendario',i:'📅'},
-  {n:'Demanda RF · NYC hotel',d:'Esta semana',s:'Demandas',p:'demandas',i:'💬'},
-  {n:'Demanda LA · cruzeiro família',d:'Esta semana',s:'Demandas',p:'demandas',i:'💬'},
-  {n:'Playbook T2 · lançamento passo a passo',d:'Referência',s:'Playbooks',p:'playbooks',i:'📖'},
-  {n:'Template MKT · 15 dias antes',d:'Referência',s:'Templates',p:'templates',i:'📄'},
+  {n:'Orlando · T1 Core · Ativo',d:'RF + MI',s:'Prateleira',p:'prateleira',i:'🗂'},
+  {n:'NYC · T2 Lançamento',d:'Go live 11 mai',s:'Prateleira',p:'prateleira',i:'🗂'},
+  {n:'Paris · T2 Estruturação',d:'Go live jul',s:'Prateleira',p:'prateleira',i:'🗂'},
+  {n:'Japão · T3 · hype máximo',d:'Multi-coord',s:'Radar',p:'radar',i:'🔍'},
+  {n:'Lisboa · T3 · em alta',d:'Buscas +34%',s:'Radar',p:'radar',i:'🔍'},
 ];
 
-let v6Expanded=true, v6Timer=null;
-
-function sbToggle(){
-  v6Expanded=!v6Expanded;
-  const sb=document.getElementById('v6-sidebar');
-  const main=document.getElementById('v6-main');
-  const btn=document.getElementById('sb-toggle-btn');
-  sb.className='sidebar '+(v6Expanded?'expanded':'collapsed');
-  main.className='app-main '+(v6Expanded?'main-expanded':'main-collapsed');
-  btn.textContent=v6Expanded?'←':'→';
-}
-
-function v6Go(id,btn){
-  try {
-    document.querySelectorAll('.sec').forEach(s=>s.classList.remove('on'));
-    document.querySelectorAll('.sb-item').forEach(b=>b.classList.remove('on'));
-    const sec=document.getElementById('s-'+id);
-    if(sec){ sec.classList.add('on'); }
-    else { console.warn('Seção não encontrada: s-'+id); }
-    if(btn) btn.classList.add('on');
-    const m=V6_META[id]||{t:id,s:''};
-    const titleEl=document.getElementById('v6-title');
-    const subEl=document.getElementById('v6-sub');
-    if(titleEl) titleEl.textContent=m.t;
-    if(subEl) subEl.textContent=m.s;
-    try{ v6CloseDD(); }catch(e){}
-    if(id==='fornecedores') try{ renderFornecedores(); }catch(e){}
-    if(id==='acoes') try{ renderAcoes(); }catch(e){}
-    if(id==='demandas') try{ renderDemandas(); }catch(e){}
-  } catch(e) {
-    console.error('v6Go error:', e);
+function v6Nav(id) {
+  var secs = document.querySelectorAll('.sec');
+  for (var i=0; i<secs.length; i++) { secs[i].style.display='none'; secs[i].classList.remove('on'); }
+  var sec = document.getElementById('s-'+id);
+  if (sec) { sec.style.display='block'; sec.classList.add('on'); }
+  var btns = document.querySelectorAll('.sb-item[data-section]');
+  for (var j=0; j<btns.length; j++) {
+    btns[j].classList.remove('on');
+    if (btns[j].getAttribute('data-section')===id) btns[j].classList.add('on');
   }
+  var m = V6_META[id]||{t:id,s:''};
+  var t=document.getElementById('v6-title'); if(t) t.textContent=m.t;
+  var s=document.getElementById('v6-sub'); if(s) s.textContent=m.s;
+  // Renderizar conteúdo dinâmico
+  setTimeout(function(){
+    try { if(id==='acoes') { filtrar('todos'); } } catch(e) {}
+    try { if(id==='demandas') { renderAllDem(); } } catch(e) {}
+    try { if(id==='fornecedores') { loadFornecedores('hotelaria'); } } catch(e) {}
+    try { if(id==='margens') { swMC('rf',document.querySelector('#m-coord-tabs .fb')); } } catch(e) {}
+    try { if(id==='radar') { render(); } } catch(e) {}
+  }, 80);
+  window.scrollTo(0,0);
 }
 
-function sbFilter(q){
-  const l=q.toLowerCase();
-  document.querySelectorAll('.sb-item').forEach(b=>{
-    const lbl=b.querySelector('.sb-lbl')?.textContent.toLowerCase()||'';
-    const tip=b.getAttribute('data-tip')?.toLowerCase()||'';
-    b.style.display=!q||lbl.includes(l)||tip.includes(l)?'flex':'none';
-  });
-  document.querySelectorAll('.sb-group-lbl').forEach(gl=>{gl.style.display=q?'none':'block';});
-}
-
-function v6Search(q){
-  clearTimeout(v6Timer);
-  const dd=document.getElementById('v6-dd');
-  if(!q.trim()){dd.classList.remove('open');return;}
-  v6Timer=setTimeout(()=>{
-    const l=q.toLowerCase();
-    const res=V6_IDX.filter(r=>r.n.toLowerCase().includes(l)||r.s.toLowerCase().includes(l)||r.d.toLowerCase().includes(l));
-    if(!res.length){dd.innerHTML=`<div class="sd-empty">Nenhum resultado para "<strong>${q}</strong>"</div>`;dd.classList.add('open');return;}
-    const groups={};
-    res.forEach(r=>{(groups[r.s]=groups[r.s]||[]).push(r);});
-    let html='';
-    Object.entries(groups).forEach(([sec,items],gi)=>{
-      if(gi>0) html+=`<div class="sd-divider"></div>`;
-      html+=`<div class="sd-group-lbl">${sec}</div>`;
-      const re=new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'gi');
-      html+=items.slice(0,3).map(r=>`<div class="sd-item">
-        <span class="sd-ico">${r.i}</span>
-        <div style="flex:1"><div class="sd-name">${r.n.replace(re,m=>`<strong style="color:#E8440A">${m}</strong>`)}</div><div class="sd-where">${r.d}</div></div>
-        <span class="sd-tag">${sec}</span>
-      </div>`).join('');
-    });
-    html+=`<div class="sd-footer"><span>${res.length} resultado${res.length!==1?'s':''}</span><span style="opacity:.5">clique para ir</span></div>`;
-    dd.innerHTML=html;dd.classList.add('open');
-  },150);
-}
-function v6CloseDD(){document.getElementById('v6-dd').classList.remove('open');}
-
-// ── MOBILE ─────────────────────────────────────────────────────────────────
-function mChip(el,id){
-  document.querySelectorAll('.m-chip').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on');
-  document.querySelectorAll('.m-panel').forEach(p=>p.classList.remove('on'));
-  document.getElementById(id)?.classList.add('on');
-  document.querySelectorAll('.m-nav-btn').forEach(b=>{b.classList.remove('on');b.querySelector('.m-nav-lbl').style.color='';});
-}
-function mNav(btn,id){
-  document.querySelectorAll('.m-nav-btn').forEach(b=>{b.classList.remove('on');b.querySelector('.m-nav-lbl').style.color='';});
-  btn.classList.add('on');btn.querySelector('.m-nav-lbl').style.color='#E8440A';
-  document.querySelectorAll('.m-panel').forEach(p=>p.classList.remove('on'));
-  document.getElementById(id)?.classList.add('on');
-  document.querySelectorAll('.m-chip').forEach(c=>c.classList.remove('on'));
-}
-
-// Sincronizar mobile com contagem de ações
-function syncMobile(){
-  const abertas=acoes.filter(a=>!a.c).length;
-  const el1=document.getElementById('m-kpi-acoes');
-  const el2=document.getElementById('m-bdg-acoes');
-  const el3=document.getElementById('m-nav-bdg-acoes');
-  const el4=document.getElementById('bdg-acoes');
-  if(el1) el1.textContent=abertas;
-  if(el2) el2.textContent=abertas;
-  if(el3) el3.textContent=abertas;
-  if(el4) el4.textContent=abertas;
-  // Ações mobile
-  const lista=acoes.filter(a=>!a.c&&a.pr==='alta').slice(0,5);
-  const ml=document.getElementById('m-acoes-list');
-  if(ml) ml.innerHTML=lista.map(a=>`<div class="m-card"><div class="m-card-row"><span style="font-size:16px;flex-shrink:0">✅</span><div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:500;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${a.t}</div><div style="font-size:11px;color:var(--mu)">${a.p} · → ${a.d}</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">Alta</span></div></div>`).join('')||'<div style="font-size:12px;color:var(--mu);font-style:italic">Nenhuma ação de alta prioridade aberta.</div>';
-}
-
-// Detectar mobile
-function checkMobile(){
-  const isMobile=window.innerWidth<=768;
-  const ml=document.getElementById('mobile-layout');
-  const al=document.getElementById('v6-sidebar');
-  const vm=document.getElementById('v6-main');
-  if(ml) ml.style.display=isMobile?'flex':'none';
-  if(al) al.style.display=isMobile?'none':'flex';
-  if(vm) vm.style.display=isMobile?'none':'flex';
-}
-window.addEventListener('resize',checkMobile);
-checkMobile();
-
-// Inicializar dashboard como tela ativa
-setTimeout(()=>{
-  v6Go('dashboard',document.querySelector('.sb-item'));
-  syncMobile();
-},100);
-// Sincronizar após render
-setTimeout(syncMobile,500);
-
-// ── AÇÕES ──────────────────────────────────────────────────────────────────
-let acoes=[
-  {t:'Briefing MKT NYC entregue',p:'paris',d:'mkt',pr:'alta',c:false},
-  {t:'Roteiro de reserva NYC',p:'nyc',d:'ops',pr:'alta',c:false},
-  {t:'Treinamento T&Q NYC',p:'nyc',d:'tq',pr:'alta',c:false},
-  {t:'Protocolo emergencial NYC',p:'nyc',d:'ops',pr:'alta',c:false},
-  {t:'Curadoria hoteleira Paris',p:'paris',d:'mkt',pr:'media',c:false},
-  {t:'Argumentário comercial NYC',p:'nyc',d:'comercial',pr:'media',c:false},
-  {t:'Guia de ingressos NYC',p:'nyc',d:'comercial',pr:'media',c:false},
-  {t:'Brief T&Q Paris',p:'paris',d:'tq',pr:'media',c:false},
-  {t:'Curadoria restaurantes Paris',p:'paris',d:'comercial',pr:'baixa',c:false},
-];
-let acFiltroAtual='todos';
-const AC_PR={alta:{bg:'var(--rel)',tx:'var(--re)',l:'Alta'},media:{bg:'var(--aml)',tx:'var(--am)',l:'Média'},baixa:{bg:'var(--bll)',tx:'var(--bl)',l:'Baixa'}};
-const AC_DEST={mkt:'MKT',ops:'Operação',tq:'T&Q',comercial:'Comercial',emergencial:'Emergencial'};
-
-function tgAcForm(){const f=document.getElementById('ac-form');f.style.display=f.style.display==='none'?'block':'none';}
-function acFiltro(f,btn){acFiltroAtual=f;document.querySelectorAll('#ac-filtros .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderAcoes();}
-function addAcao(){
-  const t=document.getElementById('ac-txt').value.trim();
-  if(!t){alert('Descreva a ação.');return;}
-  acoes.unshift({t,p:document.getElementById('ac-dest').value.toLowerCase(),d:document.getElementById('ac-para').value,pr:document.getElementById('ac-pr').value,c:false});
-  document.getElementById('ac-txt').value='';
-  document.getElementById('ac-form').style.display='none';
-  renderAcoes();syncMobile();
-}
-function toggleAcao(i){acoes[i].c=!acoes[i].c;renderAcoes();syncMobile();}
-function delAcao(i){acoes.splice(i,1);renderAcoes();syncMobile();}
-
-function renderAcoes(){
-  const lista=acFiltroAtual==='todos'?acoes:acoes.filter(a=>a.pr===acFiltroAtual||a.d===acFiltroAtual);
-  const ab=acoes.filter(a=>!a.c).length;
-  const alta=acoes.filter(a=>!a.c&&a.pr==='alta').length;
-  const sem=acoes.filter(a=>!a.c).length;
-  const done=acoes.filter(a=>a.c).length;
-  ['ac-tot','ac-alta','ac-sem','ac-done'].forEach((id,i)=>{
-    const el=document.getElementById(id);
-    if(el) el.textContent=[ab,alta,sem,done][i];
-  });
-  const dash=document.getElementById('dash-n-acoes');
-  if(dash) dash.textContent=ab;
-
-  const el=document.getElementById('ac-lista');
-  if(!el) return;
-  if(!lista.length){el.innerHTML='<p style="font-size:12px;color:var(--mu);font-style:italic;padding:1rem 0">Nenhuma ação nesta categoria.</p>';return;}
-  const abertas=lista.filter(a=>!a.c);
-  const feitas=lista.filter(a=>a.c);
-  let h='';
-  if(abertas.length){
-    h+=abertas.map((a,i)=>{
-      const idx=acoes.indexOf(a);
-      const pr=AC_PR[a.pr]||AC_PR.media;
-      return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:12px 14px;margin-bottom:7px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px">
-        <input type="checkbox" style="width:16px;height:16px;accent-color:var(--or);cursor:pointer;flex-shrink:0" onchange="toggleAcao(${idx})">
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">${a.t}</div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
-            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd)">${a.p}</span>
-            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu)">→ ${AC_DEST[a.d]||a.d}</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;background:${pr.bg};color:${pr.tx}">${pr.l}</span>
-          </div>
-        </div>
-        <button onclick="delAcao(${idx})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:14px;padding:2px 5px;flex-shrink:0">×</button>
-      </div>`;
-    }).join('');
-  }
-  if(feitas.length){
-    h+=`<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin:12px 0 8px">Concluídas</div>`;
-    h+=feitas.map(a=>{
-      const idx=acoes.indexOf(a);
-      return`<div style="background:var(--sf);border:0.5px solid var(--bd);border-radius:var(--r);padding:10px 14px;margin-bottom:5px;display:flex;align-items:center;gap:10px;opacity:.6">
-        <input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--or);cursor:pointer;flex-shrink:0" onchange="toggleAcao(${idx})">
-        <div style="font-size:12px;color:var(--mu);text-decoration:line-through;flex:1">${a.t}</div>
-        <button onclick="delAcao(${idx})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:13px;padding:2px 5px">×</button>
-      </div>`;
-    }).join('');
-  }
-  el.innerHTML=h;
-}
-
-// ── DEMANDAS ───────────────────────────────────────────────────────────────
-let demandas=[
-  {t:'Hotel boutique NYC para cliente VIP semana que vem',coord:'rf',prod:'Hotel',urg:'urgente',st:'aberta'},
-  {t:'Cruzeiro família dezembro Caribe — 2 cabines',coord:'la',prod:'Cruzeiro',urg:'semana',st:'aberta'},
-  {t:'Ingresso Disney + Universal combo — casal',coord:'mi',prod:'Ingresso',urg:'semana',st:'aberta'},
-  {t:'VH 5 quartos Orlando julho — grupo família',coord:'rf',prod:'Vacation Home',urg:'semana',st:'andamento'},
-];
-let demFiltroAtual='todos';
-const DEM_AV={rf:{bg:'#D4F0E4',tx:'#0A5C38',l:'RF'},mi:{bg:'#D0E5F5',tx:'#0A4F7A',l:'MI'},la:{bg:'#FAD4C0',tx:'#7A2A0A',l:'LA'},be:{bg:'#FAE8C0',tx:'#7A4A0A',l:'BE'}};
-const DEM_URG={urgente:{bg:'var(--rel)',tx:'var(--re)',l:'Urgente'},semana:{bg:'var(--aml)',tx:'var(--am)',l:'Esta semana'},mensal:{bg:'var(--bll)',tx:'var(--bl)',l:'Sem pressa'}};
-
-function tgDemForm(){const f=document.getElementById('dem-form');f.style.display=f.style.display==='none'?'block':'none';}
-function demFiltro(f,btn){demFiltroAtual=f;document.querySelectorAll('#dem-filtros .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderDemandas();}
-function addDemanda(){
-  const t=document.getElementById('dem-txt').value.trim();
-  if(!t){alert('Descreva a demanda.');return;}
-  demandas.unshift({t,coord:document.getElementById('dem-coord').value,prod:document.getElementById('dem-prod').value,urg:document.getElementById('dem-urg-sel').value,st:'aberta'});
-  document.getElementById('dem-txt').value='';
-  document.getElementById('dem-form').style.display='none';
-  renderDemandas();
-}
-function demSt(i,st){demandas[i].st=st;renderDemandas();}
-function delDem(i){demandas.splice(i,1);renderDemandas();}
-
-function renderDemandas(){
-  const lista=demFiltroAtual==='todos'?demandas:demandas.filter(d=>d.coord===demFiltroAtual);
-  const ab=demandas.filter(d=>d.st==='aberta').length;
-  const urg=demandas.filter(d=>d.urg==='urgente'&&d.st!=='resolvida').length;
-  const and=demandas.filter(d=>d.st==='andamento').length;
-  const res=demandas.filter(d=>d.st==='resolvida').length;
-  ['dem-tot','dem-urg','dem-and','dem-res'].forEach((id,i)=>{
-    const el=document.getElementById(id);if(el)el.textContent=[ab,urg,and,res][i];
-  });
-  const el=document.getElementById('dem-lista');
-  if(!el)return;
-  if(!lista.length){el.innerHTML='<p style="font-size:12px;color:var(--mu);font-style:italic;padding:1rem 0">Nenhuma demanda encontrada.</p>';return;}
-  el.innerHTML=lista.map((d,localI)=>{
-    const i=demandas.indexOf(d);
-    const av=DEM_AV[d.coord]||DEM_AV.rf;
-    const ug=DEM_URG[d.urg]||DEM_URG.semana;
-    const stColor=d.st==='resolvida'?'var(--gr)':d.st==='andamento'?'var(--am)':'var(--mu)';
-    const stLabel=d.st==='resolvida'?'Resolvida':d.st==='andamento'?'Em andamento':'Aberta';
-    return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;box-shadow:var(--shadow)${d.st==='resolvida'?';opacity:.6':''}">
-      <div style="display:flex;align-items:flex-start;gap:10px">
-        <div style="width:28px;height:28px;border-radius:50%;background:${av.bg};color:${av.tx};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${av.l}</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px${d.st==='resolvida'?';text-decoration:line-through':''}">${d.t}</div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
-            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd)">${d.prod}</span>
-            <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;background:${ug.bg};color:${ug.tx}">${ug.l}</span>
-            <span style="font-size:10px;color:${stColor};font-weight:500">${stLabel}</span>
-          </div>
-        </div>
-        <div style="display:flex;gap:4px;flex-shrink:0">
-          ${d.st!=='resolvida'?`<button onclick="demSt(${i},'${d.st==='aberta'?'andamento':'resolvida'}')" style="font-size:10px;padding:3px 8px;border-radius:var(--rs);border:0.5px solid var(--bd);background:var(--sf);cursor:pointer;font-family:inherit;color:var(--mu)">${d.st==='aberta'?'Iniciar':'Resolver'}</button>`:''}
-          <button onclick="delDem(${i})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:14px;padding:2px 5px">×</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// ── FORNECEDORES ──────────────────────────────────────────────────────────
-const FORN_DATA=[
-  {n:'American Executive Int.',cat:'hotel',coord:'RF',nota_q:5,nota_m:4,nota_s:5,renovacao:'2025-12-01',proximo:'monitorar',backup:'Bonotel'},
-  {n:'GalaxyVacation',cat:'hotel',coord:'RF',nota_q:4,nota_m:3,nota_s:4,renovacao:'2025-08-01',proximo:'negociar',backup:'Celebration Tours'},
-  {n:'Bonotel (NYC luxo)',cat:'hotel',coord:'RF',nota_q:4,nota_m:4,nota_s:3,renovacao:'2025-09-01',proximo:'negociar',backup:'AmericanTours'},
-  {n:'UneHomes',cat:'vh',coord:'RF',nota_q:5,nota_m:5,nota_s:4,renovacao:'2026-01-15',proximo:'expandir',backup:'GoGlobal'},
-  {n:'Inttelli / Kaluah VH',cat:'vh',coord:'RF',nota_q:5,nota_m:5,nota_s:4,renovacao:'2026-02-01',proximo:'monitorar',backup:''},
-  {n:'Ceetiz',cat:'ingresso',coord:'MI',nota_q:4,nota_m:3,nota_s:4,renovacao:'2025-10-01',proximo:'negociar',backup:'Azul Viagens'},
-  {n:'NYC CityPASS',cat:'ingresso',coord:'MI',nota_q:5,nota_m:4,nota_s:3,renovacao:'2025-06-01',proximo:'renovar',backup:''},
-  {n:'Mondiale (Royal Caribbean)',cat:'cruzeiro',coord:'LA',nota_q:4,nota_m:4,nota_s:4,renovacao:'2025-11-01',proximo:'monitorar',backup:'TBO'},
-  {n:'Kaluah (Disney Cruise)',cat:'cruzeiro',coord:'LA',nota_q:5,nota_m:5,nota_s:4,renovacao:'2025-12-01',proximo:'expandir',backup:''},
-  {n:'Clubmed Trancoso',cat:'clubmed',coord:'BE',nota_q:5,nota_m:4,nota_s:5,renovacao:'2025-06-15',proximo:'renovar',backup:''},
-  {n:'Clubmed Les Arcs',cat:'clubmed',coord:'BE',nota_q:5,nota_m:4,nota_s:4,renovacao:'2025-10-01',proximo:'monitorar',backup:''},
-  {n:'MCA Tour',cat:'transfer',coord:'DH',nota_q:4,nota_m:5,nota_s:4,renovacao:'2026-01-01',proximo:'monitorar',backup:'Ineed Tours'},
-  {n:'Hero Seguros',cat:'seguro',coord:'DH',nota_q:4,nota_m:5,nota_s:4,renovacao:'2025-12-01',proximo:'expandir',backup:'Coris'},
-  {n:'Flytour Consolidadora',cat:'aereo',coord:'DH',nota_q:3,nota_m:2,nota_s:3,renovacao:'2025-08-01',proximo:'negociar',backup:'Ancoradouro'},
-];
-let fornCatAtual='todos';
-const FORN_PROX={monitorar:'Monitorar',negociar:'Negociar condições',renovar:'⚠️ Renovar',expandir:'Expandir parceria'};
-const FORN_PROX_C={monitorar:'var(--gr)',negociar:'var(--am)',renovar:'var(--re)',expandir:'var(--bl)'};
-
-function fornCat(c,btn){fornCatAtual=c;document.querySelectorAll('#forn-cat-tabs .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderFornecedores();}
-
-function diasRen(dt){if(!dt)return null;return Math.ceil((new Date(dt)-new Date())/(864e5));}
-function fmtDt(dt){if(!dt)return'—';return new Date(dt).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});}
-function notaMedia(f){return((f.nota_q+f.nota_m+f.nota_s)/3).toFixed(1);}
-function starsHtml(v){let h='';for(let i=1;i<=5;i++)h+=`<span style="font-size:12px;color:${i<=v?'#F59E0B':'#DDD'}">★</span>`;return h;}
-
-function renderFornecedores(){
-  const lista=fornCatAtual==='todos'?FORN_DATA:FORN_DATA.filter(f=>f.cat===fornCatAtual);
-  const el=document.getElementById('forn-lista');
-  if(!el)return;
-  el.innerHTML=lista.map(f=>{
-    const dias=diasRen(f.renovacao);
-    const urgente=dias!==null&&dias<=30;
-    const breve=dias!==null&&dias<=90&&!urgente;
-    const nota=notaMedia(f);
-    const notaC=nota>=4.5?'var(--gr)':nota>=3?'var(--am)':'var(--re)';
-    const bordC=urgente?'var(--re)':breve?'var(--am)':'var(--bd)';
-    return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-left:3px solid ${bordC};border-radius:var(--r);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">${f.n}</div>
-          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
-            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd);font-weight:500">${f.cat}</span>
-            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu)">${f.coord}</span>
-            ${urgente?'<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">⚠️ Renovação urgente</span>':''}
-          </div>
-        </div>
-        <div style="text-align:center;flex-shrink:0">
-          <div style="font-size:22px;font-weight:600;color:${notaC};line-height:1">${nota}</div>
-          <div style="font-size:9px;color:var(--mu)">nota</div>
-        </div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div style="background:var(--sf);border-radius:var(--rs);padding:10px 12px">
-          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:7px">Avaliação</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:var(--mu)">Qualidade</span>${starsHtml(f.nota_q)}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:var(--mu)">Margem</span>${starsHtml(f.nota_m)}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px"><span style="color:var(--mu)">Suporte</span>${starsHtml(f.nota_s)}</div>
-        </div>
-        <div style="background:var(--sf);border-radius:var(--rs);padding:10px 12px">
-          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:7px">Ciclo</div>
-          <div style="font-size:11px;color:var(--mu);margin-bottom:3px">Renovação: <strong style="color:${urgente?'var(--re)':breve?'var(--am)':'var(--ink)'}">${fmtDt(f.renovacao)}</strong></div>
-          ${dias!==null?`<div style="font-size:10px;color:${urgente?'var(--re)':breve?'var(--am)':'var(--mu)'};margin-bottom:5px">${dias}d restantes</div>`:''}
-          <div style="font-size:10px;font-weight:500;color:${FORN_PROX_C[f.proximo]||'var(--mu)'}">→ ${FORN_PROX[f.proximo]||f.proximo}</div>
-          ${f.backup?`<div style="font-size:10px;color:var(--mu);margin-top:4px">Backup: ${f.backup}</div>`:'<div style="font-size:10px;color:var(--re);margin-top:4px">⚠️ Sem backup</div>'}
-        </div>
-      </div>
-    </div>`;
-  }).join('');
-}
-
-// Inicializar todas as seções
-renderAcoes();
-renderDemandas();
-renderFornecedores();
-
-</script>
-
-
-<script>
-// NAVEGAÇÃO DEFINITIVA
 document.addEventListener('DOMContentLoaded', function() {
-
-  var META = {
-    dashboard: {t:'Dashboard', s:'Operacional · visão geral do portfólio'},
-    prateleira: {t:'Prateleira', s:'Operacional · portfólio por tier'},
-    demandas: {t:'Demandas', s:'Operacional · demandas semanais'},
-    acoes: {t:'Ações', s:'Operacional · entregas para os times'},
-    campanhas: {t:'Campanhas', s:'Operacional · resultado retroalimenta radar'},
-    indicadores: {t:'Indicadores', s:'Operacional · saúde do portfólio'},
-    fornecedores: {t:'Fornecedores', s:'Estratégico · Monday Live'},
-    margens: {t:'Margens', s:'Estratégico · % atual vs meta mínima'},
-    instagram: {t:'Instagram', s:'Estratégico · 6 canais'},
-    radar: {t:'Radar', s:'Estratégico · insights automáticos'},
-    indicadores: {t:'Indicadores', s:'Operacional · saúde do portfólio'},
-    calendario: {t:'Linha do tempo', s:'Estratégico · 90 dias'},
-    gestao: {t:'Gestão', s:'Estratégico · visão consolidada'},
-    playbooks: {t:'Playbooks', s:'Referência · T1 · T2 · T3'},
-    templates: {t:'Templates', s:'Referência · checklists'},
-  };
-
-  function navegar(id) {
-    // Esconder todas as seções
-    var secs = document.querySelectorAll('.sec');
-    for (var i = 0; i < secs.length; i++) {
-      secs[i].style.display = 'none';
-      secs[i].classList.remove('on');
-    }
-    // Mostrar seção alvo
-    var alvo = document.getElementById('s-' + id);
-    if (alvo) {
-      alvo.style.display = 'block';
-      alvo.classList.add('on');
-    }
-    // Atualizar sidebar
-    var btns = document.querySelectorAll('.sb-item');
-    for (var j = 0; j < btns.length; j++) {
-      btns[j].classList.remove('on');
-      if (btns[j].getAttribute('data-section') === id) {
-        btns[j].classList.add('on');
-      }
-    }
-    // Atualizar título
-    var m = META[id] || {t: id, s: ''};
-    var t = document.getElementById('v6-title');
-    var s = document.getElementById('v6-sub');
-    if (t) t.textContent = m.t;
-    if (s) s.textContent = m.s;
-    // Renderizar conteúdo dinâmico após mostrar seção
-    setTimeout(function() {
-      try { if (id === 'acoes' && typeof renderAcoes === 'function') renderAcoes(); } catch(e) { console.error('renderAcoes:',e); }
-      try { if (id === 'demandas' && typeof renderDemandas === 'function') renderDemandas(); } catch(e) { console.error('renderDemandas:',e); }
-      try { if (id === 'fornecedores' && typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) { console.error('renderForn:',e); }
-      try { if (id === 'margens' && typeof rMarg === 'function') { rMarg(); } } catch(e) { console.error('rMarg:',e); }
-      try { if (id === 'radar' && typeof render === 'function') render(); } catch(e) {}
-    }, 50);
-  }
-
-  // Bindar cliques em todos os itens da sidebar
+  // Bindar sidebar
   var items = document.querySelectorAll('.sb-item[data-section]');
-  for (var k = 0; k < items.length; k++) {
-    (function(btn) {
-      btn.addEventListener('click', function(e) {
+  for (var k=0; k<items.length; k++) {
+    (function(btn){
+      btn.addEventListener('click', function(e){
         e.preventDefault();
-        navegar(btn.getAttribute('data-section'));
+        v6Nav(btn.getAttribute('data-section'));
       });
     })(items[k]);
   }
-
   // Toggle sidebar
-  var toggleBtn = document.getElementById('sb-toggle-btn');
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', function() {
-      var sb = document.getElementById('v6-sidebar');
-      var main = document.getElementById('v6-main');
-      if (sb.classList.contains('expanded')) {
-        sb.classList.remove('expanded');
-        sb.classList.add('collapsed');
-        main.classList.remove('main-expanded');
-        main.classList.add('main-collapsed');
-        toggleBtn.textContent = '→';
+  var tb = document.getElementById('sb-toggle-btn');
+  if (tb) {
+    tb.addEventListener('click', function(){
+      var sb=document.getElementById('v6-sidebar');
+      var main=document.getElementById('v6-main');
+      if(sb.classList.contains('expanded')){
+        sb.classList.remove('expanded'); sb.classList.add('collapsed');
+        main.classList.remove('main-expanded'); main.classList.add('main-collapsed');
+        tb.textContent='→';
       } else {
-        sb.classList.remove('collapsed');
-        sb.classList.add('expanded');
-        main.classList.remove('main-collapsed');
-        main.classList.add('main-expanded');
-        toggleBtn.textContent = '←';
+        sb.classList.remove('collapsed'); sb.classList.add('expanded');
+        main.classList.remove('main-collapsed'); main.classList.add('main-expanded');
+        tb.textContent='←';
       }
     });
   }
-
-  // Busca na sidebar
-  var sbInput = document.querySelector('.sb-search-input');
-  if (sbInput) {
-    sbInput.addEventListener('input', function() {
-      var q = this.value.toLowerCase();
-      var btns = document.querySelectorAll('.sb-item');
-      var lbls = document.querySelectorAll('.sb-group-lbl');
-      for (var i = 0; i < btns.length; i++) {
-        var lbl = (btns[i].querySelector('.sb-lbl') || {}).textContent || '';
-        btns[i].style.display = (!q || lbl.toLowerCase().includes(q)) ? '' : 'none';
-      }
-      for (var j = 0; j < lbls.length; j++) {
-        lbls[j].style.display = q ? 'none' : '';
-      }
+  // Busca sidebar
+  var sbi = document.getElementById('sb-search-input');
+  if (sbi) {
+    sbi.addEventListener('input', function(){
+      var q=this.value.toLowerCase();
+      document.querySelectorAll('.sb-item[data-section]').forEach(function(b){
+        var l=(b.querySelector('.sb-lbl')||{}).textContent||'';
+        b.style.display=(!q||l.toLowerCase().includes(q))?'':'none';
+      });
+      document.querySelectorAll('.sb-group-lbl').forEach(function(l){ l.style.display=q?'none':''; });
     });
   }
-
-  // Inicializar — mostrar dashboard
-  setTimeout(function() {
-    navegar('dashboard');
-    setTimeout(function() {
-      try { if (typeof renderAcoes === 'function') renderAcoes(); } catch(e) {}
-      try { if (typeof renderDemandas === 'function') renderDemandas(); } catch(e) {}
-      try { if (typeof renderFornecedores === 'function') renderFornecedores(); } catch(e) {}
-      try { if (typeof rMarg === 'function') rMarg(); } catch(e) {}
-      try { if (typeof syncMobile === 'function') syncMobile(); } catch(e) {}
-    }, 100);
-  }, 200);
-
+  // Busca global
+  var gi = document.getElementById('v6-search');
+  if (gi) {
+    var timer=null;
+    gi.addEventListener('input', function(){
+      clearTimeout(timer);
+      var q=this.value;
+      var dd=document.getElementById('v6-dd');
+      if(!q){dd.classList.remove('open');return;}
+      timer=setTimeout(function(){
+        var l=q.toLowerCase();
+        var res=V6_IDX.filter(function(r){return r.n.toLowerCase().includes(l)||r.s.toLowerCase().includes(l);});
+        if(!res.length){dd.innerHTML='<div class="sd-empty">Nenhum resultado para "'+q+'"</div>';dd.classList.add('open');return;}
+        var groups={};
+        res.forEach(function(r){(groups[r.s]=groups[r.s]||[]).push(r);});
+        var h='';
+        Object.keys(groups).forEach(function(sec,gi){
+          if(gi>0) h+='<div class="sd-divider"></div>';
+          h+='<div class="sd-group-lbl">'+sec+'</div>';
+          groups[sec].slice(0,3).forEach(function(r){
+            h+='<div class="sd-item" onclick="v6Nav(''+r.p+'');document.getElementById('v6-dd').classList.remove('open');document.getElementById('v6-search').value=''"><span style="font-size:14px;flex-shrink:0;opacity:.8">'+r.i+'</span><div style="flex:1"><div style="color:var(--ink)">'+r.n+'</div><div style="font-size:10px;color:var(--mu)">'+r.d+'</div></div><span style="font-size:10px;color:var(--mu);opacity:.6">'+sec+'</span></div>';
+          });
+        });
+        h+='<div class="sd-footer"><span>'+res.length+' resultado'+(res.length!==1?'s':'')+'</span></div>';
+        dd.innerHTML=h; dd.classList.add('open');
+      },150);
+    });
+  }
+  // Inicializar dashboard
+  setTimeout(function(){
+    v6Nav('dashboard');
+  }, 100);
 });
 </script>
 
