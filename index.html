@@ -286,22 +286,22 @@ textarea{resize:vertical;min-height:70px;width:100%}
   </div>
   <div class="sb-nav" id="sb-nav">
     <div class="sb-group-lbl">Operacional</div>
-    <button class="sb-item on" data-tip="Dashboard" data-section="dashboard"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-r" id="bdg-dash">3</span></button>
-    <button class="sb-item" data-tip="Prateleira" data-section="prateleira"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
-    <button class="sb-item" data-tip="Demandas" data-section="demandas"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-a">4</span></button>
-    <button class="sb-item" data-tip="Ações" data-section="acoes"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-a" id="bdg-acoes">9</span></button>
-    <button class="sb-item" data-tip="Campanhas" data-section="campanhas"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
-    <button class="sb-item" data-tip="Indicadores" data-section="indicadores"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-r">2</span></button>
+    <button class="sb-item on" data-tip="Dashboard" data-section="dashboard" onclick="v6Nav('dashboard')"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-r" id="bdg-dash">3</span></button>
+    <button class="sb-item" data-tip="Prateleira" data-section="prateleira" onclick="v6Nav('prateleira')"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
+    <button class="sb-item" data-tip="Demandas" data-section="demandas" onclick="v6Nav('demandas')"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-a">4</span></button>
+    <button class="sb-item" data-tip="Ações" data-section="acoes" onclick="v6Nav('acoes')"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-a" id="bdg-acoes">9</span></button>
+    <button class="sb-item" data-tip="Campanhas" data-section="campanhas" onclick="v6Nav('campanhas')"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
+    <button class="sb-item" data-tip="Indicadores" data-section="indicadores" onclick="v6Nav('indicadores')"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-r">2</span></button>
     <div class="sb-group-lbl">Estratégico</div>
-    <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-r">1</span></button>
-    <button class="sb-item" data-tip="Margens" data-section="margens"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
-    <button class="sb-item" data-tip="Instagram" data-section="instagram"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
-    <button class="sb-item" data-tip="Radar" data-section="radar"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-g">6</span></button>
-    <button class="sb-item" data-tip="Linha do tempo" data-section="calendario"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
-    <button class="sb-item" data-tip="Gestão" data-section="gestao"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
+    <button class="sb-item" data-tip="Fornecedores" data-section="fornecedores" onclick="v6Nav('fornecedores')"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-r">1</span></button>
+    <button class="sb-item" data-tip="Margens" data-section="margens" onclick="v6Nav('margens')"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
+    <button class="sb-item" data-tip="Instagram" data-section="instagram" onclick="v6Nav('instagram')"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
+    <button class="sb-item" data-tip="Radar" data-section="radar" onclick="v6Nav('radar')"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-g">6</span></button>
+    <button class="sb-item" data-tip="Linha do tempo" data-section="calendario" onclick="v6Nav('calendario')"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
+    <button class="sb-item" data-tip="Gestão" data-section="gestao" onclick="v6Nav('gestao')"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
     <div class="sb-group-lbl">Referência</div>
-    <button class="sb-item" data-tip="Playbooks" data-section="playbooks"><div class="sb-icon">📖</div><span class="sb-lbl">Playbooks</span></button>
-    <button class="sb-item" data-tip="Templates" data-section="templates"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
+    <button class="sb-item" data-tip="Playbooks" data-section="playbooks" onclick="v6Nav('playbooks')"><div class="sb-icon">📖</div><span class="sb-lbl">Playbooks</span></button>
+    <button class="sb-item" data-tip="Templates" data-section="templates" onclick="v6Nav('templates')"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
   </div>
 </nav>
 <div class="app-main main-expanded" id="v6-main">
@@ -1728,16 +1728,7 @@ function v6Nav(id) {
 // Executar imediatamente (script no final do body)
 (function() {
   function initNav() {
-  // Bindar sidebar
-  var items = document.querySelectorAll('.sb-item[data-section]');
-  for (var k=0; k<items.length; k++) {
-    (function(btn){
-      btn.addEventListener('click', function(e){
-        e.preventDefault();
-        v6Nav(btn.getAttribute('data-section'));
-      });
-    })(items[k]);
-  }
+  // Navegação via onclick direto nos sb-items
   // Toggle sidebar
   var tb = document.getElementById('sb-toggle-btn');
   if (tb) {
