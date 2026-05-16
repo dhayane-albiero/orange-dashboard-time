@@ -268,6 +268,33 @@ textarea{resize:vertical;min-height:70px;width:100%}
 }
 
 </style>
+<script>
+window.v6Nav = function(id) {
+  var all = document.getElementsByClassName('sec');
+  for (var i = 0; i < all.length; i++) {
+    all[i].classList.remove('on');
+  }
+  var target = document.getElementById('s-' + id);
+  if (target) target.classList.add('on');
+  var btns = document.getElementsByClassName('sb-item');
+  for (var j = 0; j < btns.length; j++) {
+    btns[j].classList.remove('on');
+    if (btns[j].getAttribute('data-section') === id) btns[j].classList.add('on');
+  }
+  var titles = {dashboard:'Dashboard',prateleira:'Prateleira',demandas:'Demandas',acoes:'Ações',campanhas:'Campanhas',indicadores:'Indicadores',fornecedores:'Fornecedores',margens:'Margens',instagram:'Instagram',radar:'Radar',calendario:'Linha do tempo',gestao:'Gestão',playbooks:'Playbooks',templates:'Templates'};
+  var subs = {dashboard:'Operacional · visão geral',prateleira:'Operacional · portfólio por tier',demandas:'Operacional · demandas semanais',acoes:'Operacional · entregas para os times',campanhas:'Operacional · resultado retroalimenta radar',indicadores:'Operacional · saúde do portfólio',fornecedores:'Estratégico · Monday Live',margens:'Estratégico · % atual vs meta mínima',instagram:'Estratégico · 6 canais',radar:'Estratégico · insights automáticos',calendario:'Estratégico · 90 dias',gestao:'Estratégico · visão consolidada',playbooks:'Referência · T1·T2·T3',templates:'Referência · checklists'};
+  var t=document.getElementById('v6-title'); if(t) t.textContent=titles[id]||id;
+  var s=document.getElementById('v6-sub'); if(s) s.textContent=subs[id]||'';
+  setTimeout(function(){
+    try{if(id==='acoes'&&window.filtrar)filtrar('todos');}catch(e){}
+    try{if(id==='demandas'&&window.renderAllDem)renderAllDem();}catch(e){}
+    try{if(id==='fornecedores'&&window.loadFornecedores)loadFornecedores('hotelaria');}catch(e){}
+    try{if(id==='margens'&&window.swMC)swMC('rf',document.querySelector('#m-coord-tabs .fb'));}catch(e){}
+    try{if(id==='radar'&&window.render)render();}catch(e){}
+  },100);
+  window.scrollTo(0,0);
+};
+</script>
 </head>
 <body>
 <!-- LAYOUT V6 -->
@@ -1701,29 +1728,7 @@ var V6_IDX=[
   {n:'Lisboa · T3 · em alta',d:'Buscas +34%',s:'Radar',p:'radar',i:'🔍'},
 ];
 
-function v6Nav(id) {
-  var secs = document.querySelectorAll('.sec');
-  for (var i=0; i<secs.length; i++) { secs[i].classList.remove('on'); }
-  var sec = document.getElementById('s-'+id);
-  if (sec) { sec.classList.add('on'); }
-  var btns = document.querySelectorAll('.sb-item[data-section]');
-  for (var j=0; j<btns.length; j++) {
-    btns[j].classList.remove('on');
-    if (btns[j].getAttribute('data-section')===id) btns[j].classList.add('on');
-  }
-  var m = V6_META[id]||{t:id,s:''};
-  var t=document.getElementById('v6-title'); if(t) t.textContent=m.t;
-  var s=document.getElementById('v6-sub'); if(s) s.textContent=m.s;
-  // Renderizar conteúdo dinâmico
-  setTimeout(function(){
-    try { if(id==='acoes') { filtrar('todos'); } } catch(e) {}
-    try { if(id==='demandas') { renderAllDem(); } } catch(e) {}
-    try { if(id==='fornecedores') { loadFornecedores('hotelaria'); } } catch(e) {}
-    try { if(id==='margens') { swMC('rf',document.querySelector('#m-coord-tabs .fb')); } } catch(e) {}
-    try { if(id==='radar') { render(); } } catch(e) {}
-  }, 80);
-  window.scrollTo(0,0);
-}
+// v6Nav definida no head
 
 // Executar imediatamente (script no final do body)
 (function() {
