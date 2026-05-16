@@ -27,7 +27,7 @@ body{font-family:'Figtree',sans-serif;background:var(--sf);color:var(--ink);font
 nav{background:var(--wh);border-bottom:1.5px solid var(--bd);padding:0 1.5rem;display:flex;overflow-x:auto;position:sticky;top:54px;z-index:99}
 .tab{font-size:12px;font-weight:500;color:var(--mu);padding:11px 13px;border:none;background:none;cursor:pointer;border-bottom:2.5px solid transparent;transition:all .15s;white-space:nowrap}
 .tab:hover{color:var(--ink)}.tab.on{color:var(--or);border-bottom-color:var(--or);font-weight:600}
-.main{max-width:1280px;margin:0 auto;padding:1.5rem}
+.main{max-width:1280px;margin:0 auto;padding:1.5rem 2rem}
 .sec{display:none}.sec.on{display:block}
 .sh{display:flex;align-items:center;gap:7px;margin-bottom:1rem}
 .sh-line{width:3px;height:15px;background:var(--or);border-radius:2px;flex-shrink:0}
@@ -285,8 +285,7 @@ textarea{resize:vertical;min-height:70px;width:100%}
   .app-main{margin-left:0!important}
   .topbar-v6{display:none}
   .mobile-layout{display:flex!important}
-  .main{padding:0}
-}
+  }
 .mobile-layout{display:none;flex-direction:column;height:100vh;background:var(--sf)}
 .m-hdr-v6{background:#0F1E3C;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .m-search-v6{padding:8px 12px;background:var(--wh);border-bottom:0.5px solid var(--bd)}
@@ -317,66 +316,142 @@ textarea{resize:vertical;min-height:70px;width:100%}
 .m-kpi.t1{border-left-color:var(--or)}.m-kpi.t2{border-left-color:var(--am)}
 .m-kpi.al{border-left-color:var(--re)}.m-kpi.ok{border-left-color:var(--gr)}
 
+.lbl2{font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);display:block;margin-bottom:4px}
 </style>
 </head>
 <body>
 <!-- ── LAYOUT V6 ──────────────────────────────────────────── -->
 <div class="app-layout">
 
-<!-- SIDEBAR -->
+<nav class="sidebar expanded" id="v6-sidebar" aria-label="Navegação principal">
+  <div class="sb-hdr">
+    <div class="brand-dot">🍊</div>
+    <span class="sb-brand-txt">Orange Produto</span>
+    <button class="sb-toggle" onclick="sbToggle()" id="sb-toggle-btn" aria-label="Colapsar menu">←</button>
+  </div>
+  <div class="sb-search-wrap">
+    <div class="sb-search-rel">
+      <span class="sb-search-ico">🔍</span>
+      <input class="sb-search-input" placeholder="Ir para..." oninput="sbFilter(this.value)" aria-label="Filtrar navegação">
+    </div>
+  </div>
+  <div class="sb-nav" id="sb-nav">
+    <div class="sb-group-lbl">Operacional</div>
+    <button class="sb-item on" data-tip="Dashboard" onclick="v6Go('dashboard',this)"><div class="sb-icon">⚡</div><span class="sb-lbl">Dashboard</span><span class="sb-bdg bdg-red" id="bdg-dash">3</span></button>
+    <button class="sb-item" data-tip="Prateleira" onclick="v6Go('prateleira',this)"><div class="sb-icon">🗂</div><span class="sb-lbl">Prateleira</span></button>
+    <button class="sb-item" data-tip="Demandas" onclick="v6Go('demandas',this)"><div class="sb-icon">💬</div><span class="sb-lbl">Demandas</span><span class="sb-bdg bdg-amber">4</span></button>
+    <button class="sb-item" data-tip="Ações" onclick="v6Go('acoes',this)"><div class="sb-icon">✅</div><span class="sb-lbl">Ações</span><span class="sb-bdg bdg-amber" id="bdg-acoes">9</span></button>
+    <button class="sb-item" data-tip="Campanhas" onclick="v6Go('campanhas',this)"><div class="sb-icon">📢</div><span class="sb-lbl">Campanhas</span></button>
+    <button class="sb-item" data-tip="Indicadores" onclick="v6Go('indicadores',this)"><div class="sb-icon">📊</div><span class="sb-lbl">Indicadores</span><span class="sb-bdg bdg-red">2</span></button>
+    <div class="sb-group-lbl">Estratégico</div>
+    <button class="sb-item" data-tip="Fornecedores" onclick="v6Go('fornecedores',this)"><div class="sb-icon">🤝</div><span class="sb-lbl">Fornecedores</span><span class="sb-bdg bdg-red">1</span></button>
+    <button class="sb-item" data-tip="Margens" onclick="v6Go('margens',this)"><div class="sb-icon">💰</div><span class="sb-lbl">Margens</span></button>
+    <button class="sb-item" data-tip="Instagram" onclick="v6Go('instagram',this)"><div class="sb-icon">📸</div><span class="sb-lbl">Instagram</span></button>
+    <button class="sb-item" data-tip="Radar" onclick="v6Go('radar',this)"><div class="sb-icon">🔍</div><span class="sb-lbl">Radar</span><span class="sb-bdg bdg-green">6</span></button>
+    <button class="sb-item" data-tip="Linha do tempo" onclick="v6Go('calendario',this)"><div class="sb-icon">📅</div><span class="sb-lbl">Linha do tempo</span></button>
+    <button class="sb-item" data-tip="Gestão" onclick="v6Go('gestao',this)"><div class="sb-icon">📋</div><span class="sb-lbl">Gestão</span></button>
+    <div class="sb-group-lbl">Referência</div>
+    <button class="sb-item" data-tip="Playbooks" onclick="v6Go('playbooks',this)"><div class="sb-icon">📖</div><span class="sb-lbl">Playbooks</span></button>
+    <button class="sb-item" data-tip="Templates" onclick="v6Go('templates',this)"><div class="sb-icon">📄</div><span class="sb-lbl">Templates</span></button>
+  </div>
+</nav>
 
 
 <!-- MAIN -->
 <div class="app-main main-expanded" id="v6-main">
 
-  <!-- TOPBAR V6 -->
-  <div class="topbar-v6">
+  <!-- TOPBAR SIMPLIFICADA -->
+  <div style="background:#fff;border-bottom:1px solid #E8E4DC;padding:0 1.5rem;height:52px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:100;box-shadow:0 1px 4px rgba(0,0,0,.05)">
     <div style="flex:1">
-      <div class="tb-title" id="v6-title">Dashboard</div>
-      <div class="tb-sub" id="v6-sub">Operacional · visão geral do portfólio</div>
+      <div style="font-size:14px;font-weight:600;color:#1C1810" id="v6-title">Dashboard</div>
+      <div style="font-size:11px;color:#7A7060" id="v6-sub">Operacional · visão geral do portfólio</div>
     </div>
-    <div class="search-wrap-v6" id="v6-sw">
-      <span class="search-ico-v6">🔍</span>
-      <input class="search-input-v6" placeholder="Buscar em tudo..." oninput="v6Search(this.value)" onfocus="v6Search(this.value)" onblur="setTimeout(v6CloseDD,200)" aria-label="Busca global">
+    <div style="position:relative;width:240px">
+      <span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);color:#7A7060;font-size:12px;pointer-events:none">🔍</span>
+      <input id="v6-search-input" style="width:100%;background:#F5F3EF;border:0.5px solid #E8E4DC;border-radius:20px;padding:6px 12px 6px 30px;font-size:12px;color:#1C1810;font-family:'Figtree',sans-serif;outline:none" placeholder="Buscar em tudo..." oninput="v6Search(this.value)" onfocus="v6Search(this.value)" onblur="setTimeout(v6CloseDD,200)">
       <div class="search-dd" id="v6-dd"></div>
     </div>
-    <div style="display:flex;align-items:center;gap:6px;background:rgba(29,158,117,.1);border-radius:20px;padding:3px 9px;border:0.5px solid rgba(29,158,117,.3)">
+    <div style="display:flex;align-items:center;gap:4px;background:rgba(29,158,117,.1);border-radius:20px;padding:3px 9px;border:0.5px solid rgba(29,158,117,.3)">
       <div style="width:5px;height:5px;border-radius:50%;background:#1D9E75;animation:blink 1.5s ease-in-out infinite"></div>
       <span style="font-size:9px;color:#1D9E75;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Live</span>
     </div>
-  </div>
 
   <!-- CONTEÚDO DAS SEÇÕES -->
-  <main class="main">
-  <div style="display:flex;align-items:center;gap:12px">
-    <div class="brand-pill">Orange Viagens</div>
-    <div><div class="hdr-title">Central de Produto</div><div class="hdr-sub">11 abas · Prateleira · Ações · Fornecedores · Instagram · Campanhas · Playbooks · Templates · Gestão</div></div>
-  </div>
-  <div style="display:flex;align-items:center;gap:8px">
-    <div class="live-chip"><div class="ldot"></div><span class="ltxt">Live</span></div>
-    <span style="font-size:11px;color:rgba(255,255,255,.5);background:rgba(255,255,255,.1);padding:3px 10px;border-radius:20px">Mai 2026</span>
-  </div>
-</header>
-
-<nav>
-  <button class="tab on" onclick="st('prateleira',this)">Prateleira</button>
-  <button class="tab" onclick="st('acoes',this)">Ações</button>
-  <button class="tab" onclick="st('demandas',this)">Demandas</button>
-  <button class="tab" onclick="st('gestao',this)">Gestão</button>
-  <button class="tab" onclick="st('playbooks',this)">Playbooks</button>
-  <button class="tab" onclick="st('templates',this)">Templates</button>
-  <button class="tab" onclick="st('fornecedores',this)">Fornecedores <span class="monday-chip">Monday</span></button>
-  <button class="tab" onclick="st('instagram',this)">Instagram</button>
-  <button class="tab" onclick="st('campanhas',this)">Campanhas</button>
-  <button class="tab" onclick="st('margens',this)">Margens <span class="monday-chip" style="background:#EDE8FA;color:#3C3489;border-color:#AFA9EC">Melhoria 1</span></button>
-  <button class="tab" onclick="st('calendario',this)">Calendário</button>
-  <button class="tab" onclick="st('radar',this)">Radar</button>
-</nav>
-
-<main class="main">
+  <main class="main" style="padding:1.5rem 2rem;background:var(--sf)">
 
 <!-- PRATELEIRA -->
-<div id="s-prateleira" class="sec on">
+<div id="s-dashboard" class="sec on">
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Dashboard — visão geral do portfólio</span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">T1 Core</div><div class="kv">4/4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div><div class="kd up">↑ playbook completo</div></div>
+    <div class="kpi am"><div class="kl">T2 Lançamento</div><div class="kv">3</div><div class="ks">NYC · Paris · Miami</div><div class="kd warn">⚡ NYC lançando</div></div>
+    <div class="kpi bl"><div class="kl">Ações abertas</div><div class="kv" style="color:var(--re)" id="dash-n-acoes">9</div><div class="ks">pendentes + andamento</div></div>
+    <div class="kpi gr"><div class="kl">Urgentes hoje</div><div class="kv" style="color:var(--re)">3</div><div class="ks">ação imediata</div></div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.25rem">
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Alertas de hoje</div>
+      <div class="alerta al-r">⚡ <strong>NYC D+7</strong> — revisão pós-lançamento urgente esta semana</div>
+      <div class="alerta al-w">📋 <strong>Clubmed Trancoso</strong> — renovação de contrato em 30 dias</div>
+      <div class="alerta al-g">✅ <strong>NYC Go live</strong> — concluído com sucesso em 11 mai</div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Próximos marcos</div>
+      <div class="card" style="padding:10px 12px;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">📅</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Brief MKT Paris</div><div style="font-size:11px;color:var(--mu)">16 jun · RF + MI · D-15</div></div>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">33d</span>
+        </div>
+      </div>
+      <div class="card" style="padding:10px 12px;margin-bottom:6px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">📅</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">T&Q Paris</div><div style="font-size:11px;color:var(--mu)">24 jun · Roberta · D-7</div></div>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">41d</span>
+        </div>
+      </div>
+      <div class="card" style="padding:10px 12px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:16px">🚀</span>
+          <div style="flex:1"><div style="font-size:13px;font-weight:500;color:var(--ink)">Go live Paris</div><div style="font-size:11px;color:var(--mu)">1 jul · time completo</div></div>
+          <span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--orl);color:var(--or);font-weight:500">T2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Equilíbrio do portfólio — carga do time</div>
+      <div class="card" style="padding:12px 14px">
+        ${['Rafaella','Michelle','Laura','Beatriz'].map((n,i)=>{
+          const cargas=[13,12,8,7]; const max=15;
+          const col=cargas[i]>=10?'var(--re)':cargas[i]>=7?'var(--am)':'var(--gr)';
+          const st=cargas[i]>=10?'Atenção':'OK';
+          return `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)">
+            <span style="font-size:11px;font-weight:500;color:var(--ink);min-width:70px">${n}</span>
+            <div style="flex:1;height:6px;background:var(--sf);border-radius:10px;overflow:hidden"><div style="height:100%;width:${cargas[i]/max*100}%;background:${col};border-radius:10px"></div></div>
+            <span style="font-size:10px;color:${col};font-weight:600;min-width:30px">${cargas[i]}pt</span>
+            <span style="font-size:10px;padding:1px 6px;border-radius:20px;background:${cargas[i]>=10?'var(--rel)':'var(--grl)'};color:${col}">${st}</span>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin-bottom:8px">Radar — destinos em destaque</div>
+      <div class="card" style="padding:12px 14px">
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:18px">🇯🇵</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Japão</div><div style="font-size:10px;color:var(--mu)">T3 · hype máximo</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">🔥</span></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:0.5px solid var(--bd)"><span style="font-size:18px">🇵🇹</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Lisboa</div><div style="font-size:10px;color:var(--mu)">T3 · em alta</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--aml);color:var(--am);font-weight:500">📈</span></div>
+        <div style="display:flex;align-items:center;gap:8px;padding:5px 0"><span style="font-size:18px">🇲🇻</span><div style="flex:1"><div style="font-size:12px;font-weight:500">Maldivas</div><div style="font-size:10px;color:var(--mu)">T3 · luxo</div></div><span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--bll);color:var(--bl);font-weight:500">💎</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="s-prateleira" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Portfólio de produtos — prateleira</span></div>
   <div class="g4">
     <div class="kpi or"><div class="kl">T1 Core</div><div class="kv">4</div><div class="ks">Orlando · VH · Cruzeiros · Clubmed</div><div class="kd up">↑ playbook completo</div></div>
@@ -418,42 +493,110 @@ textarea{resize:vertical;min-height:70px;width:100%}
 
 <!-- AÇÕES -->
 <div id="s-acoes" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Ações — Produto entrega para os times</span></div>
-  <div class="filtro-row" id="flt-wrap"></div>
-  <div id="ac-list"></div>
-  <div style="margin-top:12px">
-    <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:6px">+ Nova ação</div>
-    <div class="nova-form">
-      <div class="nova-row">
-        <input type="text" id="n-t" placeholder="Descreva a ação..." style="width:100%">
-        <select id="n-p"><option>Orlando</option><option>Vacation Home</option><option>Cruzeiros</option><option>Clubmed</option><option>NYC</option><option>Paris</option><option>Miami</option><option>Dubai</option><option>Japão</option></select>
-        <select id="n-d"><option value="MKT">→ MKT</option><option value="Operação">→ Operação</option><option value="T&Q">→ T&Q</option><option value="Comercial">→ Comercial</option><option value="Emergencial">→ Emergencial</option><option value="Concierge">→ Concierge</option><option value="Interno">Interno</option></select>
-        <select id="n-pr"><option value="alta">Alta</option><option value="media">Média</option><option value="baixa">Baixa</option></select>
-        <button class="btn-p" onclick="addAcao()">Adicionar</button>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Ações — entregas de produto para os times</span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">Total abertas</div><div class="kv" id="ac-tot">0</div><div class="ks">ações em andamento</div></div>
+    <div class="kpi bl"><div class="kl">Alta prioridade</div><div class="kv" id="ac-alta" style="color:var(--re)">0</div><div class="ks">ação imediata</div></div>
+    <div class="kpi am"><div class="kl">Esta semana</div><div class="kv" id="ac-sem">0</div><div class="ks">prazo curto</div></div>
+    <div class="kpi gr"><div class="kl">Concluídas</div><div class="kv" id="ac-done">0</div><div class="ks">esta semana</div></div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+    <div style="display:flex;gap:5px;flex-wrap:wrap" id="ac-filtros">
+      <button class="fb on" onclick="acFiltro('todos',this)">Todas</button>
+      <button class="fb" onclick="acFiltro('alta',this)">🔴 Alta</button>
+      <button class="fb" onclick="acFiltro('media',this)">🟡 Média</button>
+      <button class="fb" onclick="acFiltro('mkt',this)">→ MKT</button>
+      <button class="fb" onclick="acFiltro('ops',this)">→ Operação</button>
+      <button class="fb" onclick="acFiltro('tq',this)">→ T&Q</button>
+      <button class="fb" onclick="acFiltro('comercial',this)">→ Comercial</button>
+    </div>
+    <button class="btn-p" style="font-size:11px;padding:5px 12px" onclick="tgAcForm()">+ Nova ação</button>
+  </div>
+
+  <div id="ac-form" style="display:none;background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:1rem;box-shadow:var(--shadow)">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end">
+      <div><label class="lbl2">Ação</label><input type="text" id="ac-txt" placeholder="Ex: Entregar briefing MKT Paris..." style="width:100%"></div>
+      <div><label class="lbl2">Destino</label>
+        <select id="ac-dest" style="width:100%">
+          <option>Orlando</option><option>NYC</option><option>Paris</option><option>Miami</option>
+          <option>Cruzeiros</option><option>Clubmed</option><option>VH</option><option>Geral</option>
+        </select>
+      </div>
+      <div><label class="lbl2">Para quem</label>
+        <select id="ac-para" style="width:100%">
+          <option value="mkt">MKT</option><option value="ops">Operação</option>
+          <option value="tq">T&Q</option><option value="comercial">Comercial</option>
+          <option value="emergencial">Emergencial</option>
+        </select>
+      </div>
+      <div><label class="lbl2">Prioridade</label>
+        <select id="ac-pr" style="width:100%">
+          <option value="alta">Alta</option><option value="media" selected>Média</option><option value="baixa">Baixa</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:5px;align-items:flex-end">
+        <button class="btn-p" style="font-size:11px;padding:5px 10px" onclick="addAcao()">Salvar</button>
+        <button class="btn-s" style="font-size:11px;padding:5px 8px" onclick="tgAcForm()">×</button>
       </div>
     </div>
   </div>
+
+  <div id="ac-lista"></div>
 </div>
 
-<!-- DEMANDAS -->
 <div id="s-demandas" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Demandas de vendas semanais — por coordenadora</span></div>
-  <p style="font-size:12px;color:var(--mu);margin-bottom:1rem">Cada coordenadora registra o que o comercial está pedindo, o que está parado e a ação necessária.</p>
-  <div class="dem-tabs">
-    <button class="dtab on" onclick="showDem('rf',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#D4F0E4;color:#0A5C38;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">RF</span>Rafaella</button>
-    <button class="dtab" onclick="showDem('mi',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#D0E5F5;color:#0A4F7A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">MI</span>Michelle</button>
-    <button class="dtab" onclick="showDem('la',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#FAD4C0;color:#7A2A0A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">LA</span>Laura</button>
-    <button class="dtab" onclick="showDem('be',this)"><span style="display:inline-flex;width:14px;height:14px;border-radius:50%;background:#FAE8C0;color:#7A4A0A;font-size:7px;font-weight:700;align-items:center;justify-content:center;margin-right:4px">BE</span>Beatriz</button>
-    <button class="dtab" onclick="showDem('all',this)">📊 Consolidado</button>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Demandas — o que o comercial está pedindo</span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">Demandas abertas</div><div class="kv" id="dem-tot">0</div><div class="ks">aguardando produto</div></div>
+    <div class="kpi bl"><div class="kl">Urgentes</div><div class="kv" id="dem-urg" style="color:var(--re)">0</div><div class="ks">resposta imediata</div></div>
+    <div class="kpi am"><div class="kl">Em andamento</div><div class="kv" id="dem-and">0</div><div class="ks">produto respondendo</div></div>
+    <div class="kpi gr"><div class="kl">Resolvidas</div><div class="kv" id="dem-res">0</div><div class="ks">esta semana</div></div>
   </div>
-  <div id="dem-rf" class="dem-panel on"></div>
-  <div id="dem-mi" class="dem-panel"></div>
-  <div id="dem-la" class="dem-panel"></div>
-  <div id="dem-be" class="dem-panel"></div>
-  <div id="dem-all" class="dem-panel"><div id="all-hist"></div></div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+    <div style="display:flex;gap:5px;flex-wrap:wrap" id="dem-filtros">
+      <button class="fb on" onclick="demFiltro('todos',this)">Todas</button>
+      <button class="fb" onclick="demFiltro('rf',this)">RF</button>
+      <button class="fb" onclick="demFiltro('mi',this)">MI</button>
+      <button class="fb" onclick="demFiltro('la',this)">LA</button>
+      <button class="fb" onclick="demFiltro('be',this)">BE</button>
+    </div>
+    <button class="btn-p" style="font-size:11px;padding:5px 12px" onclick="tgDemForm()">+ Nova demanda</button>
+  </div>
+
+  <div id="dem-form" style="display:none;background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:14px;margin-bottom:1rem;box-shadow:var(--shadow)">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end">
+      <div><label class="lbl2">Demanda</label><input type="text" id="dem-txt" placeholder="Ex: Preciso de opção de hotel boutique NYC para cliente VIP..." style="width:100%"></div>
+      <div><label class="lbl2">Coordenadora</label>
+        <select id="dem-coord" style="width:100%">
+          <option value="rf">Rafaella</option><option value="mi">Michelle</option>
+          <option value="la">Laura</option><option value="be">Beatriz</option>
+        </select>
+      </div>
+      <div><label class="lbl2">Produto</label>
+        <select id="dem-prod" style="width:100%">
+          <option>Hotel</option><option>Ingresso</option><option>Cruzeiro</option>
+          <option>Clubmed</option><option>Vacation Home</option><option>Transfer</option><option>Seguro</option>
+        </select>
+      </div>
+      <div><label class="lbl2">Urgência</label>
+        <select id="dem-urg-sel" style="width:100%">
+          <option value="urgente">Urgente</option><option value="semana" selected>Esta semana</option><option value="mensal">Sem pressa</option>
+        </select>
+      </div>
+      <div style="display:flex;gap:5px;align-items:flex-end">
+        <button class="btn-p" style="font-size:11px;padding:5px 10px" onclick="addDemanda()">Salvar</button>
+        <button class="btn-s" style="font-size:11px;padding:5px 8px" onclick="tgDemForm()">×</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dem-lista"></div>
 </div>
 
-<!-- GESTÃO -->
 <div id="s-gestao" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Gestão — visão consolidada</span></div>
   <div class="alerta al-w">⚡ <strong>NYC — go live 11 mai.</strong> Confirmar com Operação e T&Q.</div>
@@ -590,13 +733,30 @@ textarea{resize:vertical;min-height:70px;width:100%}
 
 <!-- FORNECEDORES -->
 <div id="s-fornecedores" class="sec">
-  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — dados do Monday.com <span class="monday-chip">Monday Live</span></span></div>
-  <p style="font-size:12px;color:var(--mu);margin-bottom:1rem">Visão única de todos os parceiros comerciais da Orange Viagens por categoria.</p>
-  <div class="forn-tabs" id="forn-tabs-wrap"></div>
-  <div id="forn-content"></div>
+  <div class="sh"><div class="sh-line"></div><span class="sh-title">Fornecedores — avaliação e ciclo de negociação</span></div>
+
+  <div class="g4" style="margin-bottom:1.25rem">
+    <div class="kpi or"><div class="kl">Fornecedores</div><div class="kv" id="forn-tot">17</div><div class="ks">9 categorias ativas</div></div>
+    <div class="kpi bl"><div class="kl">Nota média</div><div class="kv" id="forn-nota" style="color:var(--gr)">4.1</div><div class="ks">de 5.0</div></div>
+    <div class="kpi am"><div class="kl">Renovação urgente</div><div class="kv" id="forn-urg" style="color:var(--re)">2</div><div class="ks">em até 30 dias</div></div>
+    <div class="kpi gr"><div class="kl">Margem crítica</div><div class="kv" id="forn-marg" style="color:var(--re)">1</div><div class="ks">nota ≤ 2</div></div>
+  </div>
+
+  <div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:1rem" id="forn-cat-tabs">
+    <button class="fb on" onclick="fornCat('todos',this)">Todos</button>
+    <button class="fb" onclick="fornCat('hotel',this)">Hotel</button>
+    <button class="fb" onclick="fornCat('ingresso',this)">Ingresso</button>
+    <button class="fb" onclick="fornCat('cruzeiro',this)">Cruzeiro</button>
+    <button class="fb" onclick="fornCat('clubmed',this)">Clubmed</button>
+    <button class="fb" onclick="fornCat('vh',this)">Vacation Home</button>
+    <button class="fb" onclick="fornCat('transfer',this)">Transfer</button>
+    <button class="fb" onclick="fornCat('seguro',this)">Seguro</button>
+    <button class="fb" onclick="fornCat('aereo',this)">Aéreo</button>
+  </div>
+
+  <div id="forn-lista"></div>
 </div>
 
-<!-- INSTAGRAM -->
 <div id="s-instagram" class="sec">
   <div class="sh"><div class="sh-line"></div><span class="sh-title">Instagram — estratégia por canal</span></div>
   <p style="font-size:12px;color:var(--mu);margin-bottom:1.25rem">Frequência de ações de MKT sugerida por canal para manter os produtos bem na prateleira digital.</p>
@@ -1069,6 +1229,11 @@ textarea{resize:vertical;min-height:70px;width:100%}
 </main>
 
 <script>
+
+// ── PROXIES SUPABASE ────────────────────────────────────────────────────────
+const CLAUDE_PROXY = 'https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/claude-proxy';
+const MONDAY_PROXY = 'https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/monday-proxy';
+
 // ── DADOS ──────────────────────────────────────────────────────────────────
 const TM={Orlando:1,'Vacation Home':1,Cruzeiros:1,Clubmed:1,NYC:2,Paris:2,Miami:2,Dubai:3,'Japão':3};
 const DC={MKT:'p-mkt',Operação:'p-ops','T&Q':'p-tq',Comercial:'p-com',Emergencial:'p-em',Concierge:'p-co',Interno:'p-int'};
@@ -1620,7 +1785,7 @@ async function radarBuscar(){
   document.getElementById('ri-resultado').innerHTML='<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:2rem;text-align:center;box-shadow:var(--shadow)"><div style="width:22px;height:22px;border:2.5px solid var(--bd);border-top-color:var(--or);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px"></div><div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:8px">Buscando na web para '+coord.label+'...</div><div style="font-size:12px;color:var(--mu);line-height:2">🔍 Pesquisando tendências de '+coord.produtos.join(' e ')+'...<br>📰 Coletando notícias recentes...<br>🧠 Analisando impacto no produto...<br><span style="font-size:11px;opacity:.7">Isso pode levar até 30 segundos</span></div></div>';
   const prompt='Você é especialista em turismo FIT para agência brasileira de alto padrão. Use busca web para pesquisar:\n'+coord.queries.map((q,i)=>(i+1)+'. "'+q+'"').join('\n')+'\n\nGere insights para:\nCOORDENADORA: '+coord.label+'\nPRODUTOS: '+coord.produtos.join(', ')+'\n\nRetorne APENAS JSON:\n{"insights":[{"titulo":"max 12 palavras","impacto":"alto|medio|baixo","destino":"destino","janela":"quando chega","resumo":"2-3 frases","impacto_produto":"impacto em '+coord.produtos.join('/')+'","fontes":["fonte1"]}]}\n\nGere 3 a 5 insights com dados reais. Não invente — se não encontrar, pule.';
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
+    const resp=await fetch('https://xyxjcbxmedkonyxafurf.supabase.co/functions/v1/claude-proxy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})});
     const data=await resp.json();
     let txt='';
     if(data.content) for(const b of data.content) if(b.type==='text') txt+=b.text;
@@ -1901,6 +2066,227 @@ setTimeout(()=>{
 },100);
 // Sincronizar após render
 setTimeout(syncMobile,500);
+
+// ── AÇÕES ──────────────────────────────────────────────────────────────────
+let acoes=[
+  {t:'Briefing MKT NYC entregue',p:'paris',d:'mkt',pr:'alta',c:false},
+  {t:'Roteiro de reserva NYC',p:'nyc',d:'ops',pr:'alta',c:false},
+  {t:'Treinamento T&Q NYC',p:'nyc',d:'tq',pr:'alta',c:false},
+  {t:'Protocolo emergencial NYC',p:'nyc',d:'ops',pr:'alta',c:false},
+  {t:'Curadoria hoteleira Paris',p:'paris',d:'mkt',pr:'media',c:false},
+  {t:'Argumentário comercial NYC',p:'nyc',d:'comercial',pr:'media',c:false},
+  {t:'Guia de ingressos NYC',p:'nyc',d:'comercial',pr:'media',c:false},
+  {t:'Brief T&Q Paris',p:'paris',d:'tq',pr:'media',c:false},
+  {t:'Curadoria restaurantes Paris',p:'paris',d:'comercial',pr:'baixa',c:false},
+];
+let acFiltroAtual='todos';
+const AC_PR={alta:{bg:'var(--rel)',tx:'var(--re)',l:'Alta'},media:{bg:'var(--aml)',tx:'var(--am)',l:'Média'},baixa:{bg:'var(--bll)',tx:'var(--bl)',l:'Baixa'}};
+const AC_DEST={mkt:'MKT',ops:'Operação',tq:'T&Q',comercial:'Comercial',emergencial:'Emergencial'};
+
+function tgAcForm(){const f=document.getElementById('ac-form');f.style.display=f.style.display==='none'?'block':'none';}
+function acFiltro(f,btn){acFiltroAtual=f;document.querySelectorAll('#ac-filtros .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderAcoes();}
+function addAcao(){
+  const t=document.getElementById('ac-txt').value.trim();
+  if(!t){alert('Descreva a ação.');return;}
+  acoes.unshift({t,p:document.getElementById('ac-dest').value.toLowerCase(),d:document.getElementById('ac-para').value,pr:document.getElementById('ac-pr').value,c:false});
+  document.getElementById('ac-txt').value='';
+  document.getElementById('ac-form').style.display='none';
+  renderAcoes();syncMobile();
+}
+function toggleAcao(i){acoes[i].c=!acoes[i].c;renderAcoes();syncMobile();}
+function delAcao(i){acoes.splice(i,1);renderAcoes();syncMobile();}
+
+function renderAcoes(){
+  const lista=acFiltroAtual==='todos'?acoes:acoes.filter(a=>a.pr===acFiltroAtual||a.d===acFiltroAtual);
+  const ab=acoes.filter(a=>!a.c).length;
+  const alta=acoes.filter(a=>!a.c&&a.pr==='alta').length;
+  const sem=acoes.filter(a=>!a.c).length;
+  const done=acoes.filter(a=>a.c).length;
+  ['ac-tot','ac-alta','ac-sem','ac-done'].forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=[ab,alta,sem,done][i];
+  });
+  const dash=document.getElementById('dash-n-acoes');
+  if(dash) dash.textContent=ab;
+
+  const el=document.getElementById('ac-lista');
+  if(!el) return;
+  if(!lista.length){el.innerHTML='<p style="font-size:12px;color:var(--mu);font-style:italic;padding:1rem 0">Nenhuma ação nesta categoria.</p>';return;}
+  const abertas=lista.filter(a=>!a.c);
+  const feitas=lista.filter(a=>a.c);
+  let h='';
+  if(abertas.length){
+    h+=abertas.map((a,i)=>{
+      const idx=acoes.indexOf(a);
+      const pr=AC_PR[a.pr]||AC_PR.media;
+      return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:12px 14px;margin-bottom:7px;box-shadow:var(--shadow);display:flex;align-items:center;gap:10px">
+        <input type="checkbox" style="width:16px;height:16px;accent-color:var(--or);cursor:pointer;flex-shrink:0" onchange="toggleAcao(${idx})">
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:3px">${a.t}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd)">${a.p}</span>
+            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu)">→ ${AC_DEST[a.d]||a.d}</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;background:${pr.bg};color:${pr.tx}">${pr.l}</span>
+          </div>
+        </div>
+        <button onclick="delAcao(${idx})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:14px;padding:2px 5px;flex-shrink:0">×</button>
+      </div>`;
+    }).join('');
+  }
+  if(feitas.length){
+    h+=`<div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--mu);margin:12px 0 8px">Concluídas</div>`;
+    h+=feitas.map(a=>{
+      const idx=acoes.indexOf(a);
+      return`<div style="background:var(--sf);border:0.5px solid var(--bd);border-radius:var(--r);padding:10px 14px;margin-bottom:5px;display:flex;align-items:center;gap:10px;opacity:.6">
+        <input type="checkbox" checked style="width:16px;height:16px;accent-color:var(--or);cursor:pointer;flex-shrink:0" onchange="toggleAcao(${idx})">
+        <div style="font-size:12px;color:var(--mu);text-decoration:line-through;flex:1">${a.t}</div>
+        <button onclick="delAcao(${idx})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:13px;padding:2px 5px">×</button>
+      </div>`;
+    }).join('');
+  }
+  el.innerHTML=h;
+}
+
+// ── DEMANDAS ───────────────────────────────────────────────────────────────
+let demandas=[
+  {t:'Hotel boutique NYC para cliente VIP semana que vem',coord:'rf',prod:'Hotel',urg:'urgente',st:'aberta'},
+  {t:'Cruzeiro família dezembro Caribe — 2 cabines',coord:'la',prod:'Cruzeiro',urg:'semana',st:'aberta'},
+  {t:'Ingresso Disney + Universal combo — casal',coord:'mi',prod:'Ingresso',urg:'semana',st:'aberta'},
+  {t:'VH 5 quartos Orlando julho — grupo família',coord:'rf',prod:'Vacation Home',urg:'semana',st:'andamento'},
+];
+let demFiltroAtual='todos';
+const DEM_AV={rf:{bg:'#D4F0E4',tx:'#0A5C38',l:'RF'},mi:{bg:'#D0E5F5',tx:'#0A4F7A',l:'MI'},la:{bg:'#FAD4C0',tx:'#7A2A0A',l:'LA'},be:{bg:'#FAE8C0',tx:'#7A4A0A',l:'BE'}};
+const DEM_URG={urgente:{bg:'var(--rel)',tx:'var(--re)',l:'Urgente'},semana:{bg:'var(--aml)',tx:'var(--am)',l:'Esta semana'},mensal:{bg:'var(--bll)',tx:'var(--bl)',l:'Sem pressa'}};
+
+function tgDemForm(){const f=document.getElementById('dem-form');f.style.display=f.style.display==='none'?'block':'none';}
+function demFiltro(f,btn){demFiltroAtual=f;document.querySelectorAll('#dem-filtros .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderDemandas();}
+function addDemanda(){
+  const t=document.getElementById('dem-txt').value.trim();
+  if(!t){alert('Descreva a demanda.');return;}
+  demandas.unshift({t,coord:document.getElementById('dem-coord').value,prod:document.getElementById('dem-prod').value,urg:document.getElementById('dem-urg-sel').value,st:'aberta'});
+  document.getElementById('dem-txt').value='';
+  document.getElementById('dem-form').style.display='none';
+  renderDemandas();
+}
+function demSt(i,st){demandas[i].st=st;renderDemandas();}
+function delDem(i){demandas.splice(i,1);renderDemandas();}
+
+function renderDemandas(){
+  const lista=demFiltroAtual==='todos'?demandas:demandas.filter(d=>d.coord===demFiltroAtual);
+  const ab=demandas.filter(d=>d.st==='aberta').length;
+  const urg=demandas.filter(d=>d.urg==='urgente'&&d.st!=='resolvida').length;
+  const and=demandas.filter(d=>d.st==='andamento').length;
+  const res=demandas.filter(d=>d.st==='resolvida').length;
+  ['dem-tot','dem-urg','dem-and','dem-res'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(el)el.textContent=[ab,urg,and,res][i];
+  });
+  const el=document.getElementById('dem-lista');
+  if(!el)return;
+  if(!lista.length){el.innerHTML='<p style="font-size:12px;color:var(--mu);font-style:italic;padding:1rem 0">Nenhuma demanda encontrada.</p>';return;}
+  el.innerHTML=lista.map((d,localI)=>{
+    const i=demandas.indexOf(d);
+    const av=DEM_AV[d.coord]||DEM_AV.rf;
+    const ug=DEM_URG[d.urg]||DEM_URG.semana;
+    const stColor=d.st==='resolvida'?'var(--gr)':d.st==='andamento'?'var(--am)':'var(--mu)';
+    const stLabel=d.st==='resolvida'?'Resolvida':d.st==='andamento'?'Em andamento':'Aberta';
+    return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-radius:var(--r);padding:13px 14px;margin-bottom:8px;box-shadow:var(--shadow)${d.st==='resolvida'?';opacity:.6':''}">
+      <div style="display:flex;align-items:flex-start;gap:10px">
+        <div style="width:28px;height:28px;border-radius:50%;background:${av.bg};color:${av.tx};font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">${av.l}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:500;color:var(--ink);margin-bottom:5px${d.st==='resolvida'?';text-decoration:line-through':''}">${d.t}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd)">${d.prod}</span>
+            <span style="font-size:10px;padding:2px 8px;border-radius:20px;font-weight:500;background:${ug.bg};color:${ug.tx}">${ug.l}</span>
+            <span style="font-size:10px;color:${stColor};font-weight:500">${stLabel}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;flex-shrink:0">
+          ${d.st!=='resolvida'?`<button onclick="demSt(${i},'${d.st==='aberta'?'andamento':'resolvida'}')" style="font-size:10px;padding:3px 8px;border-radius:var(--rs);border:0.5px solid var(--bd);background:var(--sf);cursor:pointer;font-family:inherit;color:var(--mu)">${d.st==='aberta'?'Iniciar':'Resolver'}</button>`:''}
+          <button onclick="delDem(${i})" style="color:var(--re);border:none;background:transparent;cursor:pointer;font-size:14px;padding:2px 5px">×</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// ── FORNECEDORES ──────────────────────────────────────────────────────────
+const FORN_DATA=[
+  {n:'American Executive Int.',cat:'hotel',coord:'RF',nota_q:5,nota_m:4,nota_s:5,renovacao:'2025-12-01',proximo:'monitorar',backup:'Bonotel'},
+  {n:'GalaxyVacation',cat:'hotel',coord:'RF',nota_q:4,nota_m:3,nota_s:4,renovacao:'2025-08-01',proximo:'negociar',backup:'Celebration Tours'},
+  {n:'Bonotel (NYC luxo)',cat:'hotel',coord:'RF',nota_q:4,nota_m:4,nota_s:3,renovacao:'2025-09-01',proximo:'negociar',backup:'AmericanTours'},
+  {n:'UneHomes',cat:'vh',coord:'RF',nota_q:5,nota_m:5,nota_s:4,renovacao:'2026-01-15',proximo:'expandir',backup:'GoGlobal'},
+  {n:'Inttelli / Kaluah VH',cat:'vh',coord:'RF',nota_q:5,nota_m:5,nota_s:4,renovacao:'2026-02-01',proximo:'monitorar',backup:''},
+  {n:'Ceetiz',cat:'ingresso',coord:'MI',nota_q:4,nota_m:3,nota_s:4,renovacao:'2025-10-01',proximo:'negociar',backup:'Azul Viagens'},
+  {n:'NYC CityPASS',cat:'ingresso',coord:'MI',nota_q:5,nota_m:4,nota_s:3,renovacao:'2025-06-01',proximo:'renovar',backup:''},
+  {n:'Mondiale (Royal Caribbean)',cat:'cruzeiro',coord:'LA',nota_q:4,nota_m:4,nota_s:4,renovacao:'2025-11-01',proximo:'monitorar',backup:'TBO'},
+  {n:'Kaluah (Disney Cruise)',cat:'cruzeiro',coord:'LA',nota_q:5,nota_m:5,nota_s:4,renovacao:'2025-12-01',proximo:'expandir',backup:''},
+  {n:'Clubmed Trancoso',cat:'clubmed',coord:'BE',nota_q:5,nota_m:4,nota_s:5,renovacao:'2025-06-15',proximo:'renovar',backup:''},
+  {n:'Clubmed Les Arcs',cat:'clubmed',coord:'BE',nota_q:5,nota_m:4,nota_s:4,renovacao:'2025-10-01',proximo:'monitorar',backup:''},
+  {n:'MCA Tour',cat:'transfer',coord:'DH',nota_q:4,nota_m:5,nota_s:4,renovacao:'2026-01-01',proximo:'monitorar',backup:'Ineed Tours'},
+  {n:'Hero Seguros',cat:'seguro',coord:'DH',nota_q:4,nota_m:5,nota_s:4,renovacao:'2025-12-01',proximo:'expandir',backup:'Coris'},
+  {n:'Flytour Consolidadora',cat:'aereo',coord:'DH',nota_q:3,nota_m:2,nota_s:3,renovacao:'2025-08-01',proximo:'negociar',backup:'Ancoradouro'},
+];
+let fornCatAtual='todos';
+const FORN_PROX={monitorar:'Monitorar',negociar:'Negociar condições',renovar:'⚠️ Renovar',expandir:'Expandir parceria'};
+const FORN_PROX_C={monitorar:'var(--gr)',negociar:'var(--am)',renovar:'var(--re)',expandir:'var(--bl)'};
+
+function fornCat(c,btn){fornCatAtual=c;document.querySelectorAll('#forn-cat-tabs .fb').forEach(b=>b.classList.remove('on'));btn.classList.add('on');renderFornecedores();}
+
+function diasRen(dt){if(!dt)return null;return Math.ceil((new Date(dt)-new Date())/(864e5));}
+function fmtDt(dt){if(!dt)return'—';return new Date(dt).toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'});}
+function notaMedia(f){return((f.nota_q+f.nota_m+f.nota_s)/3).toFixed(1);}
+function starsHtml(v){let h='';for(let i=1;i<=5;i++)h+=`<span style="font-size:12px;color:${i<=v?'#F59E0B':'#DDD'}">★</span>`;return h;}
+
+function renderFornecedores(){
+  const lista=fornCatAtual==='todos'?FORN_DATA:FORN_DATA.filter(f=>f.cat===fornCatAtual);
+  const el=document.getElementById('forn-lista');
+  if(!el)return;
+  el.innerHTML=lista.map(f=>{
+    const dias=diasRen(f.renovacao);
+    const urgente=dias!==null&&dias<=30;
+    const breve=dias!==null&&dias<=90&&!urgente;
+    const nota=notaMedia(f);
+    const notaC=nota>=4.5?'var(--gr)':nota>=3?'var(--am)':'var(--re)';
+    const bordC=urgente?'var(--re)':breve?'var(--am)':'var(--bd)';
+    return`<div style="background:var(--wh);border:0.5px solid var(--bd);border-left:3px solid ${bordC};border-radius:var(--r);padding:14px;margin-bottom:10px;box-shadow:var(--shadow)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">${f.n}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
+            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu);border:0.5px solid var(--bd);font-weight:500">${f.cat}</span>
+            <span style="font-size:10px;padding:2px 7px;border-radius:20px;background:var(--sf);color:var(--mu)">${f.coord}</span>
+            ${urgente?'<span style="font-size:10px;padding:2px 8px;border-radius:20px;background:var(--rel);color:var(--re);font-weight:500">⚠️ Renovação urgente</span>':''}
+          </div>
+        </div>
+        <div style="text-align:center;flex-shrink:0">
+          <div style="font-size:22px;font-weight:600;color:${notaC};line-height:1">${nota}</div>
+          <div style="font-size:9px;color:var(--mu)">nota</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <div style="background:var(--sf);border-radius:var(--rs);padding:10px 12px">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:7px">Avaliação</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:var(--mu)">Qualidade</span>${starsHtml(f.nota_q)}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px;margin-bottom:3px"><span style="color:var(--mu)">Margem</span>${starsHtml(f.nota_m)}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;font-size:11px"><span style="color:var(--mu)">Suporte</span>${starsHtml(f.nota_s)}</div>
+        </div>
+        <div style="background:var(--sf);border-radius:var(--rs);padding:10px 12px">
+          <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);margin-bottom:7px">Ciclo</div>
+          <div style="font-size:11px;color:var(--mu);margin-bottom:3px">Renovação: <strong style="color:${urgente?'var(--re)':breve?'var(--am)':'var(--ink)'}">${fmtDt(f.renovacao)}</strong></div>
+          ${dias!==null?`<div style="font-size:10px;color:${urgente?'var(--re)':breve?'var(--am)':'var(--mu)'};margin-bottom:5px">${dias}d restantes</div>`:''}
+          <div style="font-size:10px;font-weight:500;color:${FORN_PROX_C[f.proximo]||'var(--mu)'}">→ ${FORN_PROX[f.proximo]||f.proximo}</div>
+          ${f.backup?`<div style="font-size:10px;color:var(--mu);margin-top:4px">Backup: ${f.backup}</div>`:'<div style="font-size:10px;color:var(--re);margin-top:4px">⚠️ Sem backup</div>'}
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// Inicializar todas as seções
+renderAcoes();
+renderDemandas();
+renderFornecedores();
+
 </script>
 
 </body>
